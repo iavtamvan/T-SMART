@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">T-SMART</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="belum_punya_akun">Belum punya akun?</string>
+    <string name="daftar">daftar</string>
+    <string name="login">login</string>
+    <string name="password">password</string>
+    <string name="username">username</string>
+    <string name="image_login">IMAGE LOGIN</string>
+    <string name="title_activity_health">T-HEALTH</string>
+    <string name="SUBJEK">Share dari link</string>
+    <string name="SHARE_VIA">share melalui</string>
+</resources>
