@@ -1,5 +1,6 @@
 package com.iav.id.ituteam;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,12 +11,18 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.iav.id.ituteam.fragment.BerandaFragment;
+import com.iav.id.ituteam.helper.Config;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     private FragmentManager fragmentManager;
     private Toolbar toolbar;
+
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
+    private String point;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -36,11 +43,13 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+    private TextView tvBerandaPoin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initView();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mTextMessage = (TextView) findViewById(R.id.message);
@@ -49,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.div_container, new BerandaFragment()).commit();
+
+        point = sharedPreferences.getString(Config.SHARED_POINt_DONOR, "");
+        tvBerandaPoin.setText(point);
+
+
     }
 
+    private void initView() {
+        tvBerandaPoin = findViewById(R.id.tv_beranda_poin);
+    }
 }

@@ -63,6 +63,16 @@ public class LoginModel {
 
     @SerializedName("username")
     private String username;
+    @SerializedName("kota_kab")
+    private String kota_kab;
+
+    public String getKota_kab() {
+        return kota_kab;
+    }
+
+    public void setKota_kab(String kota_kab) {
+        this.kota_kab = kota_kab;
+    }
 
     public void setProvinsi(String provinsi) {
         this.provinsi = provinsi;

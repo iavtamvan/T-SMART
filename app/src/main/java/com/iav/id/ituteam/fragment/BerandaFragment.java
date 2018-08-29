@@ -2,6 +2,7 @@ package com.iav.id.ituteam.fragment;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.activity.HealthActivity;
+import com.iav.id.ituteam.activity.EventActivity;
 import com.iav.id.ituteam.helper.Config;
 
 /**
@@ -25,6 +26,11 @@ public class BerandaFragment extends Fragment {
     private LinearLayout divEconomy;
     private LinearLayout divLodging;
     private LinearLayout divTravel;
+
+    private String pointDonor;
+
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -42,7 +48,7 @@ public class BerandaFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(), HealthActivity.class);
+                Intent intent = new Intent(getActivity(), EventActivity.class);
                 intent.putExtra(Config.BUNDLE_JENIS_KATEGORI, "Kesehatan");
                 intent.putExtra(Config.BUNDLE_PINDAH_TOKEN, "u43uy78esufh4-344ru9jskjfd-i34rwrb23o4ndfXsddD");
                 getActivity().startActivity(intent);
@@ -51,7 +57,7 @@ public class BerandaFragment extends Fragment {
         divGarbage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), HealthActivity.class);
+                Intent intent = new Intent(getActivity(), EventActivity.class);
                 intent.putExtra(Config.BUNDLE_JENIS_KATEGORI, "Sampah");
                 intent.putExtra(Config.BUNDLE_PINDAH_TOKEN, "jdhfjsdh6637yGGJSHJ-sfuHbsdfb74NJBB-UIE+sdjfu74893");
                 getActivity().startActivity(intent);
