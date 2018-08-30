@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.healthUI.DonorASIActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="8dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_circle_gol_darah"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:padding="20dp"
+                android:src="@drawable/logo" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Pendonor ASI"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tv_donor_asi_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Nama Lengkap" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/div_container_tanggal_perah_asi">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="Tanggal Perah ASI"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_donor_asi_tanggal_perah_asi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="Tanggal Perah" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Status Publikasi"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tv_donor_asi_status_publikasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Disetujui" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/div_container_penerima_asi"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="Penerima ASI"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_donor_asi_penerima"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="Nama Lengkap" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="No HP Penerima ASI"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_donor_asi_no_hp_penerima_asi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="No HP" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="Alamat Penerima ASI"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_donor_asi_alamat_penerima_asi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="Alamat Penerima Asi" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Token Donor Asi"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tv_donor_asi_token"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Token Donor" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/bgGrey"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/points"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/viga"
+                        android:text="Mendapatkan Point Donor ASI" />
+                    <TextView
+                        android:id="@+id/tv_donor_asi_point"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/viga"
+                        android:text="3" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+    <Button
+        android:id="@+id/btn_donor_asi_daftar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgGrey"
+        android:fontFamily="@font/viga"
+        android:text="DAFTAR"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+</LinearLayout>

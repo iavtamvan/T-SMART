@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     tools:context=".activity.EventActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -31,71 +31,76 @@
         android:layout_margin="@dimen/fab_margin"
         android:visibility="gone"
         app:srcCompat="@android:drawable/ic_dialog_email" />
-    <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_gravity="bottom|end"
-        fab:menu_fab_size="normal"
-        fab:menu_showShadow="true"
-        fab:menu_shadowColor="#66000000"
-        fab:menu_shadowRadius="4dp"
-        fab:menu_shadowXOffset="1dp"
-        fab:menu_shadowYOffset="3dp"
-        fab:menu_colorNormal="#DA4336"
-        fab:menu_colorPressed="#E75043"
-        fab:menu_colorRipple="#99FFFFFF"
-        fab:menu_animationDelayPerItem="50"
-        fab:menu_icon="@drawable/fab_add"
-        fab:menu_buttonSpacing="0dp"
-        fab:menu_labels_margin="0dp"
-        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
-        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
-        fab:menu_labels_paddingTop="4dp"
-        fab:menu_labels_paddingRight="8dp"
-        fab:menu_labels_paddingBottom="4dp"
-        fab:menu_labels_paddingLeft="8dp"
-        fab:menu_labels_padding="8dp"
-        fab:menu_labels_textColor="#FFFFFF"
-        fab:menu_labels_textSize="14sp"
-        fab:menu_labels_cornerRadius="3dp"
-        fab:menu_labels_colorNormal="#333333"
-        fab:menu_labels_colorPressed="#444444"
-        fab:menu_labels_colorRipple="#66FFFFFF"
-        fab:menu_labels_showShadow="true"
-        fab:menu_labels_singleLine="false"
-        fab:menu_labels_ellipsize="none"
-        fab:menu_labels_maxLines="-1"
-        fab:menu_labels_position="left"
-        fab:menu_openDirection="up"
-        fab:menu_backgroundColor="@android:color/transparent"
-        fab:menu_fab_label="@string/mau_donor_apa">
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_item_donor_darah"
+
+    <!-- Menu Layout is needed for the overlay to work -->
+    <jahirfiquitiva.libs.fabsmenu.FABsMenuLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        fab:fabs_menu_overlayColor="#4d000000"
+        fab:fabs_menu_clickableOverlay="true"
+        tools:layout_behavior="@string/fabs_menu_layout_behavior">
+
+        <!-- FABs Menu is the main view. It will contain all the items FABs and it create the menu fab itself -->
+        <jahirfiquitiva.libs.fabsmenu.FABsMenu
+            android:id="@+id/fabs_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/btn_star_big_on"
-            fab:fab_size="mini"
-            fab:fab_label="Donor Darah" />
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_item_donor_asi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_email"
-            fab:fab_size="mini"
-            fab:fab_label="Donor ASI" />
+            android:layout_gravity="bottom|end"
+            android:clipChildren="false"
+            fab:fab_menuMargins="16dp"
+            fab:fab_moreButtonPlusIcon="@drawable/fab_add"
+            fab:fab_moreButtonBackgroundColor="@color/colorAccent"
+            fab:fab_moreButtonRippleColor="@color/colorAccent"
+            fab:fab_moreButtonSize="normal"
+            fab:fab_labelsPosition="left"
+            fab:fab_expandDirection="up">
 
-    </com.github.clans.fab.FloatingActionMenu>
+            <jahirfiquitiva.libs.fabsmenu.TitleFAB
+                android:id="@+id/menu2_donor_darah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/btn_star_big_on"
+                fab:fab_title="Donor Darah"
+                fab:fab_enableTitleClick="true"
+                fab:fab_title_textColor="@color/colorAccent"
+                fab:fabSize="mini"
+                fab:backgroundTint="@color/colorAccent"
+                fab:rippleColor="@color/colorAccent"/>
+            <jahirfiquitiva.libs.fabsmenu.TitleFAB
+                android:id="@+id/menu2_donor_asi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_dialog_email"
+                fab:fab_title="Donor ASI"
+                fab:fab_enableTitleClick="true"
+                fab:fab_title_textColor="@color/colorAccent"
+                fab:fabSize="mini"
+                fab:backgroundTint="@color/colorAccent"
+                fab:rippleColor="@color/colorAccent"/>
+            <jahirfiquitiva.libs.fabsmenu.TitleFAB
+                android:id="@+id/menu2_tukarkan_sampah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/star_big_off"
+                fab:fab_title="Tukarkan Sampah"
+                fab:fab_enableTitleClick="true"
+                fab:fab_title_textColor="@color/colorAccent"
+                fab:fabSize="mini"
+                fab:backgroundTint="@color/colorAccent"
+                fab:rippleColor="@color/colorAccent"/>
+
+
+
+        </jahirfiquitiva.libs.fabsmenu.FABsMenu>
+
+    </jahirfiquitiva.libs.fabsmenu.FABsMenuLayout>
+
+
 
     <TextView
+        android:id="@+id/klik_donor_darah"
         android:layout_width="1dp"
-        android:layout_height="1dp"
-        android:id="@+id/klik_donor_darah"/>
+        android:layout_height="1dp" />
 
 </android.support.design.widget.CoordinatorLayout>

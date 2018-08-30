@@ -39,10 +39,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
         initView();
-        String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION
                 , Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE
-                , Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_SMS
-                , Manifest.permission.ACCESS_NETWORK_STATE};
+                , Manifest.permission.WRITE_EXTERNAL_STORAGE};
         Permissions.check(this/*context*/, permissions, null/*rationale*/, null/*options*/, new PermissionHandler() {
             @Override
             public void onGranted() {
@@ -91,6 +90,8 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString(Config.SHARED_LAT, loginModels.getLat());
                                 editor.putString(Config.SHARED_LNG, loginModels.getLng());
                                 editor.putString(Config.SHARED_STATUS_APLIKASI, loginModels.getStatusAplikasi());
+                                editor.putString(Config.SHARED_POINt_DONOR, loginModels.getPoint());
+                                editor.putString(Config.SHARED_TOTAL_DONOR_DISETUJUI, loginModels.getTotal_donor_darah());
 
                                 editor.apply();
                                 loading.dismiss();

@@ -1,14 +1,17 @@
 package com.iav.id.ituteam.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.activity.EventActivity;
@@ -28,9 +31,13 @@ public class BerandaFragment extends Fragment {
     private LinearLayout divTravel;
 
     private String pointDonor;
+    private String totalDonor;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+    private TextView tvTotalDonorDarah;
+    private RecyclerView rvBerandaHariIniEvent;
+    private RecyclerView rvBerandaHariIniBerita;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -63,8 +70,11 @@ public class BerandaFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+        sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
-
+        totalDonor = sharedPreferences.getString(Config.SHARED_TOTAL_DONOR_DISETUJUI, " ");
+        tvTotalDonorDarah.setText(totalDonor);
 
         return view;
     }
@@ -76,5 +86,8 @@ public class BerandaFragment extends Fragment {
         divEconomy = view.findViewById(R.id.div_economy);
         divLodging = view.findViewById(R.id.div_lodging);
         divTravel = view.findViewById(R.id.div_travel);
+        tvTotalDonorDarah = view.findViewById(R.id.tv_total_donor_darah);
+        rvBerandaHariIniEvent = view.findViewById(R.id.rv_beranda_hari_ini_event);
+        rvBerandaHariIniBerita = view.findViewById(R.id.rv_beranda_hari_ini_berita);
     }
 }

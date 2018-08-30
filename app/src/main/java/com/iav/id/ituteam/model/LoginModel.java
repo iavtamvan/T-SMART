@@ -65,6 +65,47 @@ public class LoginModel {
     private String username;
     @SerializedName("kota_kab")
     private String kota_kab;
+    @SerializedName("point")
+    private String point;
+
+    @SerializedName("total_donor_darah")
+    private String total_donor_darah;
+    @SerializedName("total_donor_asi")
+    private String total_donor_asi;
+    @SerializedName("total_tukar_sampah")
+    private String total_tukar_sampah;
+
+    public String getTotal_donor_darah() {
+        return total_donor_darah;
+    }
+
+    public void setTotal_donor_darah(String total_donor_darah) {
+        this.total_donor_darah = total_donor_darah;
+    }
+
+    public String getTotal_donor_asi() {
+        return total_donor_asi;
+    }
+
+    public void setTotal_donor_asi(String total_donor_asi) {
+        this.total_donor_asi = total_donor_asi;
+    }
+
+    public String getTotal_tukar_sampah() {
+        return total_tukar_sampah;
+    }
+
+    public void setTotal_tukar_sampah(String total_tukar_sampah) {
+        this.total_tukar_sampah = total_tukar_sampah;
+    }
+
+    public String getPoint() {
+        return point;
+    }
+
+    public void setPoint(String point) {
+        this.point = point;
+    }
 
     public String getKota_kab() {
         return kota_kab;

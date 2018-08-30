@@ -10,6 +10,9 @@ public class EventModel {
     @SerializedName("tempat_alamat")
     private String tempatAlamat;
 
+    @SerializedName("kota")
+    private String kota;
+
     @SerializedName("lng")
     private String lng;
 
@@ -19,8 +22,8 @@ public class EventModel {
     @SerializedName("jenis_event")
     private String jenisEvent;
 
-    @SerializedName("id_event")
-    private String idEvent;
+    @SerializedName("nama_petugas")
+    private String namaPetugas;
 
     @SerializedName("tgl_waktu_event")
     private String tglWaktuEvent;
@@ -28,11 +31,17 @@ public class EventModel {
     @SerializedName("tgl_event")
     private String tglEvent;
 
-    @SerializedName("lat")
-    private String lat;
-
     @SerializedName("gambar_event")
     private String gambarEvent;
+
+    @SerializedName("jenis_kategori")
+    private String jenisKategori;
+
+    @SerializedName("id_event")
+    private String idEvent;
+
+    @SerializedName("lat")
+    private String lat;
 
     @SerializedName("likes")
     private String likes;
@@ -51,6 +60,14 @@ public class EventModel {
 
     public String getTempatAlamat() {
         return tempatAlamat;
+    }
+
+    public void setKota(String kota) {
+        this.kota = kota;
+    }
+
+    public String getKota() {
+        return kota;
     }
 
     public void setLng(String lng) {
@@ -77,12 +94,12 @@ public class EventModel {
         return jenisEvent;
     }
 
-    public void setIdEvent(String idEvent) {
-        this.idEvent = idEvent;
+    public void setNamaPetugas(String namaPetugas) {
+        this.namaPetugas = namaPetugas;
     }
 
-    public String getIdEvent() {
-        return idEvent;
+    public String getNamaPetugas() {
+        return namaPetugas;
     }
 
     public void setTglWaktuEvent(String tglWaktuEvent) {
@@ -101,20 +118,36 @@ public class EventModel {
         return tglEvent;
     }
 
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
-
-    public String getLat() {
-        return lat;
-    }
-
     public void setGambarEvent(String gambarEvent) {
         this.gambarEvent = gambarEvent;
     }
 
     public String getGambarEvent() {
         return gambarEvent;
+    }
+
+    public void setJenisKategori(String jenisKategori) {
+        this.jenisKategori = jenisKategori;
+    }
+
+    public String getJenisKategori() {
+        return jenisKategori;
+    }
+
+    public void setIdEvent(String idEvent) {
+        this.idEvent = idEvent;
+    }
+
+    public String getIdEvent() {
+        return idEvent;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLat() {
+        return lat;
     }
 
     public void setLikes(String likes) {

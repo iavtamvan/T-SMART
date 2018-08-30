@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical"
-    tools:context=".activity.healthUI.DonorDarahActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.DetailDonorActivity"
+    tools:showIn="@layout/activity_detail_donor">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,19 +19,12 @@
             android:layout_margin="8dp"
             android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_circle_gol_darah"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:padding="20dp"
-                android:src="@drawable/logo" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/viga"
                 android:text="Pendonor Darah"
+                android:id="@+id/tv_donor_darah_nama_top"
                 android:textColor="@android:color/black"
                 android:textSize="16dp" />
 
@@ -107,6 +101,7 @@
                     android:fontFamily="@font/viga"
                     android:text="Ketuk untuk memilih golongan darah" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/div_container_gol_darah_rhesus"
                 android:layout_width="match_parent"
@@ -146,6 +141,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/viga"
                         android:text="Tanggal Donor Darah"
+                        android:id="@+id/tv_donor_darah_tanggal_top"
                         android:textColor="@android:color/black"
                         android:textSize="16dp" />
 
@@ -196,21 +192,27 @@
                         android:text="Ketuk untuk memilih tanggal" />
                 </LinearLayout>
             </LinearLayout>
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/viga"
-                android:text="No REG PMI"
-                android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:orientation="vertical"
+                android:id="@+id/div_container_donor_darah_reg_pmi">
 
-            <EditText
-                android:id="@+id/edt_donor_darah_noreg_pmi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="No REG PMI"
-                android:inputType="phone" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="No REG PMI"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_donor_darah_no_reg_pmi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="Ketuk untuk memilih golongan darah" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -230,29 +232,33 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/bgGrey"
+                android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"/>
+                android:background="@color/bgGrey" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/points"/>
+                    android:src="@drawable/points" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/viga"
                         android:text="Mendapatkan Point Donor Darah" />
+
                     <TextView
                         android:id="@+id/tv_donor_darah_point"
                         android:layout_width="match_parent"
@@ -264,18 +270,19 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tv_donor_asi_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:gravity="center"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
 
         </LinearLayout>
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/btn_donor_darah_daftar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bgGrey"
-        android:fontFamily="@font/viga"
-        android:text="DAFTAR"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>

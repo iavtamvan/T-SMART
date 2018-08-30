@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.model.EventModel;
-import com.iav.id.ituteam.model.EventModel;
 
 import java.util.ArrayList;
 

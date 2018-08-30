@@ -2,7 +2,6 @@ package com.iav.id.ituteam.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.daimajia.androidanimations.library.Techniques;

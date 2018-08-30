@@ -3,6 +3,7 @@ package com.iav.id.ituteam.activity.healthUI;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.iav.id.ituteam.MainActivity;
 import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.rest.ApiService;
@@ -28,6 +30,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.ResponseBody;
@@ -79,6 +82,7 @@ public class DonorDarahActivity extends AppCompatActivity {
     private String tgl_donor;
     private String tgl_jatuh_tempo;
     private String key;
+    private String uuid;
 
     private int mSelectedYear;
     private int mSelectedMonth;
@@ -143,6 +147,7 @@ public class DonorDarahActivity extends AppCompatActivity {
                 editor.apply();
             }
         });
+
 
 
     }
@@ -210,25 +215,31 @@ public class DonorDarahActivity extends AppCompatActivity {
         tvDonorDarahKotaKabupatenAlamat.setText(provinsi + ", " + kota_kab + ", " + alamat);
         tvDonorDarahJenisKelamin.setText(jenis_kelamin);
         Glide.with(this).load(foto_url).error(R.drawable.logo).into(ivCircleGolDarah);
-        tvDonorDarahToken.setText(token);
+        uuid = UUID.randomUUID().toString();
+        tvDonorDarahToken.setText(uuid);
     }
     private void postDonorPasien() {
         ApiService apiService = Client.getInstanceRetrofit();
-        apiService.postDonorPasien(id_user, gol_darah, tvDonorDarahTanggal.getText().toString().trim(),
-                "90 Hari lagi",
-                rhesus, no_reg_pmi, "Tidak Terdaftar", token, "4")
+        apiService.postDonorDarahPasien(id_user, tvDonorDarahGolongan.getText().toString().trim(),
+                tvDonorDarahTanggal.getText().toString().trim(), "90 Hari lagi", tvDonorDarahGolonganRhesus.getText().toString().trim(),
+                edtDonorDarahNoregPmi.getText().toString().trim(), "Tidak Terdaftar", uuid, "Darah", kota_kab, "Menunggu")
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        Toast.makeText(DonorDarahActivity.this, "" + response.body(), Toast.LENGTH_SHORT).show();
                         if (response.isSuccessful()){
                             try {
                                 JSONObject jsonObject = new JSONObject(response.body().string());
                                 String error_msg = jsonObject.optString("error_msg");
-                                String total_point = jsonObject.optString("total_point");
-                                editor.putString(Config.SHARED_POINt_DONOR, total_point);
+//                                String total_point = jsonObject.optString("total_point");
+                                String total_donorMeunggu = jsonObject.optString("total_donor_menunggu");
+                                String total_donor_disetujui = jsonObject.optString("total_donor_disetujui");
+//                                editor.putString(Config.SHARED_POINt_DONOR, total_point);
+                                editor.putString(Config.SHARED_TOTAL_DONOR_DISETUJUI, total_donor_disetujui);
+                                editor.putString(Config.SHARED_TOTAL_DONOR_MENUNGGU, total_donorMeunggu);
                                 editor.apply();
                                 Toast.makeText(DonorDarahActivity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             } catch (IOException e) {

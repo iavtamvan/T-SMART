@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.github.clans.fab.FloatingActionMenu;
 import com.iav.id.ituteam.R;
+import com.iav.id.ituteam.activity.healthUI.DonorASIActivity;
 import com.iav.id.ituteam.activity.healthUI.DonorDarahActivity;
 import com.iav.id.ituteam.adapter.HealthAdapter;
 import com.iav.id.ituteam.helper.Config;
@@ -27,6 +28,8 @@ import com.iav.id.ituteam.rest.Client;
 
 import java.util.ArrayList;
 
+import jahirfiquitiva.libs.fabsmenu.FABsMenu;
+import jahirfiquitiva.libs.fabsmenu.TitleFAB;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,12 +46,18 @@ public class EventActivity extends AppCompatActivity {
     private String key;
     private Toolbar toolbar;
     private FloatingActionButton fab;
-    private FloatingActionMenu menu;
-    private com.github.clans.fab.FloatingActionButton menuItemDonorDarah;
-    private com.github.clans.fab.FloatingActionButton menuItemDonorAsi;
 
     private String klik;
+    private String jenisKelamin;
+
     private TextView klikDonorDarah;
+    private FABsMenu fabsMenu;
+    private TitleFAB menu2DonorDarah;
+    private TitleFAB menu2DonorAsi;
+
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private TitleFAB menu2TukarkanSampah;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -66,31 +75,75 @@ public class EventActivity extends AppCompatActivity {
         eventModels = new ArrayList<>();
         jenisKategori = getIntent().getStringExtra(Config.BUNDLE_JENIS_KATEGORI);
         token = getIntent().getStringExtra(Config.BUNDLE_PINDAH_TOKEN);
+        sharedPreferences = getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
+        jenisKelamin = sharedPreferences.getString(Config.SHARED_JENIS_KELAMIN, "");
 
         if (jenisKategori.equalsIgnoreCase("Kesehatan")) {
-            getSupportActionBar().setIcon(R.drawable.logo);
-            toolbar.setTitleTextColor(R.color.yellow);
-            menu.setVisibility(View.VISIBLE);
-            getDataEventKesehatanAll();
-            divContatinerList.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialogBoxSortByKesehatan();
+            if (jenisKelamin.equalsIgnoreCase("Laki - Laki")) {
+                getSupportActionBar().setIcon(R.drawable.logo);
+                toolbar.setTitleTextColor(R.color.yellow);
+                getDataEventKesehatanAll();
+                divContatinerList.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogBoxSortByKesehatan();
 
-                }
-            });
-            menuItemDonorDarah.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(EventActivity.this, "sadfsf", Toast.LENGTH_SHORT).show();
-                    klikDonorDarah.performClick();
-                }
-            });
+                    }
+                });
+                menu2DonorDarah.setTitleClickEnabled(true);
+                menu2DonorDarah.setClickable(true);
+                menu2DonorDarah.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(), DonorDarahActivity.class));
+                    }
+                });
+                menu2DonorAsi.setVisibility(View.GONE);
+                menu2TukarkanSampah.setVisibility(View.GONE);
+            } else {
+                Toast.makeText(this, jenisKelamin, Toast.LENGTH_SHORT).show();
+                getSupportActionBar().setIcon(R.drawable.logo);
+                toolbar.setTitleTextColor(R.color.yellow);
+                fabsMenu.setVisibility(View.VISIBLE);
+                menu2TukarkanSampah.setVisibility(View.GONE);
+                getDataEventKesehatanAll();
+                divContatinerList.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogBoxSortByKesehatan();
+
+                    }
+                });
+                menu2DonorDarah.setTitleClickEnabled(true);
+                menu2DonorDarah.setClickable(true);
+                menu2DonorDarah.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(), DonorDarahActivity.class));
+                    }
+                });
+
+                menu2DonorAsi.setTitleClickEnabled(true);
+                menu2DonorAsi.setClickable(true);
+                menu2DonorAsi.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(), DonorASIActivity.class));
+                    }
+                });
+            }
 
         } else {
             getSupportActionBar().setIcon(R.drawable.tgold);
             toolbar.setTitleTextColor(R.color.yellow);
-            menu.setVisibility(View.GONE);
+            menu2DonorAsi.setVisibility(View.GONE);
+            menu2DonorDarah.setVisibility(View.GONE);
+            menu2TukarkanSampah.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(EventActivity.this, "Berhail gans", Toast.LENGTH_SHORT).show();
+                }
+            });
             getDataEventSampahAll();
             divContatinerList.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -99,6 +152,7 @@ public class EventActivity extends AppCompatActivity {
 
                 }
             });
+
         }
 
 
@@ -240,9 +294,16 @@ public class EventActivity extends AppCompatActivity {
         divContatinerList = findViewById(R.id.div_contatiner_list);
         toolbar = findViewById(R.id.toolbar);
         fab = findViewById(R.id.fab);
-        menu = findViewById(R.id.menu);
-        menuItemDonorDarah = findViewById(R.id.menu_item_donor_darah);
-        menuItemDonorAsi = findViewById(R.id.menu_item_donor_asi);
         klikDonorDarah = findViewById(R.id.klik_donor_darah);
+        fabsMenu = findViewById(R.id.fabs_menu);
+        menu2DonorDarah = findViewById(R.id.menu2_donor_darah);
+        menu2DonorAsi = findViewById(R.id.menu2_donor_asi);
+        menu2TukarkanSampah = findViewById(R.id.menu2_tukarkan_sampah);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 }
