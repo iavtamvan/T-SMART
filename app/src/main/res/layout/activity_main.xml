@@ -43,6 +43,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/shapes_rectangel"
                         android:gravity="center"
+                        android:id="@+id/div_container_points"
                         android:orientation="horizontal">
 
                         <ImageView

@@ -101,7 +101,7 @@ public class SplashActivity extends AwesomeSplash {
         else {
             if (rule.contains("Pengguna")){
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
+                finishAffinity();
             }
 //                    else {
 //                        startActivity(new Intent(getApplicationContext(), HomePetugasActivity.class));

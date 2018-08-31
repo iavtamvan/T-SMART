@@ -2,6 +2,7 @@ package com.iav.id.ituteam.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.model.EventModel;
 
@@ -34,8 +36,21 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Glide.with(context).load(EventModels.get(position).getGambarEvent()).error(R.drawable.logo)
-                .into(holder.ivListEventBackdroph);
+        final ImagePopup imagePopup = new ImagePopup(context);
+        imagePopup.setWindowHeight(800); // Optional
+        imagePopup.setWindowWidth(800); // Optional
+        imagePopup.setBackgroundColor(Color.BLACK);  // Optional
+        imagePopup.setFullScreen(true); // Optional
+        imagePopup.setHideCloseIcon(true);  // Optional
+        imagePopup.setImageOnClickClose(true);  // Optional
+        imagePopup.initiatePopupWithGlide(EventModels.get(position).getGambarEvent());
+        Glide.with(context).load(EventModels.get(position).getGambarEvent()).into(holder.ivListEventBackdroph);
+        holder.ivListEventBackdroph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagePopup.viewPopup();
+            }
+        });
         holder.tvListeventJudul.setText(EventModels.get(position).getJudulEvent());
         holder.tvListeventDate.setText(EventModels.get(position).getTglWaktuEvent());
         holder.tvListeventDeskripsi.setVisibility(View.GONE);

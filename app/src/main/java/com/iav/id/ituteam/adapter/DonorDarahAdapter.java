@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.activity.DetailDonorActivity;
+import com.iav.id.ituteam.activity.healthUI.DetailDonorActivity;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.model.DonorDarahModel;
 
@@ -73,7 +72,7 @@ public class DonorDarahAdapter extends RecyclerView.Adapter<DonorDarahAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         initShared();
 
-        Glide.with(context).load(donorDarahModels.get(position).getBuktiFoto()).error(R.drawable.logo).into(holder.ivListDonorDarah);
+        Glide.with(context).load(donorDarahModels.get(position).getBuktiFoto()).into(holder.ivListDonorDarah);
         holder.tvListDonorDarahTanggal.setText("Donor Darah : " + donorDarahModels.get(position).getTglDonor());
         holder.tvListDonorDarahNamaLengkap.setText(nama_lengkap);
         holder.tvListDonorDarahGolongan.setText(donorDarahModels.get(position).getGolDarah() + donorDarahModels.get(position).getRhesusGol());

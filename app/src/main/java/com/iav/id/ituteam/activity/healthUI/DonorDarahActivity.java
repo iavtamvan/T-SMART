@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.iav.id.ituteam.MainActivity;
 import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.helper.Config;
@@ -99,6 +101,7 @@ public class DonorDarahActivity extends AppCompatActivity {
         setContentView(R.layout.activity_donor_darah);
         initView();
         initShared();
+
 
         divContainerGolDarah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,9 +217,25 @@ public class DonorDarahActivity extends AppCompatActivity {
         tvDonorDarahTempatTglLahir.setText(tempat_tgl_lahir);
         tvDonorDarahKotaKabupatenAlamat.setText(provinsi + ", " + kota_kab + ", " + alamat);
         tvDonorDarahJenisKelamin.setText(jenis_kelamin);
-        Glide.with(this).load(foto_url).error(R.drawable.logo).into(ivCircleGolDarah);
         uuid = UUID.randomUUID().toString();
         tvDonorDarahToken.setText(uuid);
+        final ImagePopup imagePopup = new ImagePopup(this);
+        imagePopup.setWindowHeight(800); // Optional
+        imagePopup.setWindowWidth(800); // Optional
+        imagePopup.setBackgroundColor(Color.BLACK);  // Optional
+        imagePopup.setFullScreen(true); // Optional
+        imagePopup.setHideCloseIcon(true);  // Optional
+        imagePopup.setImageOnClickClose(true);  // Optional
+        imagePopup.initiatePopupWithGlide(foto_url);
+        Glide.with(this).load(foto_url).into(ivCircleGolDarah);
+        ivCircleGolDarah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagePopup.viewPopup();
+            }
+        });
+
+
     }
     private void postDonorPasien() {
         ApiService apiService = Client.getInstanceRetrofit();
@@ -322,5 +341,26 @@ public class DonorDarahActivity extends AppCompatActivity {
         divContainerGolDarahRhesus = findViewById(R.id.div_container_gol_darah_rhesus);
         tvDonorDarahGolonganRhesus = findViewById(R.id.tv_donor_darah_golongan_rhesus);
         tvDonorDarahPoint = findViewById(R.id.tv_donor_darah_point);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("LOH? ")
+                .setMessage(nama_lengkap +" tidak jadi donor? kenapa? :(")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent startMain = new Intent(Intent.ACTION_MAIN);
+                        startMain.addCategory(Intent.CATEGORY_HOME);
+                        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(startMain);
+                    }
+
+                })
+                .setNegativeButton("Tidak", null)
+                .show();
     }
 }

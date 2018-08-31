@@ -117,6 +117,7 @@
                                     android:layout_weight="1"
                                     android:gravity="center"
                                     android:text="NAME 1"
+                                    android:id="@+id/tv_total_donor_asi"
                                     android:textColor="@android:color/white" />
                             </LinearLayout>
 
@@ -163,6 +164,7 @@
                                     android:layout_weight="1"
                                     android:gravity="center"
                                     android:text="NAME 1"
+                                    android:id="@+id/tv_total_event"
                                     android:textColor="@android:color/white" />
                             </LinearLayout>
 

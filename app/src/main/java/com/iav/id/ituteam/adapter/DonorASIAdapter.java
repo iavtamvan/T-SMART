@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.activity.DetailDonorActivity;
+import com.iav.id.ituteam.activity.healthUI.DetailDonorActivity;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.model.DonorASIModel;
 
@@ -73,7 +73,7 @@ public class DonorASIAdapter extends RecyclerView.Adapter<DonorASIAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         initShared();
 
-        Glide.with(context).load(donorASIModels.get(position).getBuktiFoto()).error(R.drawable.logo).into(holder.ivListDonorDarah);
+        Glide.with(context).load(donorASIModels.get(position).getBuktiFoto()).into(holder.ivListDonorDarah);
         holder.tvListDonorDarahTanggal.setText("Tangggal Perah : " + donorASIModels.get(position).getTglPerah());
         holder.tvListDonorDarahNamaLengkap.setText(nama_lengkap);
         holder.tvListDonorDarahGolonganTop.setText("No Hp");

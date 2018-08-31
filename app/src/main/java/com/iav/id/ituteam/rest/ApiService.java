@@ -5,6 +5,7 @@ import com.iav.id.ituteam.model.DonorDarahModel;
 import com.iav.id.ituteam.model.EventModel;
 import com.iav.id.ituteam.model.ListHealthModel;
 import com.iav.id.ituteam.model.LoginModel;
+import com.iav.id.ituteam.model.newsModel.NewsModel;
 
 import java.util.ArrayList;
 
@@ -12,6 +13,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface ApiService {
@@ -55,14 +57,15 @@ public interface ApiService {
                                    @Field("lng") String lng,
                                    @Field("no_hp_wa") String no_hp_wa,
                                    @Field("token_asi") String token_asi,
-                                   @Field("jenis_donor") String jenis_donor,
-                                   @Field("token_reg_donor") String token_reg_donor
+                                   @Field("jenis_donor") String jenis_donor
                                    );
     @FormUrlEncoded
     @POST("api_get.php")
     Call<ResponseBody> getDataMain(
                                    @Field("id_user") String id_user,
-                                   @Field("pindah") String pindah);
+                                   @Field("pindah") String pindah,
+                                   @Field("kota") String kota
+                                   );
     @FormUrlEncoded
     @POST("api_get.php")
     Call<ArrayList<DonorDarahModel>> getDataRiwayatDarah(
@@ -73,5 +76,29 @@ public interface ApiService {
     Call<ArrayList<DonorASIModel>> getDataRiwayatASI(
                                    @Field("id_user") String id_user,
                                    @Field("pindah") String pindah);
+    @FormUrlEncoded
+    @POST("api_register.php")
+    Call<ResponseBody> potRegister(
+                                   @Field("nama_lengkap") String nama_lengkap,
+                                   @Field("email") String email,
+                                   @Field("tempat_tgl_lahir") String tempat_tgl_lahir,
+                                   @Field("alamat") String alamat,
+                                   @Field("kota_kab") String kota_kab,
+                                   @Field("provinsi") String provinsi,
+                                   @Field("no_hp") String no_hp,
+                                   @Field("jenis_kelamin") String jenis_kelamin,
+                                   @Field("agama") String agama,
+                                   @Field("username") String username,
+                                   @Field("password") String password,
+                                   @Field("foto_url") String foto_url,
+                                   @Field("rule") String rule,
+                                   @Field("status_verifikasi") String status_verifikasi,
+                                   @Field("token") String token,
+                                   @Field("lat") double lat,
+                                   @Field("lng") double lng,
+                                   @Field("status_aplikasi") String status_aplikasi);
+
+    @GET("top-headlines?country=id&category=health&apiKey=12850cd010b54441aaeff6749dc99cd0")
+    Call<NewsModel> getNews();
 
 }

@@ -96,6 +96,7 @@ public class EventActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getApplicationContext(), DonorDarahActivity.class));
+                        finishAffinity();
                     }
                 });
                 menu2DonorAsi.setVisibility(View.GONE);
@@ -120,6 +121,7 @@ public class EventActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getApplicationContext(), DonorDarahActivity.class));
+                        finishAffinity();
                     }
                 });
 
@@ -129,6 +131,7 @@ public class EventActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getApplicationContext(), DonorASIActivity.class));
+                        finishAffinity();
                     }
                 });
             }

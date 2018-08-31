@@ -1,4 +1,4 @@
-package com.iav.id.ituteam.activity;
+package com.iav.id.ituteam.activity.healthUI;
 
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -86,7 +86,7 @@ public class DetailDonorActivity extends AppCompatActivity {
             divContainerGolDarah.setVisibility(View.GONE);
             divContainerGolDarahRhesus.setVisibility(View.GONE);
 
-            Glide.with(this).load(foto_url).error(R.drawable.logo).into(ivCircleGolDarah);
+            Glide.with(this).load(foto_url).into(ivCircleGolDarah);
             tvDonorDarahNamaTop.setText("Pendonor ASI");
             tvDonorDarahPoint.setText("3");
             tvDonorDarahTanggalTop.setText("Tanggal Perah ASI");
@@ -106,7 +106,7 @@ public class DetailDonorActivity extends AppCompatActivity {
             reg_pmi = getIntent().getStringExtra(Config.BUNDLE_REG_PMI);
 
 
-            Glide.with(this).load(foto_url).error(R.drawable.logo).into(ivCircleGolDarah);
+            Glide.with(this).load(foto_url).into(ivCircleGolDarah);
             tvDonorDarahNama.setText(nama_lengkap);
             tvDonorDarahTempatTglLahir.setText(tempat_tgl_lahir);
             tvDonorDarahKotaKabupatenAlamat.setText(alamat);

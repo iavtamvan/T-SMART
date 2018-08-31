@@ -1,8 +1,11 @@
 package com.iav.id.ituteam.activity.healthUI;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.iav.id.ituteam.MainActivity;
 import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.helper.Config;
@@ -86,8 +90,23 @@ public class DonorASIActivity extends AppCompatActivity {
         setContentView(R.layout.activity_donor_asi);
         initView();
         initShared();
+        final ImagePopup imagePopup = new ImagePopup(this);
+        imagePopup.setWindowHeight(800); // Optional
+        imagePopup.setWindowWidth(800); // Optional
+        imagePopup.setBackgroundColor(Color.BLACK);  // Optional
+        imagePopup.setFullScreen(true); // Optional
+        imagePopup.setHideCloseIcon(true);  // Optional
+        imagePopup.setImageOnClickClose(true);  // Optional
+        imagePopup.initiatePopupWithGlide(foto_url);
+        Glide.with(this).load(foto_url).into(ivCircleGolDarah);
 
-        Glide.with(this).load(foto_url).error(R.drawable.logo).into(ivCircleGolDarah);
+        ivCircleGolDarah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagePopup.viewPopup();
+            }
+        });
+
         tvDonorAsiNama.setText(nama_lengkap);
 
         divContainerTanggalPerahAsi.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +129,7 @@ public class DonorASIActivity extends AppCompatActivity {
 
     private void postASI() {
         ApiService apiService = Client.getInstanceRetrofit();
-        apiService.postDonorASIPasien(id_user, tvDonorAsiTanggalPerahAsi.getText().toString().trim(), lat, lng, no_hp, uuid, "ASI", uuid)
+        apiService.postDonorASIPasien(id_user, tvDonorAsiTanggalPerahAsi.getText().toString().trim(), lat, lng, no_hp, uuid, "ASI")
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -143,7 +162,6 @@ public class DonorASIActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
     private void dateDialog() {
         final Calendar c = Calendar.getInstance();
@@ -209,5 +227,26 @@ public class DonorASIActivity extends AppCompatActivity {
         tvDonorAsiToken = findViewById(R.id.tv_donor_asi_token);
         tvDonorAsiPoint = findViewById(R.id.tv_donor_asi_point);
         btnDonorAsiDaftar = findViewById(R.id.btn_donor_asi_daftar);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("LOH? ")
+                .setMessage(nama_lengkap +" tidak jadi donor? kenapa? :(")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent startMain = new Intent(Intent.ACTION_MAIN);
+                        startMain.addCategory(Intent.CATEGORY_HOME);
+                        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(startMain);
+                    }
+
+                })
+                .setNegativeButton("Tidak", null)
+                .show();
     }
 }

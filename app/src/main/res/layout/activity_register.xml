@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.RegisterActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="8dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Nama Lengkap"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edt_register_nama_lengkap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Lengkap"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Email"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edt_register_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Tempat Tanggal Lahir"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edt_register_tempat_tgl_lahir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tempat Tanggal Lahir"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Provinsi"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edt_register_provinsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Provinsi"
+                android:inputType="text" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Kota"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edt_register_kota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Provinsi"
+                android:inputType="text" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Alamat"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edt_register_alamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Provinsi"
+                android:inputType="text" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="No Hp"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edt_register_no_hp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="No Hp"
+                android:inputType="phone" />
+
+            <LinearLayout
+                android:id="@+id/div_container_register_jenis_kelamin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="Jenis Kelamin"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_register_jenis_kelamin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="Ketuk untuk memilih jenis kelamin" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/div_container_register_agama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="Agama"
+                    android:textColor="@android:color/black"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_register_agama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:text="Ketuk untuk memilih agama" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Username"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edt_register_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:inputType="text" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/viga"
+                android:text="Password"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/edt_register_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/upload"
+                android:id="@+id/iv_register_foto" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_register"
+        android:text="DAFTAR"
+        android:textColor="@android:color/black"
+        android:fontFamily="@font/viga"
+        android:background="@color/bgGrey"
+        android:textStyle="bold"/>
+
+</LinearLayout>

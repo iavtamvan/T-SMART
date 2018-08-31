@@ -1,5 +1,8 @@
 package com.iav.id.ituteam;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,13 +12,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.evernote.android.state.State;
 import com.evernote.android.state.StateSaver;
 import com.iav.id.ituteam.fragment.BerandaFragment;
-import com.iav.id.ituteam.fragment.RiwayatFragment;
+import com.iav.id.ituteam.fragment.NewsFragment;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.rest.ApiService;
 import com.iav.id.ituteam.rest.Client;
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String point;
     private String idUser;
+    private String kota;
 
 
     @State
@@ -53,14 +59,15 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    divContainerPoints.setVisibility(View.VISIBLE);
                     fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.div_container, new BerandaFragment()).commit();
 //                    getSupportActionBar().setTitle(R.string.name_fragment_now_playing);
                     return true;
                 case R.id.navigation_dashboard:
-
+                    divContainerPoints.setVisibility(View.GONE);
                     fragmentManager = getSupportFragmentManager();
-                    fragmentManager.beginTransaction().replace(R.id.div_container, new RiwayatFragment()).commit();
+                    fragmentManager.beginTransaction().replace(R.id.div_container, new NewsFragment()).commit();
                     return true;
                 case R.id.navigation_notifications:
                     return true;
@@ -69,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     private TextView tvBerandaPoin;
+    private LinearLayout divContainerPoints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +94,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager.beginTransaction().replace(R.id.div_container, new BerandaFragment()).commit();
         sharedPreferences = getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
         point = sharedPreferences.getString(Config.SHARED_POINt_DONOR, "");
-        idUser =sharedPreferences.getString(Config.SHARED_ID_USER, "");
+        idUser = sharedPreferences.getString(Config.SHARED_ID_USER, "");
+        kota = sharedPreferences.getString(Config.SHARED_KOTA_KAB, "");
         getData();
 //        if (point.equalsIgnoreCase("")){
 //            Log.d("", "onCreate: kosong");
@@ -95,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
 //        else {
 //            tvBerandaPoin.setText(point);
 //        }
-
 
 
     }
@@ -109,14 +117,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void getData() {
         ApiService apiService = Client.getInstanceRetrofit();
-        apiService.getDataMain(idUser, "77748gfieu-3487hjdfghur4Hhjheriirh")
+        apiService.getDataMain(idUser, "77748gfieu-3487hjdfghur4Hhjheriirh", kota)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             try {
                                 JSONObject jsonObject = new JSONObject(response.body().string());
-                                String totalPointv  = jsonObject.optString("total_point");
+                                String totalPointv = jsonObject.optString("total_point");
+                                String jumlah_donor_darah = jsonObject.optString("jumlah_donor_darah");
+                                String jumlah_donor_asi = jsonObject.optString("jumlah_donor_asi");
+                                String jumlah_event = jsonObject.optString("jumlah_event");
                                 Log.d("", "onResponse: " + totalPointv);
                                 tvBerandaPoin.setText(totalPointv);
 
@@ -137,5 +148,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         tvBerandaPoin = findViewById(R.id.tv_beranda_poin);
+        divContainerPoints = findViewById(R.id.div_container_points);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Tutup aplikasi ini? ")
+//                .setMessage("Kamu tidak jadi donor? kenapa? :(")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent startMain = new Intent(Intent.ACTION_MAIN);
+                        startMain.addCategory(Intent.CATEGORY_HOME);
+                        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(startMain);
+                    }
+
+                })
+                .setNegativeButton("Tidak", null)
+                .show();
     }
 }
