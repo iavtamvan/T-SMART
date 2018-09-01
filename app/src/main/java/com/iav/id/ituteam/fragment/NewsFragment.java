@@ -10,8 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.adapter.NewsAdapter;
+import com.iav.id.ituteam.adapter.NewsHorizontalAdapter;
+import com.iav.id.ituteam.adapter.NewsVerticalAdapter;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.model.newsModel.ArticlesItem;
 import com.iav.id.ituteam.model.newsModel.NewsModel;
@@ -20,6 +22,7 @@ import com.iav.id.ituteam.rest.Client;
 
 import java.util.ArrayList;
 
+import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,7 +36,12 @@ public class NewsFragment extends Fragment {
     private RecyclerView rvEventHorizontal;
     private RecyclerView rvEventVertical;
     private ArrayList<ArticlesItem> articlesItems;
-    private NewsAdapter newsAdapter;
+    private NewsVerticalAdapter newsVerticalAdapter;
+
+    private NewsHorizontalAdapter newsHorizontalAdapter;
+//    private PulsatorLayout pulsator;
+    private LottieAnimationView lottieAnimationView;
+
     public NewsFragment() {
         // Required empty public constructor
     }
@@ -43,26 +51,58 @@ public class NewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_riwayat, container, false);
+        View view = inflater.inflate(R.layout.fragment_news, container, false);
         initView(view);
         articlesItems = new ArrayList<>();
-
-        getNews();
+//        pulsator.start();
+//        pulsator.setColor(R.color.yellow);
+//        pulsator.setDuration(1500);
+        lottieAnimationView.playAnimation();
+        getNewsVertical();
+        getNewsHorizontal();
 
         return view;
     }
 
-    private void getNews() {
+    private void getNewsHorizontal() {
         ApiService apiService = Client.getInstanceRetrofitNews();
-        apiService.getNews().enqueue(new Callback<NewsModel>() {
+        apiService.getNewsHorizontal().enqueue(new Callback<NewsModel>() {
             @Override
             public void onResponse(Call<NewsModel> call, Response<NewsModel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     articlesItems = response.body().getArticles();
-                    newsAdapter = new NewsAdapter(getActivity(), articlesItems);
+                    newsHorizontalAdapter = new NewsHorizontalAdapter(getActivity(), articlesItems);
+                    rvEventHorizontal.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+                    rvEventHorizontal.setAdapter(newsHorizontalAdapter);
+                    newsHorizontalAdapter.notifyDataSetChanged();
+//                    pulsator.stop();
+//                    pulsator.setVisibility(View.GONE);
+                    lottieAnimationView.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<NewsModel> call, Throwable t) {
+                Toast.makeText(getActivity(), "" + Config.ERROR_LOAD, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    private void getNewsVertical() {
+        ApiService apiService = Client.getInstanceRetrofitNews();
+        apiService.getNewsVertical().enqueue(new Callback<NewsModel>() {
+            @Override
+            public void onResponse(Call<NewsModel> call, Response<NewsModel> response) {
+                if (response.isSuccessful()) {
+                    articlesItems = response.body().getArticles();
+                    newsVerticalAdapter = new NewsVerticalAdapter(getActivity(), articlesItems);
                     rvEventVertical.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    rvEventVertical.setAdapter(newsAdapter);
-                    newsAdapter.notifyDataSetChanged();
+                    rvEventVertical.setAdapter(newsVerticalAdapter);
+                    newsVerticalAdapter.notifyDataSetChanged();
+//                    pulsator.stop();
+//                    pulsator.setVisibility(View.GONE);
+                    lottieAnimationView.setVisibility(View.GONE);
                 }
             }
 
@@ -77,5 +117,6 @@ public class NewsFragment extends Fragment {
     private void initView(View view) {
         rvEventHorizontal = view.findViewById(R.id.rv_event_horizontal);
         rvEventVertical = view.findViewById(R.id.rv_event_vertical);
+        lottieAnimationView = view.findViewById(R.id.lottieAnimationView);
     }
 }

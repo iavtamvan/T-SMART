@@ -15,6 +15,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
     @FormUrlEncoded
@@ -76,6 +77,18 @@ public interface ApiService {
     Call<ArrayList<DonorASIModel>> getDataRiwayatASI(
                                    @Field("id_user") String id_user,
                                    @Field("pindah") String pindah);
+
+
+    @FormUrlEncoded
+    @POST("api_get.php")
+    Call<ArrayList<EventModel>> getEvenKotatBeranda(
+                                   @Field("kota") String kota,
+                                   @Field("pindah") String pindah);
+
+
+
+
+
     @FormUrlEncoded
     @POST("api_register.php")
     Call<ResponseBody> potRegister(
@@ -99,6 +112,23 @@ public interface ApiService {
                                    @Field("status_aplikasi") String status_aplikasi);
 
     @GET("top-headlines?country=id&category=health&apiKey=12850cd010b54441aaeff6749dc99cd0")
-    Call<NewsModel> getNews();
+    Call<NewsModel> getNewsVertical();
+
+    @GET("everything?domains=tribunnews.com&apiKey=12850cd010b54441aaeff6749dc99cd0")
+    Call<NewsModel> getNewsHorizontal();
+
+    @GET("top-headlines?country=id&sortBy=popularity&apiKey=12850cd010b54441aaeff6749dc99cd0")
+    Call<NewsModel> getNewsBeranda();
+
+
+//    q=denpasar&from=2018-08-31&to=2018-08-31&sortBy=popularity&apiKey=12850cd010b54441aaeff6749dc99cd0
+    @GET("everything?")
+    Call<NewsModel> getNewsByDaerah(@Query("q") String daerah,
+                                    @Query("from") String dari_tanggal,
+                                    @Query("to") String sampai_tanggal,
+                                    @Query("sortBy") String sortBy,
+                                    @Query("apiKey") String apiKey);
+
+
 
 }

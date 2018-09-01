@@ -1,8 +1,8 @@
 package com.iav.id.ituteam.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -34,12 +34,13 @@ public class HealthAdapter extends RecyclerView.Adapter<HealthAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final ImagePopup imagePopup = new ImagePopup(context);
         imagePopup.setWindowHeight(800); // Optional
         imagePopup.setWindowWidth(800); // Optional
-        imagePopup.setBackgroundColor(Color.BLACK);  // Optional
+        imagePopup.setBackgroundColor(R.color.bgImagePopUp);  // Optional
         imagePopup.setFullScreen(true); // Optional
         imagePopup.setHideCloseIcon(true);  // Optional
         imagePopup.setImageOnClickClose(true);  // Optional

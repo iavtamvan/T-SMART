@@ -1,7 +1,9 @@
 package com.iav.id.ituteam.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,15 +15,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.model.newsModel.ArticlesItem;
 
 import java.util.ArrayList;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
+public class NewsHorizontalAdapter extends RecyclerView.Adapter<NewsHorizontalAdapter.ViewHolder> {
     private Context context;
     private ArrayList<ArticlesItem> articlesItems;
-    public NewsAdapter(Context context, ArrayList<ArticlesItem> articlesItems) {
+
+    public NewsHorizontalAdapter(Context context, ArrayList<ArticlesItem> articlesItems) {
         this.context = context;
         this.articlesItems = articlesItems;
     }
@@ -29,21 +33,38 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_news_vertical, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_news_horizontal, parent, false);
         return new ViewHolder(view);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-
+        final ImagePopup imagePopup = new ImagePopup(context);
+        imagePopup.setWindowHeight(800); // Optional
+        imagePopup.setWindowWidth(800); // Optional
+        imagePopup.setBackgroundColor(R.color.bgImagePopUp);  // Optional
+        imagePopup.setFullScreen(true); // Optional
+        imagePopup.setHideCloseIcon(true);  // Optional
+        imagePopup.setImageOnClickClose(true);  // Optional
+        imagePopup.initiatePopupWithGlide(articlesItems.get(position).getUrlToImage());
         Glide.with(context).load(articlesItems.get(position).getUrlToImage()).into(holder.ivNewsVertical);
+        holder.ivNewsVertical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imagePopup.viewPopup();
+            }
+        });
+
+
         holder.tvNewsVerticalJudul.setText(articlesItems.get(position).getTitle());
         String date = articlesItems.get(position).getPublishedAt();
-        String split = date.substring(0,10);
+//        String split = date.substring(0, 10);
+//        holder.tvNewsVerticalTanggalTerbit.setText(split);
+        holder.tvNewsHorizontalDeskripsi.setText(articlesItems.get(position).getDescription());
 
-        holder.tvNewsVerticalTanggalTerbit.setText(split);
 
-        holder.ivNewsVerticalShare.setOnClickListener(new View.OnClickListener() {
+        holder.ivNewsHorizontalShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
@@ -61,24 +82,25 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     public int getItemCount() {
         return articlesItems.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private CardView cvKlik;
         private ImageView ivNewsVertical;
+        private ImageView ivNewsHorizontalShare;
         private LinearLayout divContainerNewsVertical;
         private TextView tvNewsVerticalJudul;
-        private TextView tvNewsVerticalTanggalTerbit;
-        private ImageView ivNewsVerticalShare;
-
+        private TextView tvNewsHorizontalDeskripsi;
         public ViewHolder(View itemView) {
             super(itemView);
 
             cvKlik = itemView.findViewById(R.id.cv_klik);
             ivNewsVertical = itemView.findViewById(R.id.iv_news_vertical);
+            ivNewsHorizontalShare = itemView.findViewById(R.id.iv_news_horizontal_share);
             divContainerNewsVertical = itemView.findViewById(R.id.div_container_news_vertical);
             tvNewsVerticalJudul = itemView.findViewById(R.id.tv_news_vertical_judul);
-            tvNewsVerticalTanggalTerbit = itemView.findViewById(R.id.tv_news_vertical_tanggal_terbit);
-            ivNewsVerticalShare = itemView.findViewById(R.id.iv_news_vertical_share);
+            tvNewsHorizontalDeskripsi = itemView.findViewById(R.id.tv_news_horizontal_deskripsi);
+
         }
     }
 }

@@ -88,6 +88,7 @@ public class DonorASIActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor_asi);
+        getSupportActionBar().setIcon(R.drawable.thealth);
         initView();
         initShared();
         final ImagePopup imagePopup = new ImagePopup(this);

@@ -10,20 +10,19 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bgGrey"
-        >
+        android:background="@color/colorPrimary">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_margin="4dp">
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="8dp">
+                app:cardCornerRadius="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -32,39 +31,41 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="38dp"
                         android:layout_gravity="center"
-                        android:background="#283593"
+                        android:background="#1e52b2"
                         android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="6dp"
+                            android:layout_margin="4dp"
+                            android:layout_gravity="center"
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_width="100dp"
-                                android:layout_height="50dp"
+                                android:layout_width="90dp"
+                                android:layout_height="40dp"
                                 android:layout_gravity="center"
-                                android:scaleType="fitXY"
+                                android:layout_margin="4dp"
                                 android:src="@drawable/tgold" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:gravity="center|right"
+                                android:layout_marginRight="8dp"
                                 android:text="Rp.0"
+                                android:gravity="center|right"
                                 android:textColor="@android:color/white"
                                 android:textStyle="bold" />
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="376dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:background="#303f9f"
+                        android:background="#1a54bf"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -81,17 +82,16 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/tgold" />
+                                    android:layout_width="100dp"
+                                    android:layout_height="50dp"
+                                    android:src="@drawable/points" />
 
                                 <TextView
                                     android:id="@+id/tv_total_donor_darah"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:layout_weight="1"
+                                    android:fontFamily="@font/viga"
                                     android:gravity="center"
                                     android:text="NAME 1"
                                     android:textColor="@android:color/white" />
@@ -105,40 +105,16 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/tgold" />
+                                    android:layout_width="100dp"
+                                    android:layout_height="50dp"
+                                    android:src="@drawable/points" />
 
                                 <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_marginTop="8dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:text="NAME 1"
                                     android:id="@+id/tv_total_donor_asi"
-                                    android:textColor="@android:color/white" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/tgold" />
-
-                                <TextView
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:layout_weight="1"
+                                    android:fontFamily="@font/viga"
                                     android:gravity="center"
                                     android:text="NAME 1"
                                     android:textColor="@android:color/white" />
@@ -152,19 +128,40 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:src="@drawable/tgold" />
+                                    android:layout_width="100dp"
+                                    android:layout_height="50dp"
+                                    android:src="@drawable/points" />
 
                                 <TextView
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:layout_weight="1"
+                                    android:fontFamily="@font/viga"
                                     android:gravity="center"
                                     android:text="NAME 1"
+                                    android:textColor="@android:color/white" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="100dp"
+                                    android:layout_height="50dp"
+                                    android:src="@drawable/points" />
+
+                                <TextView
                                     android:id="@+id/tv_total_event"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="8dp"
+                                    android:fontFamily="@font/viga"
+                                    android:gravity="center"
+                                    android:text="NAME 1"
                                     android:textColor="@android:color/white" />
                             </LinearLayout>
 
@@ -207,8 +204,8 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="40dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
                                 android:src="@drawable/health" />
 
@@ -219,8 +216,7 @@
                                 android:fontFamily="@font/viga"
                                 android:gravity="center"
                                 android:text="T-HEALTH"
-                                android:textSize="12dp"
-                                android:textStyle="bold" />
+                                android:textSize="12dp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -235,8 +231,8 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="40dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
                                 android:src="@drawable/garbage" />
 
@@ -247,8 +243,7 @@
                                 android:fontFamily="@font/viga"
                                 android:gravity="center"
                                 android:text="T-GARBAGE"
-                                android:textSize="12dp"
-                                android:textStyle="bold" />
+                                android:textSize="12dp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -263,8 +258,8 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="40dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
                                 android:src="@drawable/security" />
 
@@ -275,8 +270,7 @@
                                 android:fontFamily="@font/viga"
                                 android:gravity="center"
                                 android:text="T-SECURITY"
-                                android:textSize="12dp"
-                                android:textStyle="bold" />
+                                android:textSize="12dp" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -299,8 +293,8 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="40dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
                                 android:src="@drawable/economy" />
 
@@ -311,8 +305,7 @@
                                 android:fontFamily="@font/viga"
                                 android:gravity="center"
                                 android:text="T-ECONOMY"
-                                android:textSize="12dp"
-                                android:textStyle="bold" />
+                                android:textSize="12dp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -326,8 +319,8 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="40dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
                                 android:src="@drawable/hotel" />
 
@@ -338,8 +331,7 @@
                                 android:fontFamily="@font/viga"
                                 android:gravity="center"
                                 android:text="T-LODGING"
-                                android:textSize="12dp"
-                                android:textStyle="bold" />
+                                android:textSize="12dp"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -354,8 +346,8 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="40dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
                                 android:src="@drawable/travel" />
 
@@ -366,8 +358,7 @@
                                 android:fontFamily="@font/viga"
                                 android:gravity="center"
                                 android:text="T-TRAVEL"
-                                android:textSize="12dp"
-                                android:textStyle="bold" />
+                                android:textSize="12dp" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -375,46 +366,128 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Event Hari Ini"
-                    android:fontFamily="@font/viga"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"/>
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@color/bgGrey"
+                android:orientation="vertical">
 
-                <android.support.v7.widget.RecyclerView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/rv_beranda_hari_ini_event">
-                </android.support.v7.widget.RecyclerView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Berita Hari Ini"
-                    android:fontFamily="@font/viga"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"/>
+                    android:layout_height="180dp"
+                    android:background="@drawable/cloudy"
+                    android:layout_marginTop="10dp">
 
-                <android.support.v7.widget.RecyclerView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textColor="@color/blue"
+                        android:textSize="25dp"
+                        android:id="@+id/tv_cloud_celcius"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:gravity="center"
+                        android:text="Location"
+                        android:textColor="@color/blue"
+                        android:id="@+id/tv_cloud_deskripsi"
+                        android:layout_below="@id/tv_cloud_celcius"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/rv_beranda_hari_ini_berita">
-                </android.support.v7.widget.RecyclerView>
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/viga"
+                                android:text="Event Hari Ini"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold" />
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rv_beranda_hari_ini_event"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/bgGrey" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/viga"
+                                android:text="Berita Hari Ini"
+                                android:textColor="@android:color/black"
+                                android:textStyle="bold" />
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/rv_beranda_hari_ini_berita"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
             </LinearLayout>
 
 
         </LinearLayout>
     </ScrollView>
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true"
+        android:layout_margin="50dp"/>
+
 </FrameLayout>

@@ -32,8 +32,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.EventActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".activity.healthUI.HealthActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label=""/>
         <activity android:name=".activity.healthUI.DonorDarahActivity" />
         <activity android:name=".activity.healthUI.DonorASIActivity" />
         <activity

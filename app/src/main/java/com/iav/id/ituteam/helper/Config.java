@@ -50,6 +50,12 @@ public final class Config {
     public static final String BUNDLE_TOTAL_DONOR_ASI_DISETUJUI = "bundle_total_donor_asi_disetujui";
     public static final String BUNDLE_TOTAL_DONOR_ASI_MENUNGGU = "bundle_total_donor_asi_menunggu  ";
     public static final String BUNDLE_STATUS_DONOR = "bundle_total_status_donor_darah";
+    public static final String BUNDLE_NAMA_PETUGAS = "nama_petugas";
+    public static final String BUNDLE_DESKRIPSI = "deskripsi_event";
+    public static final String BUNDLE_TANGGAL_WAKTU_EVENT = "tgl_event";
+    public static final String BUNDLE_JENIS_EVENT = "jenis_event";
+    public static final String BUNDLE_LIKES_EVENT = "likes_event";
+    public static final String BUNDLE_STATUS_EVENT = "status_event";
 
 
 

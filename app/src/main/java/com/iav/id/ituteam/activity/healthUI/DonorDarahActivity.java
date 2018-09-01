@@ -99,6 +99,7 @@ public class DonorDarahActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor_darah);
+        getSupportActionBar().setIcon(R.drawable.thealth);
         initView();
         initShared();
 

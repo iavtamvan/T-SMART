@@ -2,159 +2,181 @@ package com.iav.id.ituteam.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class EventModel {
+public class EventModel{
 
-    @SerializedName("judul_event")
-    private String judulEvent;
+	@SerializedName("judul_event")
+	private String judulEvent;
 
-    @SerializedName("tempat_alamat")
-    private String tempatAlamat;
+	@SerializedName("deskripsi_event")
+	private String deskripsiEvent;
 
-    @SerializedName("kota")
-    private String kota;
+	@SerializedName("tempat_alamat")
+	private String tempatAlamat;
 
-    @SerializedName("lng")
-    private String lng;
+	@SerializedName("kota")
+	private String kota;
 
-    @SerializedName("no_hp")
-    private Object noHp;
+	@SerializedName("lng")
+	private String lng;
 
-    @SerializedName("jenis_event")
-    private String jenisEvent;
+	@SerializedName("no_hp")
+	private String noHp;
 
-    @SerializedName("nama_petugas")
-    private String namaPetugas;
+	@SerializedName("jenis_event")
+	private String jenisEvent;
 
-    @SerializedName("tgl_waktu_event")
-    private String tglWaktuEvent;
+	@SerializedName("nama_petugas")
+	private String namaPetugas;
 
-    @SerializedName("tgl_event")
-    private String tglEvent;
+	@SerializedName("tgl_waktu_event")
+	private String tglWaktuEvent;
 
-    @SerializedName("gambar_event")
-    private String gambarEvent;
+	@SerializedName("tgl_event")
+	private String tglEvent;
 
-    @SerializedName("jenis_kategori")
-    private String jenisKategori;
+	@SerializedName("gambar_event")
+	private String gambarEvent;
 
-    @SerializedName("id_event")
-    private String idEvent;
+	@SerializedName("jenis_kategori")
+	private String jenisKategori;
 
-    @SerializedName("lat")
-    private String lat;
+	@SerializedName("status_event")
+	private String statusEvent;
 
-    @SerializedName("likes")
-    private String likes;
+	@SerializedName("id_event")
+	private String idEvent;
 
-    public void setJudulEvent(String judulEvent) {
-        this.judulEvent = judulEvent;
-    }
+	@SerializedName("lat")
+	private String lat;
 
-    public String getJudulEvent() {
-        return judulEvent;
-    }
+	@SerializedName("likes")
+	private String likes;
 
-    public void setTempatAlamat(String tempatAlamat) {
-        this.tempatAlamat = tempatAlamat;
-    }
+	public void setJudulEvent(String judulEvent){
+		this.judulEvent = judulEvent;
+	}
 
-    public String getTempatAlamat() {
-        return tempatAlamat;
-    }
+	public String getJudulEvent(){
+		return judulEvent;
+	}
 
-    public void setKota(String kota) {
-        this.kota = kota;
-    }
+	public void setDeskripsiEvent(String deskripsiEvent){
+		this.deskripsiEvent = deskripsiEvent;
+	}
 
-    public String getKota() {
-        return kota;
-    }
+	public String getDeskripsiEvent(){
+		return deskripsiEvent;
+	}
 
-    public void setLng(String lng) {
-        this.lng = lng;
-    }
+	public void setTempatAlamat(String tempatAlamat){
+		this.tempatAlamat = tempatAlamat;
+	}
 
-    public String getLng() {
-        return lng;
-    }
+	public String getTempatAlamat(){
+		return tempatAlamat;
+	}
 
-    public void setNoHp(Object noHp) {
-        this.noHp = noHp;
-    }
+	public void setKota(String kota){
+		this.kota = kota;
+	}
 
-    public Object getNoHp() {
-        return noHp;
-    }
+	public String getKota(){
+		return kota;
+	}
 
-    public void setJenisEvent(String jenisEvent) {
-        this.jenisEvent = jenisEvent;
-    }
+	public void setLng(String lng){
+		this.lng = lng;
+	}
 
-    public String getJenisEvent() {
-        return jenisEvent;
-    }
+	public String getLng(){
+		return lng;
+	}
 
-    public void setNamaPetugas(String namaPetugas) {
-        this.namaPetugas = namaPetugas;
-    }
+	public void setNoHp(String noHp){
+		this.noHp = noHp;
+	}
 
-    public String getNamaPetugas() {
-        return namaPetugas;
-    }
+	public String getNoHp(){
+		return noHp;
+	}
 
-    public void setTglWaktuEvent(String tglWaktuEvent) {
-        this.tglWaktuEvent = tglWaktuEvent;
-    }
+	public void setJenisEvent(String jenisEvent){
+		this.jenisEvent = jenisEvent;
+	}
 
-    public String getTglWaktuEvent() {
-        return tglWaktuEvent;
-    }
+	public String getJenisEvent(){
+		return jenisEvent;
+	}
 
-    public void setTglEvent(String tglEvent) {
-        this.tglEvent = tglEvent;
-    }
+	public void setNamaPetugas(String namaPetugas){
+		this.namaPetugas = namaPetugas;
+	}
 
-    public String getTglEvent() {
-        return tglEvent;
-    }
+	public String getNamaPetugas(){
+		return namaPetugas;
+	}
 
-    public void setGambarEvent(String gambarEvent) {
-        this.gambarEvent = gambarEvent;
-    }
+	public void setTglWaktuEvent(String tglWaktuEvent){
+		this.tglWaktuEvent = tglWaktuEvent;
+	}
 
-    public String getGambarEvent() {
-        return gambarEvent;
-    }
+	public String getTglWaktuEvent(){
+		return tglWaktuEvent;
+	}
 
-    public void setJenisKategori(String jenisKategori) {
-        this.jenisKategori = jenisKategori;
-    }
+	public void setTglEvent(String tglEvent){
+		this.tglEvent = tglEvent;
+	}
 
-    public String getJenisKategori() {
-        return jenisKategori;
-    }
+	public String getTglEvent(){
+		return tglEvent;
+	}
 
-    public void setIdEvent(String idEvent) {
-        this.idEvent = idEvent;
-    }
+	public void setGambarEvent(String gambarEvent){
+		this.gambarEvent = gambarEvent;
+	}
 
-    public String getIdEvent() {
-        return idEvent;
-    }
+	public String getGambarEvent(){
+		return gambarEvent;
+	}
 
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
+	public void setJenisKategori(String jenisKategori){
+		this.jenisKategori = jenisKategori;
+	}
 
-    public String getLat() {
-        return lat;
-    }
+	public String getJenisKategori(){
+		return jenisKategori;
+	}
 
-    public void setLikes(String likes) {
-        this.likes = likes;
-    }
+	public void setStatusEvent(String statusEvent){
+		this.statusEvent = statusEvent;
+	}
 
-    public String getLikes() {
-        return likes;
-    }
+	public String getStatusEvent(){
+		return statusEvent;
+	}
+
+	public void setIdEvent(String idEvent){
+		this.idEvent = idEvent;
+	}
+
+	public String getIdEvent(){
+		return idEvent;
+	}
+
+	public void setLat(String lat){
+		this.lat = lat;
+	}
+
+	public String getLat(){
+		return lat;
+	}
+
+	public void setLikes(String likes){
+		this.likes = likes;
+	}
+
+	public String getLikes(){
+		return likes;
+	}
 }

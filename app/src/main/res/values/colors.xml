@@ -4,5 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="bgGrey">#eaeaea</color>
+    <color name="bgGreyTransparent">#52d7d7d7</color>
     <color name="yellow">#fadb21</color>
+    <color name="bgImagePopUp">#17efefef</color>
+    <color name="blue">#0277bd</color>
 </resources>
