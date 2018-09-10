@@ -73,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
     GPSTracker gpsTracker;
     private double Lat, Long;
     private GoogleMap mMap;
+    private String lamat;
 
 
     @Override

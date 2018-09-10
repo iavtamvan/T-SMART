@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iav.id.ituteam.R;
+import com.iav.id.ituteam.activity.GarbageActivity;
 import com.iav.id.ituteam.adapter.HealthAdapter;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.model.EventModel;
@@ -142,7 +143,8 @@ public class HealthActivity extends AppCompatActivity {
             menu2TukarkanSampah.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(HealthActivity.this, "Berhail gans", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), GarbageActivity.class));
+                    finishAffinity();
                 }
             });
             getDataEventSampahAll();

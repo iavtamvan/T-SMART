@@ -3,6 +3,7 @@ package com.iav.id.ituteam.rest;
 import com.iav.id.ituteam.model.DonorASIModel;
 import com.iav.id.ituteam.model.DonorDarahModel;
 import com.iav.id.ituteam.model.EventModel;
+import com.iav.id.ituteam.model.GoogleModel.RootLodgingModel;
 import com.iav.id.ituteam.model.ListHealthModel;
 import com.iav.id.ituteam.model.LoginModel;
 import com.iav.id.ituteam.model.newsModel.NewsModel;
@@ -86,6 +87,24 @@ public interface ApiService {
                                    @Field("pindah") String pindah);
 
 
+    @FormUrlEncoded
+    @POST("api_input_sampah.php")
+    Call<ResponseBody> postDataSampah(
+                                   @Field("id_user") String id_user,
+                                   @Field("tgl_waktu_sampah") String tgl_waktu_sampah,
+                                   @Field("tempat") String tempat,
+                                   @Field("input_sampah") String input_sampah,
+                                   @Field("jenis_sampah") String jenis_sampah,
+                                   @Field("harga_total") String harga_total,
+                                   @Field("kode_vocer") String kode_vocer,
+                                   @Field("gambar") String gambar,
+                                   @Field("status") String status,
+                                   @Field("token_reg_sampah") String token_reg_sampah,
+                                   @Field("lat") double lat,
+                                   @Field("lng") double lng
+    );
+
+
 
 
 
@@ -128,6 +147,21 @@ public interface ApiService {
                                     @Query("to") String sampai_tanggal,
                                     @Query("sortBy") String sortBy,
                                     @Query("apiKey") String apiKey);
+
+    //https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-7.5178785,110.5624369&rankby=distance&types=lodging&key=AIzaSyDK9afBrpN0wHnA5T_O_opQsbhui-PYF_c
+    @GET("nearbysearch/json?")
+    Call<RootLodgingModel> getLodging(@Query("location") String location,
+                                      @Query("rankby") String rankby,
+                                      @Query("types") String types,
+                                      @Query("key") String key);
+
+   @GET("nearbysearch/json?")
+    Call<ResponseBody> getLodgingResponseBody(@Query("location") String location,
+                                      @Query("rankby") String rankby,
+                                      @Query("types") String types,
+                                      @Query("key") String key);
+
+
 
 
 
