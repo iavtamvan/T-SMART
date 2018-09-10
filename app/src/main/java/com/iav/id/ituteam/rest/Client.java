@@ -6,7 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Client {
-    private static String BASE_URL = "http://192.168.43.57/local/health/";
+    private static String BASE_URL = "http://35.184.179.254/health/";
     private static String BASE_URL_NEWS = "https://newsapi.org/v2/";
     private static String BASE_URL_GOOGLE_APIS = "https://maps.googleapis.com/maps/api/place/";
 

@@ -15,11 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.activity.RiwayatActivity;
+import com.iav.id.ituteam.activity.LodgingActivity;
 import com.iav.id.ituteam.activity.healthUI.HealthActivity;
 import com.iav.id.ituteam.adapter.EventBerandaAdapter;
 import com.iav.id.ituteam.adapter.NewsHorizontalAdapter;
@@ -137,7 +136,7 @@ public class BerandaFragment extends Fragment {
 
             @Override
             public void onFailure(Throwable throwable) {
-                Toast.makeText(getContext(), "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -165,15 +164,13 @@ public class BerandaFragment extends Fragment {
         divLodging.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), RiwayatActivity.class));
+                startActivity(new Intent(getActivity(), LodgingActivity.class));
             }
         });
         sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_NAME, Context.MODE_PRIVATE);
         idUser = sharedPreferences.getString(Config.SHARED_ID_USER, "");
         kota = sharedPreferences.getString(Config.SHARED_KOTA_KAB, "");
         getData();
-        getBeritaBeranda();
-        getEventBeranda();
 
         return view;
     }
@@ -191,13 +188,15 @@ public class BerandaFragment extends Fragment {
                             rvBerandaHariIniEvent.setAdapter(eventBerandaAdapter);
                             eventBerandaAdapter.notifyDataSetChanged();
                             lottieAnimationView.setVisibility(View.GONE);
+                            getBeritaBeranda();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ArrayList<EventModel>> call, Throwable t) {
                         lottieAnimationView.setVisibility(View.GONE);
-                        Toast.makeText(getActivity(), "" + Config.ERROR_LOAD, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "" + Config.ERROR_LOAD, Toast.LENGTH_SHORT).show();
+                        getEventBeranda();
                     }
                 });
     }
@@ -220,7 +219,8 @@ public class BerandaFragment extends Fragment {
             @Override
             public void onFailure(Call<NewsModel> call, Throwable t) {
                 lottieAnimationView.setVisibility(View.GONE);
-                Toast.makeText(getActivity(), "" + Config.ERROR_LOAD, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "" + Config.ERROR_LOAD, Toast.LENGTH_SHORT).show();
+                getBeritaBeranda();
             }
         });
     }
@@ -254,7 +254,7 @@ public class BerandaFragment extends Fragment {
                                 tvTotalDonorAsi.setText(jumlah_donor_asi);
                                 tvTotalEvent.setText(jumlah_event);
                                 lottieAnimationView.setVisibility(View.GONE);
-
+                                getEventBeranda();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             } catch (IOException e) {
@@ -266,7 +266,8 @@ public class BerandaFragment extends Fragment {
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         lottieAnimationView.setVisibility(View.GONE);
-                        Toast.makeText(getActivity(), "" + Config.ERROR_LOAD, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "" + Config.ERROR_LOAD, Toast.LENGTH_SHORT).show();
+                        getData();
                     }
                 });
     }
