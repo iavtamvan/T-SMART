@@ -1,0 +1,5 @@
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-7.5178785,110.5624369&rankby=distance&types=lodging&key=AIzaSyDK9afBrpN0wHnA5T_O_opQsbhui-PYF_c
+
+https://maps.googleapis.com/maps/api/place/details/json?placeid=<PLACE_ID>&fields=name,rating,formatted_phone_number,address_components,formatted_address,geometry,plus_code,icon,international_phone_number,name,opening_hours,permanently_closed,photos,place_id,scope,alt_ids,price_level,rating,reviews,vicinity,website&key=AIzaSyDK9afBrpN0wHnA5T_O_opQsbhui-PYF_c
+
+https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=<PHOTO_REFERENCE>&key=AIzaSyDK9afBrpN0wHnA5T_O_opQsbhui-PYF_c
