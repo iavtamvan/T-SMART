@@ -38,7 +38,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".activity.healthUI.HealthActivity"
@@ -53,10 +52,9 @@
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.RiwayatActivity" />
         <activity android:name=".activity.GarbageActivity" />
-        <activity android:name=".activity.LodgingActivity"
-            android:label="">
-
-        </activity>
+        <activity
+            android:name=".activity.LodgingActivity"
+            android:label=""></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "865411306333",
+    "firebase_url": "https://botchatitu.firebaseio.com",
+    "project_id": "botchatitu",
+    "storage_bucket": "botchatitu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865411306333:android:0c346234b2a8cbdb",
+        "android_client_info": {
+          "package_name": "com.iav.id.ituteam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865411306333-46blvjn1eeriuul1tr6uogt2l7mkucef.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iav.id.ituteam",
+            "certificate_hash": "93135ae024383e179125de23911047f205b96c14"
+          }
+        },
+        {
+          "client_id": "865411306333-86ijv7e7ttgjt1ab043bcoh6chnaanmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzL9kFDHuPNmDInGoqRBa-Z4FkGfMzS20"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865411306333-86ijv7e7ttgjt1ab043bcoh6chnaanmk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

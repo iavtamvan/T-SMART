@@ -43,9 +43,13 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.1.0'
 
 
-    implementation 'com.google.android.gms:play-services-maps:11.0.4'
+    implementation 'com.google.android.gms:play-services-maps:15.0.1'
     implementation 'com.google.maps.android:android-maps-utils:0.5'
-    implementation 'com.google.android.gms:play-services-places:11.0.4'
+    implementation 'com.google.android.gms:play-services-places:15.0.1'
+    implementation 'com.google.android.gms:play-services-auth:15.0.1'
+
+    implementation 'com.google.firebase:firebase-database:16.0.2'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
 
     implementation 'com.github.ViksaaSkool:AwesomeSplash:v1.0.0'
     implementation 'me.jahirfiquitiva:FABsMenu:1.1.4'
@@ -60,5 +64,11 @@ dependencies {
     implementation 'com.github.KwabenBerko:OpenWeatherMap-Android-Library:v1.1.2'
     implementation 'com.airbnb.android:lottie:2.2.0'
 
+    //botchat
+    implementation 'ai.api:sdk:2.0.7@aar'
+    implementation 'ai.api:libai:1.4.8'
+    implementation 'commons-io:commons-io:2.4'
+    implementation 'com.google.code.gson:gson:2.3.1'
 
 }
+apply plugin: 'com.google.gms.google-services'
