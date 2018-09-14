@@ -110,4 +110,6 @@
     </string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_profil">ProfilActivity</string>
+    <string name="title_activity_tukar">TukarActivity</string>
+    <string name="title_activity_detail_tukar_barang">DetailTukarBarangActivity</string>
 </resources>

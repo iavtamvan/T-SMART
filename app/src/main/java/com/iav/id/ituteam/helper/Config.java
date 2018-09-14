@@ -7,6 +7,7 @@ public final class Config {
     public static final String ERROR_LOAD = "Cek koneksi anda";
     public static final String ERROR_PERMISSION_SUCCES = "Permission Sukses";
     public static final String ERROR_PERMISSION_FAIL = "Permission Gagal";
+    public static final String ERROR_PENUKARAN_BARANG = "Penukaran_barang";
 
 
 
@@ -97,6 +98,8 @@ public final class Config {
     public static final String SHARED_TOTAL_POINT_ASI = "total_point_asi";
     public static final String SHARED_TOTAL_DONOR_ASI_DISETUJUI = "total_donor_asi_disetujui";
     public static final String SHARED_TOTAL_DONOR_ASI_MENUNGGU = "total_donor_asi_menunggu  ";
+    public static final String SHARED_TOTAL_POINT = "total_point";
+    public static final String SHARED_TOTAL_GOLD = "total_gold";
 
 
     //path
@@ -155,6 +158,11 @@ public final class Config {
             "             118.39,256.72 116.02,248.29 116.00,238.00\n" +
             "             116.00,238.00 116.00,116.00 116.00,116.00\n" +
             "             116.00,116.00 289.00,116.00 289.00,116.00 Z";
+    public static String BUNDLE_TUKARKAN = "tukarkan";
+    public static String BUNDLE_JENIS_TUKAR = "jenis tukar";
+    public static String BUNDLE_TANGGAL = "tanggal_barang";
+    public static String BUNDLE_ALAMAT_PENJUAL = "alamat penjual";
+    public static String BUNDLE_HARGA = "harga";
 
 
     public static String formatDMY(int year, int month, int date) {

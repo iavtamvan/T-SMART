@@ -9,7 +9,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -51,7 +50,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:16.0.2'
     implementation 'com.google.firebase:firebase-core:16.0.1'
 
-    implementation 'com.github.ViksaaSkool:AwesomeSplash:v1.0.0'
+    implementation 'com.github.mrgames13:SplashScreen:1.0.0'
     implementation 'me.jahirfiquitiva:FABsMenu:1.1.4'
     implementation 'com.github.clans:fab:1.6.4'
     implementation 'com.nabinbhandari.android:permissions:3.7'
@@ -65,10 +64,12 @@ dependencies {
     implementation 'com.airbnb.android:lottie:2.2.0'
 
     //botchat
-    implementation 'ai.api:sdk:2.0.7@aar'
-    implementation 'ai.api:libai:1.4.8'
-    implementation 'commons-io:commons-io:2.4'
-    implementation 'com.google.code.gson:gson:2.3.1'
+//    implementation 'ai.api:sdk:2.0.7@aar'
+//    implementation 'ai.api:libai:1.4.8'
+//    implementation 'commons-io:commons-io:2.4'
+//    implementation 'com.google.code.gson:gson:2.3.1'
+
+    implementation 'com.github.Joinersa:OoOAlertDialog:1.0.3'
 
 }
 apply plugin: 'com.google.gms.google-services'

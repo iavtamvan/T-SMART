@@ -59,7 +59,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center|right"
-                            android:text="99999999999999999999 poin"
+                            android:text="0 poin"
                             android:textColor="@android:color/black"
                             android:textStyle="bold"
                             android:layout_marginRight="3dp"/>

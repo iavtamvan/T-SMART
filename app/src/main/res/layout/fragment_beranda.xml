@@ -57,7 +57,8 @@
                                 android:text="Rp.0"
                                 android:gravity="center|right"
                                 android:textColor="@android:color/white"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:id="@+id/tv_beranda_poin"/>
                         </LinearLayout>
                     </LinearLayout>
 

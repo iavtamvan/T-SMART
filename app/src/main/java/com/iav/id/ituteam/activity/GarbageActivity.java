@@ -220,7 +220,7 @@ public class GarbageActivity extends AppCompatActivity {
 
         final ProgressDialog p;
         p = new ProgressDialog(this);
-        p.setMessage("title iUpload Foto");
+        p.setMessage("Upload Foto");
         p.show();
 
         APIService s = RetroClient.getService();

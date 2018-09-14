@@ -6,6 +6,7 @@ import com.iav.id.ituteam.model.EventModel;
 import com.iav.id.ituteam.model.GoogleModel.RootLodgingModel;
 import com.iav.id.ituteam.model.ListHealthModel;
 import com.iav.id.ituteam.model.LoginModel;
+import com.iav.id.ituteam.model.TukarModel;
 import com.iav.id.ituteam.model.newsModel.NewsModel;
 
 import java.util.ArrayList;
@@ -85,6 +86,34 @@ public interface ApiService {
     Call<ArrayList<EventModel>> getEvenKotatBeranda(
                                    @Field("kota") String kota,
                                    @Field("pindah") String pindah);
+
+    @FormUrlEncoded
+    @POST("api_get.php")
+    Call<ArrayList<TukarModel>> getTukarPoin(
+                                   @Field("pindah") String pindah);
+
+    @FormUrlEncoded
+    @POST("api_get.php")
+    Call<ArrayList<TukarModel>> getTukarGold(
+                                   @Field("pindah") String pindah);
+    @FormUrlEncoded
+    @POST("api_get.php")
+    Call<ArrayList<TukarModel>> getTukarAll(
+                                   @Field("pindah") String pindah);
+    @FormUrlEncoded
+    @POST("api_tukar_point.php")
+    Call<ResponseBody> postTukarPoin(
+                                   @Field("pindah") String pindah,
+                                   @Field("id_user") String id_user,
+                                   @Field("kurang") String kurang
+    );
+    @FormUrlEncoded
+    @POST("api_tukar_point.php")
+    Call<ResponseBody> postTukarGold(
+                                   @Field("pindah") String pindah,
+                                   @Field("id_user") String id_user,
+                                   @Field("kurang") String kurang
+    );
 
 
     @FormUrlEncoded

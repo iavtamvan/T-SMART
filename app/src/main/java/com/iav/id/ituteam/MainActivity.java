@@ -21,6 +21,7 @@ import com.evernote.android.state.State;
 import com.evernote.android.state.StateSaver;
 import com.iav.id.ituteam.fragment.BerandaFragment;
 import com.iav.id.ituteam.fragment.NewsFragment;
+import com.iav.id.ituteam.fragment.ProfileFragment;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.rest.ApiService;
 import com.iav.id.ituteam.rest.Client;
@@ -64,12 +65,19 @@ public class MainActivity extends AppCompatActivity {
                     fragmentManager.beginTransaction().replace(R.id.div_container, new BerandaFragment()).commit();
 //                    getSupportActionBar().setTitle(R.string.name_fragment_now_playing);
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_news:
                     divContainerPoints.setVisibility(View.GONE);
                     fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.div_container, new NewsFragment()).commit();
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_riwayat:
+                    return true;
+                case R.id.navigation_bantuan:
+                    return true;
+                case R.id.navigation_akun:
+                    divContainerPoints.setVisibility(View.GONE);
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.div_container, new ProfileFragment()).commit();
                     return true;
             }
             return false;
@@ -125,11 +133,20 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 JSONObject jsonObject = new JSONObject(response.body().string());
                                 String totalPointv = jsonObject.optString("total_point");
+                                String total_gold = jsonObject.optString("total_gold");
                                 String jumlah_donor_darah = jsonObject.optString("jumlah_donor_darah");
                                 String jumlah_donor_asi = jsonObject.optString("jumlah_donor_asi");
                                 String jumlah_event = jsonObject.optString("jumlah_event");
                                 Log.d("", "onResponse: " + totalPointv);
                                 tvBerandaPoin.setText(totalPointv);
+
+                                SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putString(Config.SHARED_TOTAL_POINT, totalPointv);
+                                editor.putString(Config.SHARED_TOTAL_GOLD, total_gold);
+
+                                editor.apply();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();

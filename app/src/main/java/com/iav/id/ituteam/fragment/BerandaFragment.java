@@ -63,7 +63,7 @@ public class BerandaFragment extends Fragment {
     private String pointDonor;
     private String totalDonor;
 
-    private String point;
+    private String gold;
     private String idUser;
     private String kota;
 
@@ -71,6 +71,7 @@ public class BerandaFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private TextView tvTotalDonorDarah;
+    private TextView tv_beranda_poin;
     private RecyclerView rvBerandaHariIniEvent;
     private RecyclerView rvBerandaHariIniBerita;
     private TextView tvTotalDonorAsi;
@@ -170,6 +171,8 @@ public class BerandaFragment extends Fragment {
         sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_NAME, Context.MODE_PRIVATE);
         idUser = sharedPreferences.getString(Config.SHARED_ID_USER, "");
         kota = sharedPreferences.getString(Config.SHARED_KOTA_KAB, "");
+        gold = sharedPreferences.getString(Config.SHARED_TOTAL_GOLD, "");
+        tv_beranda_poin.setText("Rp." +gold);
         getData();
 
         return view;
@@ -287,5 +290,6 @@ public class BerandaFragment extends Fragment {
         tvCloudCelcius = view.findViewById(R.id.tv_cloud_celcius);
         tvCloudDeskripsi = view.findViewById(R.id.tv_cloud_deskripsi);
         lottieAnimationView = view.findViewById(R.id.lottieAnimationView);
+        tv_beranda_poin = view.findViewById(R.id.tv_beranda_poin);
     }
 }
