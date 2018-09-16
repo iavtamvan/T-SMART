@@ -11,7 +11,7 @@
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="News" />
     <item
-        android:id="@+id/navigation_riwayat"
+        android:id="@+id/navigation_tukar_hadiah"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="Riwayat" />
 

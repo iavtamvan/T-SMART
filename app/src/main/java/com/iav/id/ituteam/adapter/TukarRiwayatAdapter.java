@@ -1,6 +1,7 @@
 package com.iav.id.ituteam.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -8,21 +9,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.iav.id.ituteam.R;
+import com.iav.id.ituteam.activity.tukarBarang.DetailTukarBarangActivity;
 import com.iav.id.ituteam.helper.Config;
-import com.iav.id.ituteam.model.EventModel;
+import com.iav.id.ituteam.model.TukarRiwayatModel;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class EventBerandaAdapter extends RecyclerView.Adapter<EventBerandaAdapter.ViewHolder> {
-    private ArrayList<EventModel> eventModels;
+public class TukarRiwayatAdapter extends RecyclerView.Adapter<TukarRiwayatAdapter.ViewHolder> {
+    private ArrayList<TukarRiwayatModel> tukarModels;
     private Context context;
 
     private SharedPreferences sharedPreferences;
@@ -53,65 +56,81 @@ public class EventBerandaAdapter extends RecyclerView.Adapter<EventBerandaAdapte
     private String key;
     private String uuid;
 
-    public EventBerandaAdapter(ArrayList<EventModel> eventModels, Context context) {
-        this.eventModels = eventModels;
+    public TukarRiwayatAdapter(ArrayList<TukarRiwayatModel> tukarModels, Context context) {
+        this.tukarModels = tukarModels;
         this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_event_horizontal, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_tukar, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         initShared();
-        Glide.with(context).load(eventModels.get(position).getGambarEvent()).into(holder.ivBerandaEvent);
-        holder.tvJudulEvent.setText(eventModels.get(position).getJudulEvent());
+        Glide.with(context).load(tukarModels.get(position).getFotoUrl()).into(holder.ivListTukar);
+        holder.tvListTukarNama.setText(tukarModels.get(position).getNamaBarang());
 
-        holder.cvKlick.setOnClickListener(new View.OnClickListener() {
+        if (tukarModels.get(position).getJenisTukar().equalsIgnoreCase("gold")){
+            holder.tvListTukarGold.setText(tukarModels.get(position).getTukarkan());
+        } else {
+            holder.tvListTukarPoin.setText(tukarModels.get(position).getTukarkan());
+        }
+        holder.tvListHarga.setText("Rp." +tukarModels.get(position).getHargaBarang());
+        holder.cvKlik.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(context, DetailDonorActivity.class);
-//                intent.putExtra(Config.BUNDLE_FOTO_URL, eventModels.get(position).getGambarEvent());
-//                intent.putExtra(Config.BUNDLE_NAMA_PETUGAS, eventModels.get(position).getNamaPetugas());
-//                intent.putExtra(Config.BUNDLE_DESKRIPSI, eventModels.get(position).getDeskripsiEvent());
-//                intent.putExtra(Config.BUNDLE_TANGGAL_WAKTU_EVENT, eventModels.get(position).getTglEvent());
-//                intent.putExtra(Config.BUNDLE_KOTA_KAB, eventModels.get(position).getKota());
-//                intent.putExtra(Config.BUNDLE_ALAMAT, eventModels.get(position).getTempatAlamat());
-//                intent.putExtra(Config.BUNDLE_LAT, eventModels.get(position).getLat());
-//                intent.putExtra(Config.BUNDLE_LNG, eventModels.get(position).getLng());
-//                intent.putExtra(Config.BUNDLE_JENIS_EVENT, eventModels.get(position).getJenisEvent());
-//                intent.putExtra(Config.BUNDLE_LIKES_EVENT, eventModels.get(position).getLikes());
-//                intent.putExtra(Config.BUNDLE_NO_HP, eventModels.get(position).getNoHp());
-//                intent.putExtra(Config.BUNDLE_STATUS_EVENT, eventModels.get(position).getStatusEvent());
-//
-//                context.startActivity(intent);
-
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailTukarBarangActivity.class);
+                intent.putExtra(Config.BUNDLE_FOTO_URL, tukarModels.get(position).getFotoUrl());
+                intent.putExtra(Config.BUNDLE_NAMA_LENGKAP, tukarModels.get(position).getNamaBarang());
+                intent.putExtra(Config.BUNDLE_TUKARKAN, tukarModels.get(position).getTukarkan());
+                intent.putExtra(Config.BUNDLE_JENIS_TUKAR, tukarModels.get(position).getJenisTukar());
+                intent.putExtra(Config.BUNDLE_TANGGAL, tukarModels.get(position).getTglBarang());
+                intent.putExtra(Config.BUNDLE_ALAMAT_PENJUAL, tukarModels.get(position).getAlamatPenjual());
+                intent.putExtra(Config.BUNDLE_ALAMAT, alamat);
+                intent.putExtra(Config.BUNDLE_DESKRIPSI, tukarModels.get(position).getDeskripsiBarang());
+                intent.putExtra(Config.BUNDLE_HARGA, tukarModels.get(position).getHargaBarang());
+                intent.putExtra(Config.BUNDLE_NAMA_PENJUAL, tukarModels.get(position).getNamaPenjualBarang());
+                intent.putExtra(Config.BUNDLE_ONGKIR, tukarModels.get(position).getOngkir());
+                intent.putExtra(Config.BUNDLE_TUKAR_RIWAYAT, "riwayat");
+                context.startActivity(intent);
             }
         });
 
+        holder.btnTukarkan.setVisibility(View.GONE);
+
+
     }
+
 
     @Override
     public int getItemCount() {
-        return eventModels.size();
+        return tukarModels.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private CardView cvKlick;
-        private ImageView ivBerandaEvent;
-        private TextView tvJudulEvent;
+        private CardView cvKlik;
+        private ImageView ivListTukar;
+        private TextView tvListTukarNama;
+        private TextView tvListTukarPoin;
+        private TextView tvListTukarGold;
+        private Button btnTukarkan;
+        private TextView tvListHarga;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            cvKlick = itemView.findViewById(R.id.cv_klick);
-            ivBerandaEvent = itemView.findViewById(R.id.iv_beranda_event);
-            tvJudulEvent = itemView.findViewById(R.id.tv_judul_event);
+            cvKlik = itemView.findViewById(R.id.cv_klik);
+            ivListTukar = itemView.findViewById(R.id.iv_list_tukar);
+            tvListTukarNama = itemView.findViewById(R.id.tv_list_tukar_nama);
+            tvListTukarPoin = itemView.findViewById(R.id.tv_list_tukar_poin);
+            tvListTukarGold = itemView.findViewById(R.id.tv_list_tukar_gold);
+            btnTukarkan = itemView.findViewById(R.id.btn_tukarkan);
+            tvListHarga = itemView.findViewById(R.id.tv_list_tukar_harga);
         }
     }
 

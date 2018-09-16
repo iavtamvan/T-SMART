@@ -14,10 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.iav.id.ituteam.MainActivity;
 import com.iav.id.ituteam.R;
+import com.iav.id.ituteam.activity.DetailCuacaActivity;
 import com.iav.id.ituteam.activity.LodgingActivity;
 import com.iav.id.ituteam.activity.healthUI.HealthActivity;
 import com.iav.id.ituteam.adapter.EventBerandaAdapter;
@@ -25,6 +28,7 @@ import com.iav.id.ituteam.adapter.NewsHorizontalAdapter;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.helper.location.GPSTracker;
 import com.iav.id.ituteam.model.EventModel;
+import com.iav.id.ituteam.model.GoldPointModel;
 import com.iav.id.ituteam.model.newsModel.ArticlesItem;
 import com.iav.id.ituteam.model.newsModel.NewsModel;
 import com.iav.id.ituteam.rest.ApiService;
@@ -38,13 +42,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.MODE_PRIVATE;
 import static android.support.constraint.Constraints.TAG;
 
 /**
@@ -60,8 +67,11 @@ public class BerandaFragment extends Fragment {
     private LinearLayout divLodging;
     private LinearLayout divTravel;
 
-    private String pointDonor;
-    private String totalDonor;
+    private String cuacaDerajat;
+    private String wilayah;
+    private String kondisi;
+    private String kekuatanAngin;
+    private String updateLast;
 
     private String gold;
     private String idUser;
@@ -83,6 +93,8 @@ public class BerandaFragment extends Fragment {
     private ArrayList<EventModel> eventModels;
     private EventBerandaAdapter eventBerandaAdapter;
 
+    private ArrayList<GoldPointModel> goldPointModels;
+
     private OpenWeatherMapHelper openWeatherMapHelper;
 
     private double Lat, Long;
@@ -90,6 +102,10 @@ public class BerandaFragment extends Fragment {
     private TextView tvCloudCelcius;
     private TextView tvCloudDeskripsi;
     private LottieAnimationView lottieAnimationView;
+
+    private MainActivity activity;
+    private TextView tvBerandaPoin;
+    private RelativeLayout divContainerCuaca;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -104,6 +120,7 @@ public class BerandaFragment extends Fragment {
         initView(view);
         articlesItems = new ArrayList<>();
         eventModels = new ArrayList<>();
+        goldPointModels = new ArrayList<>();
         openWeatherMapHelper = new OpenWeatherMapHelper();
         gpsTracker = new GPSTracker(getActivity());
         lottieAnimationView.playAnimation();
@@ -123,7 +140,7 @@ public class BerandaFragment extends Fragment {
             @SuppressLint("SetTextI18n")
             @Override
             public void onSuccess(CurrentWeather currentWeather) {
-                tvCloudCelcius.setText(currentWeather.getMain().getTempMin() + "° ~ " + currentWeather.getMain().getTempMax() +"°");
+                tvCloudCelcius.setText(currentWeather.getMain().getTempMin() + "° ~ " + currentWeather.getMain().getTempMax() + "°");
                 tvCloudDeskripsi.setText(currentWeather.getWeatherArray().get(0).getDescription() + ". " + currentWeather.getName() + ", " + currentWeather.getSys().getCountry());
 
                 Log.v(TAG,
@@ -133,11 +150,35 @@ public class BerandaFragment extends Fragment {
                                 + "Wind Speed: " + currentWeather.getWind().getSpeed() + "\n"
                                 + "City, Country: " + currentWeather.getName() + ", " + currentWeather.getSys().getCountry()
                 );
+
+                cuacaDerajat = String.valueOf(currentWeather.getMain().getTempMin());
+                wilayah = currentWeather.getName() + ", " + currentWeather.getSys().getCountry();
+                kondisi = currentWeather.getWeatherArray().get(0).getDescription();
+                kekuatanAngin = String.valueOf(currentWeather.getWind().getSpeed());
+                DateFormat df = DateFormat.getDateTimeInstance();
+                String updatedOn = df.format(new Date(currentWeather.getDt()*1000));
+                updateLast = updatedOn;
+
+
             }
 
             @Override
             public void onFailure(Throwable throwable) {
 //                Toast.makeText(getContext(), "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        divContainerCuaca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), DetailCuacaActivity.class);
+                intent.putExtra(Config.BUNDLE_CUACA_DERAJAT, cuacaDerajat);
+                intent.putExtra(Config.BUNDLE_CUACA_WILAYAH, wilayah);
+                intent.putExtra(Config.BUNDLE_CUACA_KONDISI, kondisi);
+                intent.putExtra(Config.BUNDLE_CUACA_KEKUATANANGIN, kekuatanAngin);
+                intent.putExtra(Config.BUNDLE_CUACA_UPDATELAST, updateLast);
+
+                startActivity(intent);
             }
         });
 
@@ -172,8 +213,11 @@ public class BerandaFragment extends Fragment {
         idUser = sharedPreferences.getString(Config.SHARED_ID_USER, "");
         kota = sharedPreferences.getString(Config.SHARED_KOTA_KAB, "");
         gold = sharedPreferences.getString(Config.SHARED_TOTAL_GOLD, "");
-        tv_beranda_poin.setText("Rp." +gold);
+        activity = new MainActivity();
+        activity.getData();
         getData();
+        getGold();
+
 
         return view;
     }
@@ -275,6 +319,33 @@ public class BerandaFragment extends Fragment {
                 });
     }
 
+    private void getGold() {
+        ApiService apiService = Client.getInstanceRetrofit();
+        apiService.getGolddanPoint("udyhfuru-47BHBFJNE-845hnjdsf-NAJBR48u--", idUser)
+                .enqueue(new Callback<ArrayList<GoldPointModel>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<GoldPointModel>> call, Response<ArrayList<GoldPointModel>> response) {
+                        if (response.isSuccessful()) {
+                            goldPointModels = response.body();
+                            for (int i = 0; i < goldPointModels.size(); i++) {
+                                tv_beranda_poin.setText("Rp." + goldPointModels.get(i).getTotalGold());
+                                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putString(Config.SHARED_TOTAL_GOLD, goldPointModels.get(i).getTotalGold());
+
+                                editor.apply();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<GoldPointModel>> call, Throwable t) {
+
+                    }
+                });
+    }
+
     private void initView(View view) {
         divHealth = view.findViewById(R.id.div_health);
         divGarbage = view.findViewById(R.id.div_garbage);
@@ -291,5 +362,7 @@ public class BerandaFragment extends Fragment {
         tvCloudDeskripsi = view.findViewById(R.id.tv_cloud_deskripsi);
         lottieAnimationView = view.findViewById(R.id.lottieAnimationView);
         tv_beranda_poin = view.findViewById(R.id.tv_beranda_poin);
+        tvBerandaPoin = view.findViewById(R.id.tv_beranda_poin);
+        divContainerCuaca = view.findViewById(R.id.div_container_cuaca);
     }
 }

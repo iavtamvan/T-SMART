@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.BantuanFragment">
+    tools:context=".fragment.TukarHadiahFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:id="@+id/rv_bantuan">
+        android:id="@+id/rv_tukar_point">
     </android.support.v7.widget.RecyclerView>
 </FrameLayout>

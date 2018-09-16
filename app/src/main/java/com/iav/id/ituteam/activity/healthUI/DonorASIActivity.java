@@ -23,10 +23,6 @@ import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.rest.ApiService;
 import com.iav.id.ituteam.rest.Client;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -88,7 +84,8 @@ public class DonorASIActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor_asi);
-        getSupportActionBar().setIcon(R.drawable.thealth);
+        getSupportActionBar().hide();
+
         initView();
         initShared();
         final ImagePopup imagePopup = new ImagePopup(this);
@@ -134,26 +131,31 @@ public class DonorASIActivity extends AppCompatActivity {
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response.body().string());
-                            //                                String total_point_asi = jsonObject.optString("total_point_asi");
-                            String total_donor_asi_disetujui = jsonObject.optString("total_donor_asi_disetujui");
-                            String total_donor_asi_menunggu = jsonObject.optString("total_donor_asi_menunggu");
-                            String error_msg = jsonObject.optString("error_msg");
-
-//                                editor.putString(Config.SHARED_TOTAL_POINT_ASI, total_point_asi);
-                            editor.putString(Config.SHARED_TOTAL_DONOR_ASI_DISETUJUI, total_donor_asi_disetujui);
-                            editor.putString(Config.SHARED_TOTAL_DONOR_ASI_MENUNGGU, total_donor_asi_menunggu);
-                            editor.apply();
-
-                            Toast.makeText(DonorASIActivity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
+                        if (response.isSuccessful()){
+                            Toast.makeText(DonorASIActivity.this, "Daftar Donor Darah Sukses" , Toast.LENGTH_SHORT).show();
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
                         }
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(response.body().string());
+//                            //                                String total_point_asi = jsonObject.optString("total_point_asi");
+//                            String total_donor_asi_disetujui = jsonObject.optString("total_donor_asi_disetujui");
+//                            String total_donor_asi_menunggu = jsonObject.optString("total_donor_asi_menunggu");
+//                            String error_msg = jsonObject.optString("error_msg");
+//
+////                                editor.putString(Config.SHARED_TOTAL_POINT_ASI, total_point_asi);
+//                            editor.putString(Config.SHARED_TOTAL_DONOR_ASI_DISETUJUI, total_donor_asi_disetujui);
+//                            editor.putString(Config.SHARED_TOTAL_DONOR_ASI_MENUNGGU, total_donor_asi_menunggu);
+//                            editor.apply();
+//
+//                            Toast.makeText(DonorASIActivity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
+//                            finish();
+//                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
 
                     }
 

@@ -57,13 +57,23 @@
             android:name=".activity.LodgingActivity"
             android:label="" />
         <activity
-            android:name=".activity.tukarBarang.TukarActivity"
-            android:label="@string/title_activity_tukar"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".activity.tukarBarang.DetailTukarBarangActivity"
             android:label="@string/title_activity_detail_tukar_barang"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.tukarBarang.TukarRiwayatActivity"
+            android:label="@string/title_activity_tukar_riwayat"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.BantuanActivity"
+            android:label="@string/title_activity_bantuan"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.BantuanDetailActivity"
+            android:label="@string/title_activity_bantuan_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.DetailCuacaActivity" />
+        <activity android:name=".activity.WebViewActivity"></activity>
     </application>
 
 </manifest>

@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.activity.tukarBarang.DetailTukarBarangActivity;
-import com.iav.id.ituteam.activity.tukarBarang.TukarActivity;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.model.TukarModel;
 import com.iav.id.ituteam.rest.ApiService;
@@ -28,7 +27,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 import br.com.joinersa.oooalertdialog.Animation;
@@ -73,7 +75,10 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
     private String key;
     private String uuid;
 
-    private TukarActivity tukarActivity;
+    Date c;
+    String formattedDate;
+    SimpleDateFormat df;
+
     public TukarAdapter(ArrayList<TukarModel> tukarModels, Context context) {
         this.tukarModels = tukarModels;
         this.context = context;
@@ -89,6 +94,9 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         initShared();
+        c = Calendar.getInstance().getTime();
+        df = new SimpleDateFormat("dd-MMM-yyyy");
+        formattedDate  = df.format(c);
         Glide.with(context).load(tukarModels.get(position).getFotoUrl()).into(holder.ivListTukar);
         holder.tvListTukarNama.setText(tukarModels.get(position).getNamaBarang());
 
@@ -101,6 +109,8 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
         holder.cvKlik.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Intent intent = new Intent(context, DetailTukarBarangActivity.class);
                 intent.putExtra(Config.BUNDLE_FOTO_URL, tukarModels.get(position).getFotoUrl());
                 intent.putExtra(Config.BUNDLE_NAMA_LENGKAP, tukarModels.get(position).getNamaBarang());
@@ -111,6 +121,8 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
                 intent.putExtra(Config.BUNDLE_ALAMAT, alamat);
                 intent.putExtra(Config.BUNDLE_DESKRIPSI, tukarModels.get(position).getDeskripsiBarang());
                 intent.putExtra(Config.BUNDLE_HARGA, tukarModels.get(position).getHargaBarang());
+                intent.putExtra(Config.BUNDLE_NAMA_PENJUAL, tukarModels.get(position).getNamaPenjualBarang());
+                intent.putExtra(Config.BUNDLE_ONGKIR, tukarModels.get(position).getOngkir());
                 context.startActivity(intent);
             }
         });
@@ -128,10 +140,14 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
                             public void onClick() {
                                 if (tukarModels.get(position).getJenisTukar().equals("gold")){
                                     // Parsingnya yg GOLD
-                                    postDataKurangGold(holder.tvListTukarGold.getText().toString().trim());
+                                    postDataKurangGold(holder.tvListTukarGold.getText().toString().trim(), tukarModels.get(position).getNamaPenjualBarang(), tukarModels.get(position).getOngkir(), tukarModels.get(position).getAlamatPenjual(),
+                                            tukarModels.get(position).getNamaBarang(),tukarModels.get(position).getHargaBarang(), tukarModels.get(position).getJenisTukar(), tukarModels.get(position).getAlamatUser(),
+                                            tukarModels.get(position).getTukarkan(), tukarModels.get(position).getDeskripsiBarang(), tukarModels.get(position).getFotoUrl(), tukarModels.get(position).getTglBarang(), formattedDate);
                                 } else {
                                     // Parsingnya yg Point
-                                    postDataKurangPoin(holder.tvListTukarPoin.getText().toString().trim());
+                                    postDataKurangPoin(holder.tvListTukarPoin.getText().toString().trim(), tukarModels.get(position).getNamaPenjualBarang(), tukarModels.get(position).getOngkir(), tukarModels.get(position).getAlamatPenjual(),
+                                            tukarModels.get(position).getNamaBarang(),tukarModels.get(position).getHargaBarang(), tukarModels.get(position).getJenisTukar(), tukarModels.get(position).getAlamatUser(),
+                                            tukarModels.get(position).getTukarkan(), tukarModels.get(position).getDeskripsiBarang(), tukarModels.get(position).getFotoUrl(), tukarModels.get(position).getTglBarang(), formattedDate);
                                 }
                             }
                         })
@@ -148,9 +164,11 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
 
     }
 
-    private void postDataKurangPoin(String tukarPoint) {
+    private void postDataKurangPoin(String tukarPoint, String nama_penjual_barang, String ongkir,
+                                    String alamat_penjual, String nama_barang, String harga_barang, String jenis_tukar, String alamat_user,
+                                    String tukarkan, String deskripsi_barang, String foto_url, String tgl_barang, String tgl_penukaran_brang) {
         ApiService apiService = Client.getInstanceRetrofit();
-        apiService.postTukarPoin("tukarPoin",id_user, tukarPoint)
+        apiService.postTukarPoin("tukarPoin",id_user, tukarPoint, nama_penjual_barang, ongkir, alamat_penjual, nama_barang, harga_barang, jenis_tukar, alamat_user, tukarkan, deskripsi_barang, foto_url, tgl_barang, tgl_penukaran_brang)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -158,6 +176,11 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
                             try {
                                 JSONObject jsonObject = new JSONObject(response.body().string());
                                 String hasil_akhir_point = jsonObject.optString("hasil_akhir_point");
+                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
                                 SharedPreferences sharedPreferences = context.getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -165,7 +188,7 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
 
                                 editor.apply();
 
-                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             } catch (IOException e) {
@@ -181,9 +204,11 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
                 });
     }
 
-    private void postDataKurangGold(String tukarGold) {
+    private void postDataKurangGold(String tukarGold , String nama_penjual_barang, String ongkir,
+                                    String alamat_penjual, String nama_barang, String harga_barang, String jenis_tukar, String alamat_user,
+                                    String tukarkan, String deskripsi_barang, String foto_url, String tgl_barang, String tgl_penukaran_brang) {
         ApiService apiService = Client.getInstanceRetrofit();
-        apiService.postTukarGold("tukarGold", id_user, tukarGold)
+        apiService.postTukarGold("tukarGold", id_user, tukarGold, nama_penjual_barang, ongkir, alamat_penjual, nama_barang, harga_barang, jenis_tukar, alamat_user, tukarkan, deskripsi_barang, foto_url, tgl_barang, tgl_penukaran_brang)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -191,13 +216,18 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
                             try {
                                 JSONObject jsonObject = new JSONObject(response.body().string());
                                 String hasil_akhir_gold = jsonObject.optString("hasil_akhir_gold");
+                                Toast.makeText(context, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
                                 SharedPreferences sharedPreferences = context.getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
                                 editor.putString(Config.SHARED_TOTAL_GOLD, hasil_akhir_gold);
 
                                 editor.apply();
-                                Toast.makeText(context, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
+
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -228,6 +258,7 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
         private TextView tvListTukarGold;
         private Button btnTukarkan;
         private TextView tvListHarga;
+
 
         public ViewHolder(View itemView) {
             super(itemView);

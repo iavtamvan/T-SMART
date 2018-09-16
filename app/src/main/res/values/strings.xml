@@ -112,4 +112,7 @@
     <string name="title_activity_profil">ProfilActivity</string>
     <string name="title_activity_tukar">TukarActivity</string>
     <string name="title_activity_detail_tukar_barang">DetailTukarBarangActivity</string>
+    <string name="title_activity_tukar_riwayat">tukarRiwayatActivity</string>
+    <string name="title_activity_bantuan">BantuanActivity</string>
+    <string name="title_activity_bantuan_detail">BantuanDetailActivity</string>
 </resources>

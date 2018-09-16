@@ -19,9 +19,11 @@ import android.widget.Toast;
 
 import com.evernote.android.state.State;
 import com.evernote.android.state.StateSaver;
+import com.iav.id.ituteam.fragment.BantuanFragment;
 import com.iav.id.ituteam.fragment.BerandaFragment;
 import com.iav.id.ituteam.fragment.NewsFragment;
 import com.iav.id.ituteam.fragment.ProfileFragment;
+import com.iav.id.ituteam.fragment.TukarHadiahFragment;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.rest.ApiService;
 import com.iav.id.ituteam.rest.Client;
@@ -60,9 +62,11 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    getData();
                     divContainerPoints.setVisibility(View.VISIBLE);
                     fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.div_container, new BerandaFragment()).commit();
+
 //                    getSupportActionBar().setTitle(R.string.name_fragment_now_playing);
                     return true;
                 case R.id.navigation_news:
@@ -70,9 +74,15 @@ public class MainActivity extends AppCompatActivity {
                     fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction().replace(R.id.div_container, new NewsFragment()).commit();
                     return true;
-                case R.id.navigation_riwayat:
+                case R.id.navigation_tukar_hadiah:
+                    divContainerPoints.setVisibility(View.GONE);
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.div_container, new TukarHadiahFragment()).commit();
                     return true;
                 case R.id.navigation_bantuan:
+                    divContainerPoints.setVisibility(View.GONE);
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.div_container, new BantuanFragment()).commit();
                     return true;
                 case R.id.navigation_akun:
                     divContainerPoints.setVisibility(View.GONE);
@@ -101,9 +111,10 @@ public class MainActivity extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.div_container, new BerandaFragment()).commit();
         sharedPreferences = getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
-        point = sharedPreferences.getString(Config.SHARED_POINt_DONOR, "");
+        point = sharedPreferences.getString(Config.SHARED_TOTAL_POINT, "");
         idUser = sharedPreferences.getString(Config.SHARED_ID_USER, "");
         kota = sharedPreferences.getString(Config.SHARED_KOTA_KAB, "");
+        tvBerandaPoin.setText(point);
         getData();
 //        if (point.equalsIgnoreCase("")){
 //            Log.d("", "onCreate: kosong");
@@ -123,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         StateSaver.saveInstanceState(this, outState);
     }
 
-    private void getData() {
+    public void getData() {
         ApiService apiService = Client.getInstanceRetrofit();
         apiService.getDataMain(idUser, "77748gfieu-3487hjdfghur4Hhjheriirh", kota)
                 .enqueue(new Callback<ResponseBody>() {
@@ -170,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+//        super.onBackPressed();
         new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Tutup aplikasi ini? ")

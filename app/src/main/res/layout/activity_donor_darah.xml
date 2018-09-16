@@ -273,8 +273,9 @@
         android:id="@+id/btn_donor_darah_daftar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bgGrey"
+        android:background="@color/blue"
         android:fontFamily="@font/viga"
+        android:textColor="@android:color/white"
         android:text="DAFTAR"
         android:textSize="20dp"
         android:textStyle="bold"/>

@@ -12,7 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.activity.tukarBarang.TukarActivity;
+import com.iav.id.ituteam.activity.RiwayatActivity;
+import com.iav.id.ituteam.activity.tukarBarang.TukarRiwayatActivity;
 import com.iav.id.ituteam.helper.Config;
 
 import java.util.UUID;
@@ -68,6 +69,9 @@ public class ProfileFragment extends Fragment {
     private String point;
     private String gold;
 
+    private LinearLayout divContainerRiwayatTukarHadiah;
+    private LinearLayout divContainerRiwayatDonor;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -79,11 +83,25 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         initView(view);
+        initShared();
 
+        divContainerTukarHadiah.setVisibility(View.GONE);
         divContainerTukarHadiah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), TukarActivity.class));
+            }
+        });
+
+        divContainerRiwayatDonor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), RiwayatActivity.class));
+            }
+        });
+        divContainerRiwayatTukarHadiah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), TukarRiwayatActivity.class));
             }
         });
 
@@ -110,6 +128,8 @@ public class ProfileFragment extends Fragment {
         divContainerKetentuanLayanan = view.findViewById(R.id.div_container_ketentuan_layanan);
         divContainerKebijakanPrivasi = view.findViewById(R.id.div_container_kebijakan_privasi);
         divContainerRateApp = view.findViewById(R.id.div_container_rate_app);
+        divContainerRiwayatTukarHadiah = view.findViewById(R.id.div_container_riwayat_tukar_hadiah);
+        divContainerRiwayatDonor = view.findViewById(R.id.div_container_riwayat_donor);
     }
 
     private void initShared() {

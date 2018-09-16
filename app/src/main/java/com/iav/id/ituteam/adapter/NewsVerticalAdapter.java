@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.iav.id.ituteam.R;
+import com.iav.id.ituteam.activity.WebViewActivity;
+import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.model.newsModel.ArticlesItem;
 
 import java.util.ArrayList;
@@ -70,6 +72,15 @@ public class NewsVerticalAdapter extends RecyclerView.Adapter<NewsVerticalAdapte
                 sharingIntent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.SUBJEK));
                 sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 context.startActivity(Intent.createChooser(sharingIntent, context.getString(R.string.SHARE_VIA)));
+            }
+        });
+
+        holder.cvKlik.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra(Config.BUNDLE_URL_NEWS, articlesItems.get(position).getUrl());
+                context.startActivity(intent);
             }
         });
 

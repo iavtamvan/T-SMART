@@ -11,11 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bgGrey">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/bgGrey">
+            android:background="@color/bgGrey"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,46 +34,51 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_profile_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/viga"
                             android:text="ADE FAJR ARIAV"
-                            android:fontFamily="@font/viga"
                             android:textColor="@android:color/black"
-                            android:textSize="15dp"
-                            android:id="@+id/tv_profile_name"/>
+                            android:textSize="15dp" />
+
                         <TextView
+                            android:id="@+id/tv_profile_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/viga"
                             android:text="email"
-                            android:fontFamily="@font/viga"
-                            android:textSize="12dp"
-                            android:id="@+id/tv_profile_email"/>
+                            android:textSize="12dp" />
+
                         <TextView
+                            android:id="@+id/tv_profile_no_hp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="no hp"
                             android:fontFamily="@font/viga"
-                            android:textSize="12dp"
-                            android:id="@+id/tv_profile_no_hp"/>
+                            android:text="no hp"
+                            android:textSize="12dp" />
                     </LinearLayout>
+
                     <LinearLayout
+                        android:id="@+id/div_container_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:id="@+id/div_container_edit">
+                        android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="EDIT"
-                            android:textColor="@color/blue"/>
+                            android:textColor="@color/blue" />
                     </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,29 +97,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <ImageView
                             android:layout_width="90dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/tgold_hitam"
-                            android:scaleType="fitXY"/>
+                            android:scaleType="fitXY"
+                            android:src="@drawable/tgold_hitam" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_gravity="center|right"
-                        android:gravity="center|right">
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
                         <TextView
+                            android:id="@+id/tv_profile_tgold"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Rp.0"
                             android:gravity="center"
-                            android:textSize="16dp"
-                            android:id="@+id/tv_profile_tgold"/>
+                            android:text="Rp.0"
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,30 +135,34 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
+
                         <ImageView
                             android:layout_width="90dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/tpoints_hitam"
-                            android:scaleType="fitXY"/>
+                            android:scaleType="fitXY"
+                            android:src="@drawable/tpoints_hitam" />
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_gravity="center|right"
-                        android:gravity="center|right">
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
                         <TextView
+                            android:id="@+id/tv_profile_tpoints"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="0 Poin"
                             android:gravity="center"
-                            android:textSize="16dp"
-                            android:id="@+id/tv_profile_tpoints"/>
+                            android:text="0 Poin"
+                            android:textSize="16dp" />
 
                     </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -166,17 +180,33 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Tersambung sebagai:"/>
-                    <ImageView
-                        android:layout_width="90dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/logo"
-                        android:scaleType="fitXY"/>
+                        android:text="Tersambung sebagai:" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/viga"
+                            android:gravity="center"
+                            android:text="Pengguna "
+                            android:textColor="@color/blue" />
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="30dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ts" />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -192,195 +222,305 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/div_container_kode_promo"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:id="@+id/div_container_kode_promo">
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add"/>
+                                android:layout_height="match_parent"
+                                android:src="@android:drawable/ic_menu_add" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
                             android:gravity="center"
-                            android:layout_marginLeft="20dp">
+                            android:orientation="vertical">
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="Masukan kode promo"
-                                android:gravity="center|left"/>
+                                android:gravity="center|left"
+                                android:text="Masukan kode promo" />
+
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
-                                android:background="@color/bgGrey"/>
+                                android:background="@color/bgGrey" />
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/div_container_bantuan"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
+                        android:layout_height="50dp"
                         android:layout_marginTop="8dp"
-                        android:id="@+id/div_container_bantuan">
+                        android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add"/>
+                                android:src="@android:drawable/ic_menu_add" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
                             android:gravity="center"
-                            android:layout_marginLeft="20dp">
+                            android:orientation="vertical">
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="Bantuan"
-                                android:gravity="center|left"/>
+                                android:gravity="center|left"
+                                android:text="Bantuan" />
+
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
-                                android:background="@color/bgGrey"/>
+                                android:background="@color/bgGrey" />
                         </LinearLayout>
                     </LinearLayout>
+
                     <LinearLayout
+                        android:id="@+id/div_container_tukar_hadiah"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
+                        android:layout_height="50dp"
                         android:layout_marginTop="8dp"
-                        android:id="@+id/div_container_tukar_hadiah">
+                        android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add"/>
+                                android:src="@android:drawable/ic_menu_add" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
                             android:gravity="center"
-                            android:layout_marginLeft="20dp">
+                            android:orientation="vertical">
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="Tukar hadiah"
-                                android:gravity="center|left"/>
+                                android:gravity="center|left"
+                                android:text="Tukar hadiah" />
+
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
-                                android:background="@color/bgGrey"/>
+                                android:background="@color/bgGrey" />
                         </LinearLayout>
                     </LinearLayout>
+
                     <LinearLayout
+                        android:id="@+id/div_container_riwayat_tukar_hadiah"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
+                        android:layout_height="50dp"
                         android:layout_marginTop="8dp"
-                        android:id="@+id/div_container_ketentuan_layanan">
+                        android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add"/>
+                                android:src="@android:drawable/ic_menu_add" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
                             android:gravity="center"
-                            android:layout_marginLeft="20dp">
+                            android:orientation="vertical">
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="Ketentuan Layanan"
-                                android:gravity="center|left"/>
+                                android:gravity="center|left"
+                                android:text="Riwayat tukar hadiah" />
+
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
-                                android:background="@color/bgGrey"/>
+                                android:background="@color/bgGrey" />
                         </LinearLayout>
                     </LinearLayout>
+
                     <LinearLayout
+                        android:id="@+id/div_container_riwayat_donor"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
+                        android:layout_height="50dp"
                         android:layout_marginTop="8dp"
-                        android:id="@+id/div_container_kebijakan_privasi">
+                        android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add"/>
+                                android:src="@android:drawable/ic_menu_add" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
                             android:gravity="center"
-                            android:layout_marginLeft="20dp">
+                            android:orientation="vertical">
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="Kebijakan Priavsi"
-                                android:gravity="center|left"/>
+                                android:gravity="center|left"
+                                android:text="Riwayat donor" />
+
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
-                                android:background="@color/bgGrey"/>
+                                android:background="@color/bgGrey" />
                         </LinearLayout>
                     </LinearLayout>
+
                     <LinearLayout
+                        android:id="@+id/div_container_ketentuan_layanan"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
+                        android:layout_height="50dp"
                         android:layout_marginTop="8dp"
-                        android:id="@+id/div_container_rate_app">
+                        android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add"/>
+                                android:src="@android:drawable/ic_menu_add" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
                             android:gravity="center"
-                            android:layout_marginLeft="20dp">
+                            android:orientation="vertical">
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="Rate T-SMART App"
-                                android:gravity="center|left"/>
+                                android:gravity="center|left"
+                                android:text="Ketentuan Layanan" />
+
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
-                                android:background="@color/bgGrey"/>
+                                android:background="@color/bgGrey" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/div_container_kebijakan_privasi"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@android:drawable/ic_menu_add" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center|left"
+                                android:text="Kebijakan Priavsi" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/bgGrey" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/div_container_rate_app"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@android:drawable/ic_menu_add" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center|left"
+                                android:text="Rate T-SMART App" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:background="@color/bgGrey" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -393,13 +533,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:background="@android:color/white"
-                android:textColor="@android:color/holo_red_light"
-                android:text="Keluar"/>
+                android:text="Keluar"
+                android:textColor="@android:color/holo_red_light" />
 
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </FrameLayout>

@@ -1,5 +1,6 @@
 package com.iav.id.ituteam.activity.tukarBarang;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 import br.com.joinersa.oooalertdialog.Animation;
@@ -55,6 +59,9 @@ public class DetailTukarBarangActivity extends AppCompatActivity {
     private String alamatpenjual;
     private String deskripsibarang;
     private String harga;
+    private String namaPenjual;
+    private String ongkir;
+    private String riwayat;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -86,10 +93,15 @@ public class DetailTukarBarangActivity extends AppCompatActivity {
 
 
 
+    Date c;
+    String formattedDate;
+    SimpleDateFormat df;
+
 
     private ImageView ivDetailPoin;
     private ImageView ivDetailGold;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,6 +109,7 @@ public class DetailTukarBarangActivity extends AppCompatActivity {
         initView();
         initShared();
         setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(R.color.black);
         fotourl = getIntent().getStringExtra(Config.BUNDLE_FOTO_URL);
         namabarang = getIntent().getStringExtra(Config.BUNDLE_NAMA_LENGKAP);
         tukarkan = getIntent().getStringExtra(Config.BUNDLE_TUKARKAN);
@@ -106,7 +119,19 @@ public class DetailTukarBarangActivity extends AppCompatActivity {
         alamat = getIntent().getStringExtra(Config.BUNDLE_ALAMAT);
         deskripsibarang = getIntent().getStringExtra(Config.BUNDLE_DESKRIPSI);
         harga = getIntent().getStringExtra(Config.BUNDLE_HARGA);
+        namaPenjual = getIntent().getStringExtra(Config.BUNDLE_NAMA_PENJUAL);
+        ongkir = getIntent().getStringExtra(Config.BUNDLE_ONGKIR);
+        riwayat = getIntent().getStringExtra(Config.BUNDLE_TUKAR_RIWAYAT);
 
+        if (riwayat.equals("riwayat")){
+            btnTukarkan.setVisibility(View.GONE);
+        } else {
+            btnTukarkan.setVisibility(View.VISIBLE);
+        }
+
+        c = Calendar.getInstance().getTime();
+        df = new SimpleDateFormat("dd-MMM-yyyy");
+        formattedDate  = df.format(c);
         if (jenistukar.equals("gold")) {
             ivDetailPoin.setVisibility(View.GONE);
             ivDetailGold.setVisibility(View.VISIBLE);
@@ -115,6 +140,7 @@ public class DetailTukarBarangActivity extends AppCompatActivity {
             ivDetailGold.setVisibility(View.GONE);
         }
         Glide.with(this).load(fotourl).into(ivDetailTukar);
+        tvDetailTukarNamaBarang.setText(namabarang);
         tvDetailTukarTanggal.setText(tglbarang);
         tvDetailTukarHarga.setText("Rp." + harga);
         tvDetailTukarAlamatPenjual.setText(alamatpenjual);
@@ -136,10 +162,10 @@ public class DetailTukarBarangActivity extends AppCompatActivity {
                             public void onClick() {
                                 if (jenistukar.equals("gold")){
                                     // Parsingnya yg GOLD
-                                    postDataKurangGold(tukarkan);
+                                    postDataKurangGold(tukarkan, namaPenjual, ongkir, alamatpenjual, namabarang, harga, jenistukar, alamat, tukarkan, deskripsibarang, fotourl, tglbarang, "324");
                                 } else {
                                     // Parsingnya yg Point
-                                    postDataKurangPoin(tukarkan);
+                                    postDataKurangPoin(tukarkan, namaPenjual, ongkir, alamatpenjual, namabarang, harga, jenistukar, alamat, tukarkan, deskripsibarang, fotourl, tglbarang, "345435");
                                 }
                             }
                         })
@@ -155,9 +181,11 @@ public class DetailTukarBarangActivity extends AppCompatActivity {
 
     }
 
-    private void postDataKurangPoin(String tukarPoint) {
+    private void postDataKurangPoin(String tukarPoint, String nama_penjual_barang, String ongkir,
+                                    String alamat_penjual, String nama_barang, String harga_barang, String jenis_tukar, String alamat_user,
+                                    String tukarkan, String deskripsi_barang, String foto_url, String tgl_barang, String tgl_penukaran_brang) {
         ApiService apiService = Client.getInstanceRetrofit();
-        apiService.postTukarPoin("tukarPoin",id_user, tukarPoint)
+        apiService.postTukarPoin("tukarPoin",id_user, tukarPoint, nama_penjual_barang, ongkir, alamat_penjual, nama_barang, harga_barang, jenis_tukar, alamat_user, tukarkan, deskripsi_barang, foto_url, tgl_barang, tgl_penukaran_brang)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -188,9 +216,11 @@ public class DetailTukarBarangActivity extends AppCompatActivity {
                 });
     }
 
-    private void postDataKurangGold(String tukarGold) {
+    private void postDataKurangGold(String tukarGold, String nama_penjual_barang, String ongkir,
+                                    String alamat_penjual, String nama_barang, String harga_barang, String jenis_tukar, String alamat_user,
+                                    String tukarkan, String deskripsi_barang, String foto_url, String tgl_barang, String tgl_penukaran_brang) {
         ApiService apiService = Client.getInstanceRetrofit();
-        apiService.postTukarGold("tukarGold", id_user, tukarGold)
+        apiService.postTukarGold("tukarGold", id_user, tukarGold, nama_penjual_barang, ongkir, alamat_penjual, nama_barang, harga_barang, jenis_tukar, alamat_user, tukarkan, deskripsi_barang, foto_url, tgl_barang, tgl_penukaran_brang)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

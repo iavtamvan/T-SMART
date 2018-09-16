@@ -80,7 +80,7 @@ public class HealthActivity extends AppCompatActivity {
 
         if (jenisKategori.equalsIgnoreCase("Kesehatan")) {
             if (jenisKelamin.equalsIgnoreCase("Laki - Laki")) {
-                getSupportActionBar().setIcon(R.drawable.thealth);
+                getSupportActionBar().setIcon(R.drawable.thealth_);
                 toolbar.setTitleTextColor(R.color.yellow);
                 getDataEventKesehatanAll();
                 divContatinerList.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +102,7 @@ public class HealthActivity extends AppCompatActivity {
                 menu2DonorAsi.setVisibility(View.GONE);
                 menu2TukarkanSampah.setVisibility(View.GONE);
             } else {
-                getSupportActionBar().setIcon(R.drawable.thealth);
+                getSupportActionBar().setIcon(R.drawable.thealth_);
                 toolbar.setTitleTextColor(R.color.yellow);
                 fabsMenu.setVisibility(View.VISIBLE);
                 menu2TukarkanSampah.setVisibility(View.GONE);
@@ -136,7 +136,7 @@ public class HealthActivity extends AppCompatActivity {
             }
 
         } else {
-            getSupportActionBar().setIcon(R.drawable.tgarbage);
+            getSupportActionBar().setIcon(R.drawable.tgarbage_);
             toolbar.setTitleTextColor(R.color.yellow);
             menu2DonorAsi.setVisibility(View.GONE);
             menu2DonorDarah.setVisibility(View.GONE);

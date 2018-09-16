@@ -1,12 +1,16 @@
 package com.iav.id.ituteam.rest;
 
+import com.iav.id.ituteam.model.BantuanListModel;
+import com.iav.id.ituteam.model.BantuanPertanyaanModel;
 import com.iav.id.ituteam.model.DonorASIModel;
 import com.iav.id.ituteam.model.DonorDarahModel;
 import com.iav.id.ituteam.model.EventModel;
+import com.iav.id.ituteam.model.GoldPointModel;
 import com.iav.id.ituteam.model.GoogleModel.RootLodgingModel;
 import com.iav.id.ituteam.model.ListHealthModel;
 import com.iav.id.ituteam.model.LoginModel;
 import com.iav.id.ituteam.model.TukarModel;
+import com.iav.id.ituteam.model.TukarRiwayatModel;
 import com.iav.id.ituteam.model.newsModel.NewsModel;
 
 import java.util.ArrayList;
@@ -89,6 +93,12 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("api_get.php")
+    Call<ArrayList<GoldPointModel>> getGolddanPoint(
+                                   @Field("pindah") String pindah,
+                                   @Field("id_user") String idUser);
+
+    @FormUrlEncoded
+    @POST("api_get.php")
     Call<ArrayList<TukarModel>> getTukarPoin(
                                    @Field("pindah") String pindah);
 
@@ -101,18 +111,60 @@ public interface ApiService {
     Call<ArrayList<TukarModel>> getTukarAll(
                                    @Field("pindah") String pindah);
     @FormUrlEncoded
+    @POST("api_get.php")
+    Call<ArrayList<TukarRiwayatModel>> getTukarRiwayat(
+                                   @Field("pindah") String pindah,
+                                   @Field("id_user") String idUser
+    );
+
+    @FormUrlEncoded
+    @POST("api_get.php")
+    Call<ArrayList<BantuanListModel>> getBantuanList(
+                                   @Field("pindah") String pindah
+                                   );
+    @FormUrlEncoded
+    @POST("api_get.php")
+    Call<ArrayList<BantuanPertanyaanModel>> getBantuanPertanyaan(
+                                   @Field("pindah") String pindah,
+                                   @Field("jenis_bantuan") String jenis_bantuan
+                                   );
+    @FormUrlEncoded
     @POST("api_tukar_point.php")
     Call<ResponseBody> postTukarPoin(
                                    @Field("pindah") String pindah,
                                    @Field("id_user") String id_user,
-                                   @Field("kurang") String kurang
+                                   @Field("kurang") String kurang,
+                                   @Field("nama_penjual_barang") String nama_penjual_barang,
+                                   @Field("ongkir") String ongkir,
+                                   @Field("alamat_penjual") String alamat_penjual,
+                                   @Field("nama_barang") String nama_barang,
+                                   @Field("harga_barang") String harga_barang,
+                                   @Field("jenis_tukar") String jenis_tukar,
+                                   @Field("alamat_user") String alamat_user,
+                                   @Field("tukarkan") String tukarkan,
+                                   @Field("deskripsi_barang") String deskripsi_barang,
+                                   @Field("foto_url") String foto_url,
+                                   @Field("tgl_barang") String tgl_barang,
+                                   @Field("tgl_penukaran_brang") String tgl_penukaran_brang
     );
     @FormUrlEncoded
     @POST("api_tukar_point.php")
     Call<ResponseBody> postTukarGold(
-                                   @Field("pindah") String pindah,
-                                   @Field("id_user") String id_user,
-                                   @Field("kurang") String kurang
+            @Field("pindah") String pindah,
+            @Field("id_user") String id_user,
+            @Field("kurang") String kurang,
+            @Field("nama_penjual_barang") String nama_penjual_barang,
+            @Field("ongkir") String ongkir,
+            @Field("alamat_penjual") String alamat_penjual,
+            @Field("nama_barang") String nama_barang,
+            @Field("harga_barang") String harga_barang,
+            @Field("jenis_tukar") String jenis_tukar,
+            @Field("alamat_user") String alamat_user,
+            @Field("tukarkan") String tukarkan,
+            @Field("deskripsi_barang") String deskripsi_barang,
+            @Field("foto_url") String foto_url,
+            @Field("tgl_barang") String tgl_barang,
+            @Field("tgl_penukaran_brang") String tgl_penukaran_brang
     );
 
 

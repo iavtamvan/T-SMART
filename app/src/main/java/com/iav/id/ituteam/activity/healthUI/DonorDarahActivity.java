@@ -27,10 +27,6 @@ import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.rest.ApiService;
 import com.iav.id.ituteam.rest.Client;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.UUID;
 
@@ -100,6 +96,7 @@ public class DonorDarahActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donor_darah);
         getSupportActionBar().setIcon(R.drawable.thealth);
+        getSupportActionBar().hide();
         initView();
         initShared();
 
@@ -247,24 +244,27 @@ public class DonorDarahActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (response.isSuccessful()){
-                            try {
-                                JSONObject jsonObject = new JSONObject(response.body().string());
-                                String error_msg = jsonObject.optString("error_msg");
-//                                String total_point = jsonObject.optString("total_point");
-                                String total_donorMeunggu = jsonObject.optString("total_donor_menunggu");
-                                String total_donor_disetujui = jsonObject.optString("total_donor_disetujui");
-//                                editor.putString(Config.SHARED_POINt_DONOR, total_point);
-                                editor.putString(Config.SHARED_TOTAL_DONOR_DISETUJUI, total_donor_disetujui);
-                                editor.putString(Config.SHARED_TOTAL_DONOR_MENUNGGU, total_donorMeunggu);
-                                editor.apply();
-                                Toast.makeText(DonorDarahActivity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
-                                finish();
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                            Toast.makeText(DonorDarahActivity.this, "Daftar Donor Darah Sukses" , Toast.LENGTH_SHORT).show();
+                            finish();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                            try {
+//                                JSONObject jsonObject = new JSONObject(response.body().string());
+//                                String error_msg = jsonObject.optString("error_msg");
+////                                String total_point = jsonObject.optString("total_point");
+//                                String total_donorMeunggu = jsonObject.optString("total_donor_menunggu");
+//                                String total_donor_disetujui = jsonObject.optString("total_donor_disetujui");
+////                                editor.putString(Config.SHARED_POINt_DONOR, total_point);
+//                                editor.putString(Config.SHARED_TOTAL_DONOR_DISETUJUI, total_donor_disetujui);
+//                                editor.putString(Config.SHARED_TOTAL_DONOR_MENUNGGU, total_donorMeunggu);
+//                                editor.apply();
+//                                Toast.makeText(DonorDarahActivity.this, "" + error_msg, Toast.LENGTH_SHORT).show();
+//                                finish();
+//                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
                         }
 
                     }

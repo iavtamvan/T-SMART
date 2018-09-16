@@ -208,7 +208,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
-                                android:src="@drawable/health" />
+                                android:src="@drawable/thealth" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -235,7 +235,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
-                                android:src="@drawable/garbage" />
+                                android:src="@drawable/tgarbage" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -262,7 +262,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
-                                android:src="@drawable/security" />
+                                android:src="@drawable/tsecurity" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -297,7 +297,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
-                                android:src="@drawable/economy" />
+                                android:src="@drawable/teconomy" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -323,7 +323,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
-                                android:src="@drawable/hotel" />
+                                android:src="@drawable/tlodging" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -350,7 +350,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
-                                android:src="@drawable/travel" />
+                                android:src="@drawable/ttravel" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -376,6 +376,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:background="@drawable/cloudy"
+                    android:id="@+id/div_container_cuaca"
                     android:layout_marginTop="10dp">
 
                     <TextView
