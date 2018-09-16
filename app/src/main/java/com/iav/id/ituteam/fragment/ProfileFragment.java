@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +73,7 @@ public class ProfileFragment extends Fragment {
     private LinearLayout divContainerRiwayatTukarHadiah;
     private LinearLayout divContainerRiwayatDonor;
 
+    private FragmentManager fragmentManager;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -102,6 +104,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), TukarRiwayatActivity.class));
+            }
+        });
+
+        divContainerBantuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.div_container, new BantuanFragment()).commit();
             }
         });
 
