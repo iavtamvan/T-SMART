@@ -1,4 +1,4 @@
-package com.iav.id.ituteam.activity;
+package com.iav.id.ituteam.activity.bantuan;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BantuanActivity extends AppCompatActivity {
+public class BantuaPertanyaannActivity extends AppCompatActivity {
 
     private RecyclerView rvBantuan;
     private ArrayList<BantuanPertanyaanModel> bantuanPertanyaanModels;
@@ -72,8 +72,8 @@ public class BantuanActivity extends AppCompatActivity {
                     public void onResponse(Call<ArrayList<BantuanPertanyaanModel>> call, Response<ArrayList<BantuanPertanyaanModel>> response) {
                         if (response.isSuccessful()){
                             bantuanPertanyaanModels = response.body();
-                            bantuanPertanyaanAdapter = new BantuanPertanyaanAdapter(BantuanActivity.this, bantuanPertanyaanModels);
-                            rvBantuan.setLayoutManager(new LinearLayoutManager(BantuanActivity.this));
+                            bantuanPertanyaanAdapter = new BantuanPertanyaanAdapter(BantuaPertanyaannActivity.this, bantuanPertanyaanModels);
+                            rvBantuan.setLayoutManager(new LinearLayoutManager(BantuaPertanyaannActivity.this));
                             rvBantuan.setAdapter(bantuanPertanyaanAdapter);
                             bantuanPertanyaanAdapter.notifyDataSetChanged();
                         }
@@ -81,7 +81,7 @@ public class BantuanActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ArrayList<BantuanPertanyaanModel>> call, Throwable t) {
-                        Toast.makeText(BantuanActivity.this, "" + Config.ERROR_LOAD, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BantuaPertanyaannActivity.this, "" + Config.ERROR_LOAD, Toast.LENGTH_SHORT).show();
                     }
                 });
 

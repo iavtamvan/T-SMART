@@ -1,67 +1,22 @@
 package com.iav.id.ituteam.activity.tukarBarang;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.helper.Config;
-import com.iav.id.ituteam.rest.ApiService;
-import com.iav.id.ituteam.rest.Client;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.UUID;
 
-import br.com.joinersa.oooalertdialog.Animation;
-import br.com.joinersa.oooalertdialog.OnClickListener;
-import br.com.joinersa.oooalertdialog.OoOAlertDialog;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DetailTukarBarangActivity extends AppCompatActivity {
-
-    private Toolbar toolbar;
-    private ImageView ivDetailTukar;
-    private TextView tvDetailTukarHarga;
-    private TextView tvDetailTukarTanggal;
-    private TextView tvDetailTukarNamaBarang;
-    private TextView tvDetailTukarAlamatPenjual;
-    private TextView tvDetailTukarAlamatPembeli;
-    private CardView cvKlik;
-    private TextView tvDetailTukarAlamatPenjualDown;
-    private TextView tvDetailTukarDeskripsiProduk;
-    private Button btnTukarkan;
-    private FloatingActionButton fab;
-
-    private String fotourl;
-    private String namabarang;
-    private String tukarkan;
-    private String jenistukar;
-    private String tglbarang;
-    private String alamatpenjual;
-    private String deskripsibarang;
-    private String harga;
-    private String namaPenjual;
-    private String ongkir;
-    private String riwayat;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -90,185 +45,80 @@ public class DetailTukarBarangActivity extends AppCompatActivity {
     private String tgl_jatuh_tempo;
     private String key;
     private String uuid;
+    private String point;
+    private String gold;
+    private TextView tvTukarSampahnamaTop;
+    private TextView tvTukarSampahNama;
+    private TextView tvTukarSampahTanggal;
+    private TextView tvTukarSampahTukarAlamat;
+    private TextView tvTukarSampah;
+    private LinearLayout divContainerBeratSampah;
+    private TextView tvTukarSampahBerat;
+    private LinearLayout divContainerJenisSampah;
+    private TextView tvTukarSampahJenis;
+    private LinearLayout divContainerHarga;
+    private TextView tvTukarSampahHargaTop;
+    private TextView tvTukarSampahHarga;
+    private TextView tvTukarSampahTokenSampah;
+    private TextView tvTukarSampahGold;
+    private TextView tvTukarSampahStatus;
+    private CircleImageView ivCircleTukarSampah;
+
+    String foto_url_sampah;
+    String gambar_sampah_sampah;
+    String gambar_petugas_sampah_sampah;
+    String nama_lengkap_sampah;
+    String tanggal_sampah;
+    String alamat_sampah;
+    String input_sampah_sampah;
+    String jenis_sampah_sampah;
+    String token_sampah;
+    String selection_detail_sampah;
+    String harga_sampah;
+    String status_sampah_sampah;
+    private ImageView ivPenukarSampah;
+    private ImageView ivPetugasSampah;
 
 
-
-    Date c;
-    String formattedDate;
-    SimpleDateFormat df;
-
-
-    private ImageView ivDetailPoin;
-    private ImageView ivDetailGold;
-
-    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_tukar_barang);
-        initView();
-        initShared();
+        setContentView(R.layout.activity_detail_tukar_barangs);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitleTextColor(R.color.black);
-        fotourl = getIntent().getStringExtra(Config.BUNDLE_FOTO_URL);
-        namabarang = getIntent().getStringExtra(Config.BUNDLE_NAMA_LENGKAP);
-        tukarkan = getIntent().getStringExtra(Config.BUNDLE_TUKARKAN);
-        jenistukar = getIntent().getStringExtra(Config.BUNDLE_JENIS_TUKAR);
-        tglbarang = getIntent().getStringExtra(Config.BUNDLE_TANGGAL);
-        alamatpenjual = getIntent().getStringExtra(Config.BUNDLE_ALAMAT_PENJUAL);
-        alamat = getIntent().getStringExtra(Config.BUNDLE_ALAMAT);
-        deskripsibarang = getIntent().getStringExtra(Config.BUNDLE_DESKRIPSI);
-        harga = getIntent().getStringExtra(Config.BUNDLE_HARGA);
-        namaPenjual = getIntent().getStringExtra(Config.BUNDLE_NAMA_PENJUAL);
-        ongkir = getIntent().getStringExtra(Config.BUNDLE_ONGKIR);
-        riwayat = getIntent().getStringExtra(Config.BUNDLE_TUKAR_RIWAYAT);
+        getSupportActionBar().hide();
+        initView();
 
-        if (riwayat.equals("riwayat")){
-            btnTukarkan.setVisibility(View.GONE);
-        } else {
-            btnTukarkan.setVisibility(View.VISIBLE);
-        }
+        foto_url_sampah = getIntent().getStringExtra(Config.BUNDLE_FOTO_URL);
+        gambar_sampah_sampah = getIntent().getStringExtra(Config.BUNDLE_GAMBAR_SAMPAH);
+        gambar_petugas_sampah_sampah = getIntent().getStringExtra(Config.BUNDLE_GAMBAR_PETUGAS_SAMPAH);
+        nama_lengkap_sampah = getIntent().getStringExtra(Config.BUNDLE_NAMA_LENGKAP);
+        tanggal_sampah = getIntent().getStringExtra(Config.BUNDLE_TANGGAL);
+        alamat_sampah = getIntent().getStringExtra(Config.BUNDLE_ALAMAT);
+        input_sampah_sampah = getIntent().getStringExtra(Config.BUNDLE_INPUT_SAMPAH);
+        jenis_sampah_sampah = getIntent().getStringExtra(Config.BUNDLE_JENIS_SAMPAH);
+        token_sampah = getIntent().getStringExtra(Config.BUNDLE_TOKEN);
+        selection_detail_sampah = getIntent().getStringExtra(Config.BUNDLE_SELECTION_DETAIL);
+        harga_sampah = getIntent().getStringExtra(Config.BUNDLE_HARGA);
+        status_sampah_sampah = getIntent().getStringExtra(Config.BUNDLE_STATUS_SAMPAH);
 
-        c = Calendar.getInstance().getTime();
-        df = new SimpleDateFormat("dd-MMM-yyyy");
-        formattedDate  = df.format(c);
-        if (jenistukar.equals("gold")) {
-            ivDetailPoin.setVisibility(View.GONE);
-            ivDetailGold.setVisibility(View.VISIBLE);
-        } else {
-            ivDetailPoin.setVisibility(View.VISIBLE);
-            ivDetailGold.setVisibility(View.GONE);
-        }
-        Glide.with(this).load(fotourl).into(ivDetailTukar);
-        tvDetailTukarNamaBarang.setText(namabarang);
-        tvDetailTukarTanggal.setText(tglbarang);
-        tvDetailTukarHarga.setText("Rp." + harga);
-        tvDetailTukarAlamatPenjual.setText(alamatpenjual);
-        tvDetailTukarAlamatPembeli.setText(alamat);
-        tvDetailTukarAlamatPenjualDown.setText(alamatpenjual);
-        tvDetailTukarDeskripsiProduk.setText(deskripsibarang);
+        tvTukarSampahNama.setText(nama_lengkap_sampah);
+        tvTukarSampahTanggal.setText(tanggal_sampah);
+        tvTukarSampahTukarAlamat.setText(alamat_sampah);
+        tvTukarSampahBerat.setText(input_sampah_sampah);
+        tvTukarSampahJenis.setText(jenis_sampah_sampah);
+        tvTukarSampahHarga.setText(harga_sampah);
+        tvTukarSampahTokenSampah.setText(token_sampah);
+        tvTukarSampahStatus.setText(status_sampah_sampah);
+        Glide.with(DetailTukarBarangActivity.this).load(gambar_sampah_sampah).into(ivPenukarSampah);
+        Glide.with(DetailTukarBarangActivity.this).load(gambar_petugas_sampah_sampah).into(ivPetugasSampah);
 
-        btnTukarkan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                new OoOAlertDialog.Builder(DetailTukarBarangActivity.this)
-                        .setTitle("Alert penukaran")
-                        .setMessage("Apakah kamu yakin menukarkan barang ini?")
-                        .setImage(R.drawable.logo)
-                        .setAnimation(Animation.POP)
-                        .setPositiveButton("YA", new OnClickListener() {
-                            @Override
-                            public void onClick() {
-                                if (jenistukar.equals("gold")){
-                                    // Parsingnya yg GOLD
-                                    postDataKurangGold(tukarkan, namaPenjual, ongkir, alamatpenjual, namabarang, harga, jenistukar, alamat, tukarkan, deskripsibarang, fotourl, tglbarang, "324");
-                                } else {
-                                    // Parsingnya yg Point
-                                    postDataKurangPoin(tukarkan, namaPenjual, ongkir, alamatpenjual, namabarang, harga, jenistukar, alamat, tukarkan, deskripsibarang, fotourl, tglbarang, "345435");
-                                }
-                            }
-                        })
-                        .setNegativeButton("TIDAK", new OnClickListener() {
-                            @Override
-                            public void onClick() {
-
-                            }
-                        })
-                        .build();
-            }
-        });
 
     }
 
-    private void postDataKurangPoin(String tukarPoint, String nama_penjual_barang, String ongkir,
-                                    String alamat_penjual, String nama_barang, String harga_barang, String jenis_tukar, String alamat_user,
-                                    String tukarkan, String deskripsi_barang, String foto_url, String tgl_barang, String tgl_penukaran_brang) {
-        ApiService apiService = Client.getInstanceRetrofit();
-        apiService.postTukarPoin("tukarPoin",id_user, tukarPoint, nama_penjual_barang, ongkir, alamat_penjual, nama_barang, harga_barang, jenis_tukar, alamat_user, tukarkan, deskripsi_barang, foto_url, tgl_barang, tgl_penukaran_brang)
-                .enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()){
-                            try {
-                                JSONObject jsonObject = new JSONObject(response.body().string());
-                                String hasil_akhir_point = jsonObject.optString("hasil_akhir_point");
-                                SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                                editor.putString(Config.SHARED_TOTAL_POINT, hasil_akhir_point);
-
-                                editor.apply();
-
-                                Toast.makeText(DetailTukarBarangActivity.this, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(DetailTukarBarangActivity.this, "" + Config.ERROR_PENUKARAN_BARANG, Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void postDataKurangGold(String tukarGold, String nama_penjual_barang, String ongkir,
-                                    String alamat_penjual, String nama_barang, String harga_barang, String jenis_tukar, String alamat_user,
-                                    String tukarkan, String deskripsi_barang, String foto_url, String tgl_barang, String tgl_penukaran_brang) {
-        ApiService apiService = Client.getInstanceRetrofit();
-        apiService.postTukarGold("tukarGold", id_user, tukarGold, nama_penjual_barang, ongkir, alamat_penjual, nama_barang, harga_barang, jenis_tukar, alamat_user, tukarkan, deskripsi_barang, foto_url, tgl_barang, tgl_penukaran_brang)
-                .enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()){
-                            try {
-                                JSONObject jsonObject = new JSONObject(response.body().string());
-                                String hasil_akhir_gold = jsonObject.optString("hasil_akhir_gold");
-                                SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                                editor.putString(Config.SHARED_TOTAL_GOLD, hasil_akhir_gold);
-
-                                editor.apply();
-                                Toast.makeText(DetailTukarBarangActivity.this, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(DetailTukarBarangActivity.this, "" + Config.ERROR_PENUKARAN_BARANG, Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void initView() {
-        toolbar = findViewById(R.id.toolbar);
-        ivDetailTukar = findViewById(R.id.iv_detail_tukar);
-        tvDetailTukarHarga = findViewById(R.id.tv_detail_tukar_harga);
-        tvDetailTukarTanggal = findViewById(R.id.tv_detail_tukar_tanggal);
-        tvDetailTukarNamaBarang = findViewById(R.id.tv_detail_tukar_nama_barang);
-        tvDetailTukarAlamatPenjual = findViewById(R.id.tv_detail_tukar_alamat_penjual);
-        tvDetailTukarAlamatPembeli = findViewById(R.id.tv_detail_tukar_alamat_pembeli);
-        cvKlik = findViewById(R.id.cv_klik);
-        tvDetailTukarAlamatPenjualDown = findViewById(R.id.tv_detail_tukar_alamat_penjual_down);
-        tvDetailTukarDeskripsiProduk = findViewById(R.id.tv_detail_tukar_deskripsi_produk);
-        btnTukarkan = findViewById(R.id.btn_tukarkan);
-        fab = findViewById(R.id.fab);
-        ivDetailPoin = findViewById(R.id.iv_detail_poin);
-        ivDetailGold = findViewById(R.id.iv_detail_gold);
-    }
-
-    private void initShared() {
+    public void initShared() {
         sharedPreferences = getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
@@ -296,5 +146,28 @@ public class DetailTukarBarangActivity extends AppCompatActivity {
         tgl_donor = sharedPreferences.getString(Config.SHARED_TANGGAL_DONOR_DARAH, "");
         tgl_jatuh_tempo = sharedPreferences.getString(Config.SHARED_JATUH_TEMPO_TANGGAL_DONOR, "");
         uuid = UUID.randomUUID().toString();
+        point = sharedPreferences.getString(Config.SHARED_TOTAL_POINT, "");
+        gold = sharedPreferences.getString(Config.SHARED_TOTAL_GOLD, "");
+    }
+
+    private void initView() {
+        tvTukarSampahnamaTop = findViewById(R.id.tv_tukar_sampahnama_top);
+        tvTukarSampahNama = findViewById(R.id.tv_tukar_sampah_nama);
+        tvTukarSampahTanggal = findViewById(R.id.tv_tukar_sampah_tanggal);
+        tvTukarSampahTukarAlamat = findViewById(R.id.tv_tukar_sampah_alamat);
+        tvTukarSampah = findViewById(R.id.tv_tukar_sampah);
+        divContainerBeratSampah = findViewById(R.id.div_container_berat_sampah);
+        tvTukarSampahBerat = findViewById(R.id.tv_tukar_sampah_berat);
+        divContainerJenisSampah = findViewById(R.id.div_container_jenis_sampah);
+        tvTukarSampahJenis = findViewById(R.id.tv_tukar_sampah_jenis);
+        divContainerHarga = findViewById(R.id.div_container_harga);
+        tvTukarSampahHargaTop = findViewById(R.id.tv_tukar_sampah_harga_top);
+        tvTukarSampahHarga = findViewById(R.id.tv_tukar_sampah_harga);
+        tvTukarSampahTokenSampah = findViewById(R.id.tv_tukar_sampah_token_sampah);
+        tvTukarSampahGold = findViewById(R.id.tv_tukar_sampah_gold);
+        tvTukarSampahStatus = findViewById(R.id.tv_tukar_sampah_status);
+        ivCircleTukarSampah = findViewById(R.id.iv_circle_tukar_sampah);
+        ivPenukarSampah = findViewById(R.id.iv_penukar_sampah);
+        ivPetugasSampah = findViewById(R.id.iv_petugas_sampah);
     }
 }

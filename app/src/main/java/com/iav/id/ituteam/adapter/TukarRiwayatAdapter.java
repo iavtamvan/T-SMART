@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.activity.tukarBarang.DetailTukarBarangActivity;
+import com.iav.id.ituteam.activity.tukarBarang.TukarBarangActivity;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.model.TukarRiwayatModel;
 
@@ -83,7 +83,7 @@ public class TukarRiwayatAdapter extends RecyclerView.Adapter<TukarRiwayatAdapte
         holder.cvKlik.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, DetailTukarBarangActivity.class);
+                Intent intent = new Intent(context, TukarBarangActivity.class);
                 intent.putExtra(Config.BUNDLE_FOTO_URL, tukarModels.get(position).getFotoUrl());
                 intent.putExtra(Config.BUNDLE_NAMA_LENGKAP, tukarModels.get(position).getNamaBarang());
                 intent.putExtra(Config.BUNDLE_TUKARKAN, tukarModels.get(position).getTukarkan());

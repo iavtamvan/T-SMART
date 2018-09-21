@@ -51,13 +51,13 @@
             android:label="@string/title_activity_detail_donor"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.RiwayatActivity" />
+        <activity android:name=".activity.RiwayatShareActivity" />
         <activity android:name=".activity.GarbageActivity" />
         <activity
             android:name=".activity.LodgingActivity"
             android:label="" />
         <activity
-            android:name=".activity.tukarBarang.DetailTukarBarangActivity"
+            android:name=".activity.tukarBarang.TukarBarangActivity"
             android:label="@string/title_activity_detail_tukar_barang"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -65,15 +65,37 @@
             android:label="@string/title_activity_tukar_riwayat"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.BantuanActivity"
+            android:name=".activity.bantuan.BantuaPertanyaannActivity"
             android:label="@string/title_activity_bantuan"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.BantuanDetailActivity"
+            android:name=".activity.bantuan.BantuanDetailActivity"
             android:label="@string/title_activity_bantuan_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.DetailCuacaActivity" />
-        <activity android:name=".activity.WebViewActivity"></activity>
+        <activity android:name=".activity.WebViewActivity" />
+        <activity
+            android:name=".activity.bantuan.BantuanProfilActivity"
+            android:label="@string/title_activity_bantuan_profil"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Firebase Notifications -->
+        <service android:name=".helper.firebase.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".helper.firebase.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- ./Firebase Notifications -->
+
+        <activity
+            android:name=".activity.tukarBarang.DetailTukarBarangActivity"
+            android:label="@string/title_activity_detail_tukar_barang"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

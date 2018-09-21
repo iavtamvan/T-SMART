@@ -82,7 +82,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:background="@android:color/white"
                 android:orientation="vertical">
 
@@ -166,7 +166,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:background="@android:color/white"
                 android:orientation="vertical">
 
@@ -210,7 +210,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:background="@android:color/white"
                 android:orientation="vertical">
 
@@ -233,9 +233,9 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
+                                android:layout_width="35dp"
                                 android:layout_height="match_parent"
-                                android:src="@android:drawable/ic_menu_add" />
+                                android:src="@drawable/discountvoucher" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -271,9 +271,9 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add" />
+                                android:layout_width="35dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/help" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -309,9 +309,9 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add" />
+                                android:layout_width="35dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/tukar" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -347,9 +347,9 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add" />
+                                android:layout_width="35dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/gift" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -385,9 +385,9 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add" />
+                                android:layout_width="35dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/medical" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -423,9 +423,9 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add" />
+                                android:layout_width="35dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/info" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -461,9 +461,9 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add" />
+                                android:layout_width="35dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/file" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -499,9 +499,9 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@android:drawable/ic_menu_add" />
+                                android:layout_width="35dp"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/star" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -531,7 +531,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="15dp"
                 android:background="@android:color/white"
                 android:text="Keluar"
                 android:textColor="@android:color/holo_red_light" />

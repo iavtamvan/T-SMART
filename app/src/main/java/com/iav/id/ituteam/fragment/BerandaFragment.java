@@ -213,11 +213,16 @@ public class BerandaFragment extends Fragment {
         idUser = sharedPreferences.getString(Config.SHARED_ID_USER, "");
         kota = sharedPreferences.getString(Config.SHARED_KOTA_KAB, "");
         gold = sharedPreferences.getString(Config.SHARED_TOTAL_GOLD, "");
+
+        if (gold.isEmpty()){
+            tv_beranda_poin.setText("Rp.0");
+        }
+        else {
+            getGold();
+        }
         activity = new MainActivity();
         activity.getData();
         getData();
-        getGold();
-
 
         return view;
     }
@@ -362,7 +367,6 @@ public class BerandaFragment extends Fragment {
         tvCloudDeskripsi = view.findViewById(R.id.tv_cloud_deskripsi);
         lottieAnimationView = view.findViewById(R.id.lottieAnimationView);
         tv_beranda_poin = view.findViewById(R.id.tv_beranda_poin);
-        tvBerandaPoin = view.findViewById(R.id.tv_beranda_poin);
         divContainerCuaca = view.findViewById(R.id.div_container_cuaca);
     }
 }

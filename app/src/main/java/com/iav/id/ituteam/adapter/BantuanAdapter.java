@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.activity.BantuanActivity;
+import com.iav.id.ituteam.activity.bantuan.BantuaPertanyaannActivity;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.model.BantuanListModel;
 
@@ -44,7 +44,7 @@ public class BantuanAdapter extends RecyclerView.Adapter<BantuanAdapter.ViewHold
         holder.divContainerKlik.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, BantuanActivity.class);
+                Intent intent = new Intent(context, BantuaPertanyaannActivity.class);
                 intent.putExtra(Config.BUNDLE_JENIS_BANTUAN, bantuanListModels.get(position).getJenisBantuan());
                 context.startActivity(intent);
             }

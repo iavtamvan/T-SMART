@@ -81,7 +81,6 @@ public class DonorASIFragment extends Fragment {
             @Override
             public void onResponse(Call<ArrayList<DonorASIModel>> call, Response<ArrayList<DonorASIModel>> response) {
                 donorASIModels = response.body();
-                Toast.makeText(getActivity(), "" + donorASIModels, Toast.LENGTH_SHORT).show();
                 for (int i = 0; i < donorASIModels.size(); i++) {
                     donorASIAdapter = new DonorASIAdapter(donorASIModels, getActivity());
                     rvDonorDarah.setLayoutManager(new LinearLayoutManager(getActivity()));

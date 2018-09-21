@@ -21,14 +21,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ci_sampah"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:id="@+id/ci_sampah"/>
+                    android:layout_gravity="center" />
 
 
                 <TextView
@@ -126,11 +126,11 @@
                     android:textSize="16dp" />
 
                 <EditText
+                    android:id="@+id/edt_sampah_berat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Masukan berat sampah (Kg)"
-                    android:id="@+id/edt_sampah_berat"
-                    android:inputType="number"/>
+                    android:inputType="number" />
 
                 <LinearLayout
                     android:id="@+id/div_container_sampah_jenis"
@@ -176,20 +176,73 @@
                     android:layout_marginTop="8dp"
                     android:background="@color/yellow" />
 
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/upload"
-                    android:id="@+id/iv_sampah_upload"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/iv_sampah_upload"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/upload" />
+
+                        <ImageView
+                            android:id="@+id/iv_sampah_upload_petugas"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/upload"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_sampah_gambar_sampah"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/viga"
+                            android:gravity="center"
+                            android:text="Gambar sampah"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/tv_sampah_gambar_sampah_petugas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/viga"
+                            android:gravity="center"
+                            android:text="Gambar sampah petugas"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_sampah_nama_file"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/viga"
-                    android:text="Upload gambar kamu"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:text="Upload gambar kamu" />
 
 
                 <TextView
@@ -206,6 +259,18 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/viga"
                     android:text="token" />
+
+                <TextView
+                    android:id="@+id/tv_sampah_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/viga"
+                    android:gravity="center"
+                    android:text="Status"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

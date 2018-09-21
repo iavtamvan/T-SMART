@@ -8,6 +8,94 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:865411306333:android:1733b2e82c9710bc",
+        "android_client_info": {
+          "package_name": "com.example.root.firebasenotificationfix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865411306333-5bo6l78hgr62e6c885qo9cgdulebjcmt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.root.firebasenotificationfix",
+            "certificate_hash": "93135ae024383e179125de23911047f205b96c14"
+          }
+        },
+        {
+          "client_id": "865411306333-86ijv7e7ttgjt1ab043bcoh6chnaanmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzL9kFDHuPNmDInGoqRBa-Z4FkGfMzS20"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865411306333-86ijv7e7ttgjt1ab043bcoh6chnaanmk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865411306333:android:bf3c56732efefaec",
+        "android_client_info": {
+          "package_name": "com.iav.chatbotbyme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865411306333-d4ieg8fc6ehlbnvrnis8t35on8iovg7h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iav.chatbotbyme",
+            "certificate_hash": "93135ae024383e179125de23911047f205b96c14"
+          }
+        },
+        {
+          "client_id": "865411306333-86ijv7e7ttgjt1ab043bcoh6chnaanmk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzL9kFDHuPNmDInGoqRBa-Z4FkGfMzS20"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865411306333-86ijv7e7ttgjt1ab043bcoh6chnaanmk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:865411306333:android:0c346234b2a8cbdb",
         "android_client_info": {
           "package_name": "com.iav.id.ituteam"

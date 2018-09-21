@@ -26,6 +26,10 @@ import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.rest.ApiService;
 import com.iav.id.ituteam.rest.Client;
+import com.shashank.sony.fancydialoglib.Animation;
+import com.shashank.sony.fancydialoglib.FancyAlertDialog;
+import com.shashank.sony.fancydialoglib.FancyAlertDialogListener;
+import com.shashank.sony.fancydialoglib.Icon;
 
 import java.util.Calendar;
 import java.util.UUID;
@@ -346,25 +350,51 @@ public class DonorDarahActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("LOH? ")
-                .setMessage(nama_lengkap +" tidak jadi donor? kenapa? :(")
-                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//        new AlertDialog.Builder(this)
+//                .setIcon(android.R.drawable.ic_dialog_alert)
+//                .setTitle("LOH? ")
+//                .setMessage(nama_lengkap +" tidak jadi donor? kenapa? :(")
+//                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+////                        Intent startMain = new Intent(Intent.ACTION_MAIN);
+////                        startMain.addCategory(Intent.CATEGORY_HOME);
+////                        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////                        startActivity(startMain);
+//
+//                        finishAffinity();
+//                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                    }
+//
+//                })
+//                .setNegativeButton("Tidak", null)
+//                .show();
 
+        new FancyAlertDialog.Builder(this)
+                .setTitle("T-HEALTH")
+                .setBackgroundColor(Color.parseColor("#303F9F"))  //Don't pass R.color.colorvalue
+                .setMessage(nama_lengkap + " tidak jadi donor? :(")
+                .setNegativeBtnText("Tidak")
+                .setPositiveBtnBackground(Color.parseColor("#7f0000"))  //Don't pass R.color.colorvalue
+                .setPositiveBtnText("Ya")
+                .setNegativeBtnBackground(Color.parseColor("#FFA9A7A8"))  //Don't pass R.color.colorvalue
+                .setAnimation(Animation.SIDE)
+                .isCancellable(true)
+                .setIcon(R.drawable.ic_star_border_black_24dp, Icon.Visible)
+                .OnPositiveClicked(new FancyAlertDialogListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-//                        Intent startMain = new Intent(Intent.ACTION_MAIN);
-//                        startMain.addCategory(Intent.CATEGORY_HOME);
-//                        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        startActivity(startMain);
-
+                    public void OnClick() {
                         finishAffinity();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }
-
                 })
-                .setNegativeButton("Tidak", null)
-                .show();
+                .OnNegativeClicked(new FancyAlertDialogListener() {
+                    @Override
+                    public void OnClick() {
+                        Toast.makeText(getApplicationContext(),"Yeah",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .build();
     }
 }

@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.activity.BantuanDetailActivity;
+import com.iav.id.ituteam.activity.bantuan.BantuanDetailActivity;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.model.BantuanPertanyaanModel;
 

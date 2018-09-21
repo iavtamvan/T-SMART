@@ -28,7 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nama Lengkap"
-                android:inputType="text" />
+                android:inputType="textCapWords"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -58,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Tempat Tanggal Lahir"
-                android:inputType="text" />
+                android:inputType="textCapWords" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -72,7 +73,10 @@
                 android:id="@+id/edt_register_provinsi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Provinsi"
+                android:hint="Jawa Tengah"
+                android:text="Jawa Tengah"
+                android:focusable="false"
+                android:enabled="false"
                 android:inputType="text" />
             <TextView
                 android:layout_width="match_parent"
@@ -86,7 +90,10 @@
                 android:id="@+id/edt_register_kota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Provinsi"
+                android:hint="Semarang"
+                android:enabled="false"
+                android:text="Semarang"
+                android:focusable="false"
                 android:inputType="text" />
             <TextView
                 android:layout_width="match_parent"
@@ -100,7 +107,7 @@
                 android:id="@+id/edt_register_alamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Provinsi"
+                android:hint="Alamat"
                 android:inputType="text" />
             <TextView
                 android:layout_width="match_parent"

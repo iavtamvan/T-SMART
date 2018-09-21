@@ -1,15 +1,13 @@
-package com.iav.id.ituteam.adapter;
+package com.iav.id.ituteam.activity.tukarBarang;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,9 +15,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.activity.tukarBarang.TukarBarangActivity;
 import com.iav.id.ituteam.helper.Config;
-import com.iav.id.ituteam.model.TukarModel;
 import com.iav.id.ituteam.rest.ApiService;
 import com.iav.id.ituteam.rest.Client;
 
@@ -28,7 +24,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
@@ -41,11 +36,32 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.content.Context.MODE_PRIVATE;
+public class TukarBarangActivity extends AppCompatActivity {
 
-public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> {
-    private ArrayList<TukarModel> tukarModels;
-    private Context context;
+    private Toolbar toolbar;
+    private ImageView ivDetailTukar;
+    private TextView tvDetailTukarHarga;
+    private TextView tvDetailTukarTanggal;
+    private TextView tvDetailTukarNamaBarang;
+    private TextView tvDetailTukarAlamatPenjual;
+    private TextView tvDetailTukarAlamatPembeli;
+    private CardView cvKlik;
+    private TextView tvDetailTukarAlamatPenjualDown;
+    private TextView tvDetailTukarDeskripsiProduk;
+    private Button btnTukarkan;
+    private FloatingActionButton fab;
+
+    private String fotourl;
+    private String namabarang;
+    private String tukarkan;
+    private String jenistukar;
+    private String tglbarang;
+    private String alamatpenjual;
+    private String deskripsibarang;
+    private String harga;
+    private String namaPenjual;
+    private String ongkir;
+    private String riwayat;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -75,62 +91,68 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
     private String key;
     private String uuid;
 
+
+
     Date c;
     String formattedDate;
     SimpleDateFormat df;
 
-    public TukarAdapter(ArrayList<TukarModel> tukarModels, Context context) {
-        this.tukarModels = tukarModels;
-        this.context = context;
-    }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_tukar, parent, false);
-        return new ViewHolder(view);
-    }
+    private ImageView ivDetailPoin;
+    private ImageView ivDetailGold;
 
+    @SuppressLint("ResourceAsColor")
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail_tukar_barang);
+        initView();
         initShared();
+        setSupportActionBar(toolbar);
+        toolbar.setTitleTextColor(R.color.black);
+        fotourl = getIntent().getStringExtra(Config.BUNDLE_FOTO_URL);
+        namabarang = getIntent().getStringExtra(Config.BUNDLE_NAMA_LENGKAP);
+        tukarkan = getIntent().getStringExtra(Config.BUNDLE_TUKARKAN);
+        jenistukar = getIntent().getStringExtra(Config.BUNDLE_JENIS_TUKAR);
+        tglbarang = getIntent().getStringExtra(Config.BUNDLE_TANGGAL);
+        alamatpenjual = getIntent().getStringExtra(Config.BUNDLE_ALAMAT_PENJUAL);
+        alamat = getIntent().getStringExtra(Config.BUNDLE_ALAMAT);
+        deskripsibarang = getIntent().getStringExtra(Config.BUNDLE_DESKRIPSI);
+        harga = getIntent().getStringExtra(Config.BUNDLE_HARGA);
+        namaPenjual = getIntent().getStringExtra(Config.BUNDLE_NAMA_PENJUAL);
+        ongkir = getIntent().getStringExtra(Config.BUNDLE_ONGKIR);
+        riwayat = getIntent().getStringExtra(Config.BUNDLE_TUKAR_RIWAYAT);
+
+        if (riwayat.equals("riwayat")){
+            btnTukarkan.setVisibility(View.GONE);
+        } else {
+            btnTukarkan.setVisibility(View.VISIBLE);
+        }
+
         c = Calendar.getInstance().getTime();
         df = new SimpleDateFormat("dd-MMM-yyyy");
         formattedDate  = df.format(c);
-        Glide.with(context).load(tukarModels.get(position).getFotoUrl()).into(holder.ivListTukar);
-        holder.tvListTukarNama.setText(tukarModels.get(position).getNamaBarang());
-
-        if (tukarModels.get(position).getJenisTukar().equalsIgnoreCase("gold")){
-            holder.tvListTukarGold.setText(tukarModels.get(position).getTukarkan());
+        if (jenistukar.equals("gold")) {
+            ivDetailPoin.setVisibility(View.GONE);
+            ivDetailGold.setVisibility(View.VISIBLE);
         } else {
-            holder.tvListTukarPoin.setText(tukarModels.get(position).getTukarkan());
+            ivDetailPoin.setVisibility(View.VISIBLE);
+            ivDetailGold.setVisibility(View.GONE);
         }
-        holder.tvListHarga.setText("Rp." +tukarModels.get(position).getHargaBarang());
-        holder.cvKlik.setOnClickListener(new View.OnClickListener() {
+        Glide.with(this).load(fotourl).into(ivDetailTukar);
+        tvDetailTukarNamaBarang.setText(namabarang);
+        tvDetailTukarTanggal.setText(tglbarang);
+        tvDetailTukarHarga.setText("Rp." + harga);
+        tvDetailTukarAlamatPenjual.setText(alamatpenjual);
+        tvDetailTukarAlamatPembeli.setText(alamat);
+        tvDetailTukarAlamatPenjualDown.setText(alamatpenjual);
+        tvDetailTukarDeskripsiProduk.setText(deskripsibarang);
+
+        btnTukarkan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
-                Intent intent = new Intent(context, TukarBarangActivity.class);
-                intent.putExtra(Config.BUNDLE_FOTO_URL, tukarModels.get(position).getFotoUrl());
-                intent.putExtra(Config.BUNDLE_NAMA_LENGKAP, tukarModels.get(position).getNamaBarang());
-                intent.putExtra(Config.BUNDLE_TUKARKAN, tukarModels.get(position).getTukarkan());
-                intent.putExtra(Config.BUNDLE_JENIS_TUKAR, tukarModels.get(position).getJenisTukar());
-                intent.putExtra(Config.BUNDLE_TANGGAL, tukarModels.get(position).getTglBarang());
-                intent.putExtra(Config.BUNDLE_ALAMAT_PENJUAL, tukarModels.get(position).getAlamatPenjual());
-                intent.putExtra(Config.BUNDLE_ALAMAT, alamat);
-                intent.putExtra(Config.BUNDLE_DESKRIPSI, tukarModels.get(position).getDeskripsiBarang());
-                intent.putExtra(Config.BUNDLE_HARGA, tukarModels.get(position).getHargaBarang());
-                intent.putExtra(Config.BUNDLE_NAMA_PENJUAL, tukarModels.get(position).getNamaPenjualBarang());
-                intent.putExtra(Config.BUNDLE_ONGKIR, tukarModels.get(position).getOngkir());
-                context.startActivity(intent);
-            }
-        });
-        holder.btnTukarkan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                new OoOAlertDialog.Builder((Activity) context)
+                new OoOAlertDialog.Builder(TukarBarangActivity.this)
                         .setTitle("Alert penukaran")
                         .setMessage("Apakah kamu yakin menukarkan barang ini?")
                         .setImage(R.drawable.logo)
@@ -138,16 +160,12 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
                         .setPositiveButton("YA", new OnClickListener() {
                             @Override
                             public void onClick() {
-                                if (tukarModels.get(position).getJenisTukar().equals("gold")){
+                                if (jenistukar.equals("gold")){
                                     // Parsingnya yg GOLD
-                                    postDataKurangGold(holder.tvListTukarGold.getText().toString().trim(), tukarModels.get(position).getNamaPenjualBarang(), tukarModels.get(position).getOngkir(), tukarModels.get(position).getAlamatPenjual(),
-                                            tukarModels.get(position).getNamaBarang(),tukarModels.get(position).getHargaBarang(), tukarModels.get(position).getJenisTukar(), tukarModels.get(position).getAlamatUser(),
-                                            tukarModels.get(position).getTukarkan(), tukarModels.get(position).getDeskripsiBarang(), tukarModels.get(position).getFotoUrl(), tukarModels.get(position).getTglBarang(), formattedDate);
+                                    postDataKurangGold(tukarkan, namaPenjual, ongkir, alamatpenjual, namabarang, harga, jenistukar, alamat, tukarkan, deskripsibarang, fotourl, tglbarang, "324");
                                 } else {
                                     // Parsingnya yg Point
-                                    postDataKurangPoin(holder.tvListTukarPoin.getText().toString().trim(), tukarModels.get(position).getNamaPenjualBarang(), tukarModels.get(position).getOngkir(), tukarModels.get(position).getAlamatPenjual(),
-                                            tukarModels.get(position).getNamaBarang(),tukarModels.get(position).getHargaBarang(), tukarModels.get(position).getJenisTukar(), tukarModels.get(position).getAlamatUser(),
-                                            tukarModels.get(position).getTukarkan(), tukarModels.get(position).getDeskripsiBarang(), tukarModels.get(position).getFotoUrl(), tukarModels.get(position).getTglBarang(), formattedDate);
+                                    postDataKurangPoin(tukarkan, namaPenjual, ongkir, alamatpenjual, namabarang, harga, jenistukar, alamat, tukarkan, deskripsibarang, fotourl, tglbarang, "345435");
                                 }
                             }
                         })
@@ -160,7 +178,6 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
                         .build();
             }
         });
-
 
     }
 
@@ -176,19 +193,14 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
                             try {
                                 JSONObject jsonObject = new JSONObject(response.body().string());
                                 String hasil_akhir_point = jsonObject.optString("hasil_akhir_point");
-                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
-                                SharedPreferences sharedPreferences = context.getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
+                                SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
                                 editor.putString(Config.SHARED_TOTAL_POINT, hasil_akhir_point);
 
                                 editor.apply();
 
-
+                                Toast.makeText(TukarBarangActivity.this, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             } catch (IOException e) {
@@ -199,12 +211,12 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(context, "" + Config.ERROR_PENUKARAN_BARANG, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TukarBarangActivity.this, "" + Config.ERROR_PENUKARAN_BARANG, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    private void postDataKurangGold(String tukarGold , String nama_penjual_barang, String ongkir,
+    private void postDataKurangGold(String tukarGold, String nama_penjual_barang, String ongkir,
                                     String alamat_penjual, String nama_barang, String harga_barang, String jenis_tukar, String alamat_user,
                                     String tukarkan, String deskripsi_barang, String foto_url, String tgl_barang, String tgl_penukaran_brang) {
         ApiService apiService = Client.getInstanceRetrofit();
@@ -216,18 +228,13 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
                             try {
                                 JSONObject jsonObject = new JSONObject(response.body().string());
                                 String hasil_akhir_gold = jsonObject.optString("hasil_akhir_gold");
-                                Toast.makeText(context, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(context, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(context, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(context, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(context, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
-                                SharedPreferences sharedPreferences = context.getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
+                                SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
                                 editor.putString(Config.SHARED_TOTAL_GOLD, hasil_akhir_gold);
 
                                 editor.apply();
-
+                                Toast.makeText(TukarBarangActivity.this, "Sukses menukarkan. Gold anda : " + hasil_akhir_gold, Toast.LENGTH_SHORT).show();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -239,42 +246,30 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(context, "" + Config.ERROR_PENUKARAN_BARANG, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TukarBarangActivity.this, "" + Config.ERROR_PENUKARAN_BARANG, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    @Override
-    public int getItemCount() {
-        return tukarModels.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        private CardView cvKlik;
-        private ImageView ivListTukar;
-        private TextView tvListTukarNama;
-        private TextView tvListTukarPoin;
-        private TextView tvListTukarGold;
-        private Button btnTukarkan;
-        private TextView tvListHarga;
-
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            cvKlik = itemView.findViewById(R.id.cv_klik);
-            ivListTukar = itemView.findViewById(R.id.iv_list_tukar);
-            tvListTukarNama = itemView.findViewById(R.id.tv_list_tukar_nama);
-            tvListTukarPoin = itemView.findViewById(R.id.tv_list_tukar_poin);
-            tvListTukarGold = itemView.findViewById(R.id.tv_list_tukar_gold);
-            btnTukarkan = itemView.findViewById(R.id.btn_tukarkan);
-            tvListHarga = itemView.findViewById(R.id.tv_list_tukar_harga);
-        }
+    private void initView() {
+        toolbar = findViewById(R.id.toolbar);
+        ivDetailTukar = findViewById(R.id.iv_detail_tukar);
+        tvDetailTukarHarga = findViewById(R.id.tv_detail_tukar_harga);
+        tvDetailTukarTanggal = findViewById(R.id.tv_detail_tukar_tanggal);
+        tvDetailTukarNamaBarang = findViewById(R.id.tv_detail_tukar_nama_barang);
+        tvDetailTukarAlamatPenjual = findViewById(R.id.tv_detail_tukar_alamat_penjual);
+        tvDetailTukarAlamatPembeli = findViewById(R.id.tv_detail_tukar_alamat_pembeli);
+        cvKlik = findViewById(R.id.cv_klik);
+        tvDetailTukarAlamatPenjualDown = findViewById(R.id.tv_detail_tukar_alamat_penjual_down);
+        tvDetailTukarDeskripsiProduk = findViewById(R.id.tv_detail_tukar_deskripsi_produk);
+        btnTukarkan = findViewById(R.id.btn_tukarkan);
+        fab = findViewById(R.id.fab);
+        ivDetailPoin = findViewById(R.id.iv_detail_poin);
+        ivDetailGold = findViewById(R.id.iv_detail_gold);
     }
 
     private void initShared() {
-        sharedPreferences = context.getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
         rule = sharedPreferences.getString(Config.SHARED_RULE, "");

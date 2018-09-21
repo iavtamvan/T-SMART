@@ -1,9 +1,8 @@
 package com.iav.id.ituteam;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -27,6 +26,10 @@ import com.iav.id.ituteam.fragment.TukarHadiahFragment;
 import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.rest.ApiService;
 import com.iav.id.ituteam.rest.Client;
+import com.shashank.sony.fancydialoglib.Animation;
+import com.shashank.sony.fancydialoglib.FancyAlertDialog;
+import com.shashank.sony.fancydialoglib.FancyAlertDialogListener;
+import com.shashank.sony.fancydialoglib.Icon;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     private String point;
     private String idUser;
     private String kota;
-
 
     @State
     public int mValue;
@@ -95,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
     };
     private TextView tvBerandaPoin;
     private LinearLayout divContainerPoints;
+    private String TAG = "firebases";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,19 +118,10 @@ public class MainActivity extends AppCompatActivity {
         idUser = sharedPreferences.getString(Config.SHARED_ID_USER, "");
         kota = sharedPreferences.getString(Config.SHARED_KOTA_KAB, "");
         tvBerandaPoin.setText(point);
-        getData();
-//        if (point.equalsIgnoreCase("")){
-//            Log.d("", "onCreate: kosong");
-//            tvBerandaPoin.setText("0");
-//        }
-//        else {
-//            tvBerandaPoin.setText(point);
-//        }
 
+        getData();
 
     }
-
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -182,22 +176,49 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Tutup aplikasi ini? ")
-//                .setMessage("Kamu tidak jadi donor? kenapa? :(")
-                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//        new AlertDialog.Builder(this)
+//                .setIcon(android.R.drawable.ic_dialog_alert)
+//                .setTitle("Tutup aplikasi ini? ")
+////                .setMessage("Kamu tidak jadi donor? kenapa? :(")
+//                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Intent startMain = new Intent(Intent.ACTION_MAIN);
+//                        startMain.addCategory(Intent.CATEGORY_HOME);
+//                        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(startMain);
+//                    }
+//
+//                })
+//                .setNegativeButton("Tidak", null)
+//                .show();
 
+        new FancyAlertDialog.Builder(this)
+                .setTitle("T-SMART")
+                .setBackgroundColor(Color.parseColor("#7f0000"))  //Don't pass R.color.colorvalue
+                .setMessage("Tutup aplikasi ini?")
+                .setNegativeBtnText("Tidak")
+                .setPositiveBtnBackground(Color.parseColor("#7f0000"))  //Don't pass R.color.colorvalue
+                .setPositiveBtnText("Ya")
+                .setNegativeBtnBackground(Color.parseColor("#FFA9A7A8"))  //Don't pass R.color.colorvalue
+                .setAnimation(Animation.SIDE)
+                .isCancellable(true)
+                .setIcon(R.drawable.ic_star_border_black_24dp, Icon.Visible)
+                .OnPositiveClicked(new FancyAlertDialogListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent startMain = new Intent(Intent.ACTION_MAIN);
-                        startMain.addCategory(Intent.CATEGORY_HOME);
-                        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(startMain);
+                    public void OnClick() {
+                        finishAffinity();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }
-
                 })
-                .setNegativeButton("Tidak", null)
-                .show();
+                .OnNegativeClicked(new FancyAlertDialogListener() {
+                    @Override
+                    public void OnClick() {
+                        Toast.makeText(getApplicationContext(),"Yeah",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .build();
     }
+
 }

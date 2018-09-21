@@ -12,7 +12,7 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
 
-public class RiwayatActivity extends AppCompatActivity {
+public class RiwayatShareActivity extends AppCompatActivity {
 
     private SmartTabLayout viewpagertab;
     private ViewPager viewpager;

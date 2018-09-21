@@ -9,6 +9,7 @@ import com.iav.id.ituteam.model.GoldPointModel;
 import com.iav.id.ituteam.model.GoogleModel.RootLodgingModel;
 import com.iav.id.ituteam.model.ListHealthModel;
 import com.iav.id.ituteam.model.LoginModel;
+import com.iav.id.ituteam.model.SumbanganSampahModel;
 import com.iav.id.ituteam.model.TukarModel;
 import com.iav.id.ituteam.model.TukarRiwayatModel;
 import com.iav.id.ituteam.model.newsModel.NewsModel;
@@ -129,6 +130,12 @@ public interface ApiService {
                                    @Field("jenis_bantuan") String jenis_bantuan
                                    );
     @FormUrlEncoded
+    @POST("api_get.php")
+    Call<ArrayList<SumbanganSampahModel>> getSumbanganSampah(
+                                   @Field("pindah") String pindah,
+                                   @Field("id_user") String jenis_bantuan
+                                   );
+    @FormUrlEncoded
     @POST("api_tukar_point.php")
     Call<ResponseBody> postTukarPoin(
                                    @Field("pindah") String pindah,
@@ -209,7 +216,8 @@ public interface ApiService {
                                    @Field("token") String token,
                                    @Field("lat") double lat,
                                    @Field("lng") double lng,
-                                   @Field("status_aplikasi") String status_aplikasi);
+                                   @Field("status_aplikasi") String status_aplikasi,
+                                   @Field("token_firebase") String token_firebase);
 
     @GET("top-headlines?country=id&category=health&apiKey=12850cd010b54441aaeff6749dc99cd0")
     Call<NewsModel> getNewsVertical();
@@ -241,6 +249,11 @@ public interface ApiService {
                                       @Query("rankby") String rankby,
                                       @Query("types") String types,
                                       @Query("key") String key);
+   @FormUrlEncoded
+   @POST("api_update.php")
+    Call<ResponseBody> updateTokenFirebase(@Field("pindah") String pindah,
+                                      @Field("id_user") String id_user,
+                                      @Field("token_firebase") String token_firebase);
 
 
 

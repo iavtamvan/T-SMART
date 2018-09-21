@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.GoogleMap;
 import com.iav.id.ituteam.R;
+import com.iav.id.ituteam.helper.Config;
 import com.iav.id.ituteam.helper.location.GPSTracker;
 import com.iav.id.ituteam.rest.ApiService;
 import com.iav.id.ituteam.rest.Client;
@@ -73,8 +75,8 @@ public class RegisterActivity extends AppCompatActivity {
     GPSTracker gpsTracker;
     private double Lat, Long;
     private GoogleMap mMap;
-    private String lamat;
-
+    private String token_firebase;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,10 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             gpsTracker.showSettingsAlert();
         }
+
+        sharedPreferences = getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
+        token_firebase = sharedPreferences.getString(Config.SHARE_FIREBASE_TOKEN, "");
+
 
 
 
@@ -139,7 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
         apiService.potRegister(edtRegisterNamaLengkap.getText().toString().trim(), edtRegisterEmail.getText().toString().trim(), edtRegisterTempatTglLahir.getText().toString().trim()
                 , edtRegisterAlamat.getText().toString().trim(), edtRegisterKota.getText().toString().trim(), edtRegisterProvinsi.getText().toString().trim(), edtRegisterNoHp.getText().toString().trim(),
                 tvRegisterJenisKelamin.getText().toString().trim(), tvRegisterAgama.getText().toString().trim(), edtRegisterUsername.getText().toString().trim(), edtRegisterPassword.getText().toString().trim()
-        ,"http://devlop.can.web.id/uploads/client_profile_images/3/" + h,"Pengguna", "aktif", UUID.randomUUID().toString(), Lat,Long, "Aktif")
+        ,"http://devlop.can.web.id/uploads/client_profile_images/3/" + h,"Pengguna", "aktif", UUID.randomUUID().toString(), Lat,Long, "Aktif", token_firebase)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -273,10 +279,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                     h = new File(imagePath).getName();
                     Toast.makeText(this, "" + h, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, "" + h, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, "" + h, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, "" + h, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(this, "String Reselect", Toast.LENGTH_SHORT).show();
                     c.close();
                     ivRegisterFoto.setVisibility(View.VISIBLE);
                 } else {

@@ -110,6 +110,24 @@ public class GarbageActivity extends AppCompatActivity {
     private int mSelectedDay;
     private ImageView ivSampahUpload;
     private TextView tvSampahNamaFile;
+    private TextView tvSampahStatus;
+
+    private String foto_url_sampah;
+    private String gambar_sampah_sampah;
+    private String nama_lengkap_sampah;
+    private String tanggal_sampah;
+    private String alamat_sampah;
+    private String input_sampah_sampah;
+    private String jenis_sampah_sampah;
+    private String token_sampah;
+    private String selection_detail_sampah;
+    private String harga_sampah;
+    private String status_sampah_sampah;
+    private String gambar_petugas;
+
+    private ImageView ivSampahUploadPetugas;
+    private TextView tvSampahGambarSampah;
+    private TextView tvSampahGambarSampahPetugas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +135,64 @@ public class GarbageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_garbage);
         initView();
         initShared();
+        selection_detail_sampah = getIntent().getStringExtra(Config.BUNDLE_SELECTION_DETAIL);
+        if (selection_detail_sampah == null) {
+            Log.d("", "onCreate: NULL");
+        } else {
+            if (selection_detail_sampah.equals("sampah")) {
+                foto_url_sampah = getIntent().getStringExtra(Config.BUNDLE_FOTO_URL);
+                gambar_sampah_sampah = getIntent().getStringExtra(Config.BUNDLE_GAMBAR_SAMPAH);
+                nama_lengkap_sampah = getIntent().getStringExtra(Config.BUNDLE_NAMA_LENGKAP);
+                tanggal_sampah = getIntent().getStringExtra(Config.BUNDLE_TANGGAL);
+                alamat_sampah = getIntent().getStringExtra(Config.BUNDLE_ALAMAT);
+                input_sampah_sampah = getIntent().getStringExtra(Config.BUNDLE_INPUT_SAMPAH);
+                jenis_sampah_sampah = getIntent().getStringExtra(Config.BUNDLE_JENIS_SAMPAH);
+                token_sampah = getIntent().getStringExtra(Config.BUNDLE_TOKEN);
+                harga_sampah = getIntent().getStringExtra(Config.BUNDLE_HARGA);
+                status_sampah_sampah = getIntent().getStringExtra(Config.BUNDLE_STATUS_SAMPAH);
+                gambar_petugas = getIntent().getStringExtra(Config.BUNDLE_GAMBAR_PETUGAS_SAMPAH);
+                btnSampahKirimkan.setVisibility(View.GONE);
+                tvSampahStatus.setVisibility(View.VISIBLE);
+                tvSampahNamaFile.setVisibility(View.GONE);
+
+                ivSampahUploadPetugas.setVisibility(View.VISIBLE);
+                tvSampahGambarSampah.setVisibility(View.VISIBLE);
+                tvSampahGambarSampahPetugas.setVisibility(View.VISIBLE);
+
+                tvSampahNamaLengkap.setText(nama_lengkap_sampah);
+                tvSampahTanggal.setText(tanggal_sampah);
+                edtSampahAlamatOriginal.setFocusable(false);
+                edtSampahAlamatOriginal.setEnabled(false);
+                edtSampahAlamatOriginal.setText(alamat_sampah);
+                edtSampahBerat.setFocusable(false);
+                edtSampahBerat.setEnabled(false);
+                edtSampahBerat.setText(input_sampah_sampah);
+                tvSampahJenis.setText(jenis_sampah_sampah);
+                tvSampahHargaTotal.setText(harga_sampah);
+                Glide.with(this).load(gambar_sampah_sampah).into(ivSampahUpload);
+                tvSampahStatus.setText(status_sampah_sampah);
+                Glide.with(this).load(gambar_petugas).into(ivSampahUploadPetugas);
+
+            } else {
+                tvSampahStatus.setVisibility(View.GONE);
+                btnSampahKirimkan.setVisibility(View.VISIBLE);
+                tvSampahNamaFile.setVisibility(View.VISIBLE);
+
+                ivSampahUploadPetugas.setVisibility(View.GONE);
+                tvSampahGambarSampah.setVisibility(View.GONE);
+                tvSampahGambarSampahPetugas.setVisibility(View.GONE);
+                ivSampahUpload.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        showImagePopup(view);
+                    }
+                });
+
+            }
+
+        }
+
+
         Glide.with(this).load(foto_url).into(ciSampah);
         tvSampahNamaLengkap.setText(nama_lengkap);
         tvSampahAlamatKota.setText(kota_kab);
@@ -178,12 +254,6 @@ public class GarbageActivity extends AppCompatActivity {
         });
 
         tvSampahToken.setText(UUID.randomUUID().toString());
-        ivSampahUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showImagePopup(view);
-            }
-        });
 
     }
 
@@ -368,6 +438,10 @@ public class GarbageActivity extends AppCompatActivity {
         ciSampah = findViewById(R.id.ci_sampah);
         ivSampahUpload = findViewById(R.id.iv_sampah_upload);
         tvSampahNamaFile = findViewById(R.id.tv_sampah_nama_file);
+        tvSampahStatus = findViewById(R.id.tv_sampah_status);
+        ivSampahUploadPetugas = findViewById(R.id.iv_sampah_upload_petugas);
+        tvSampahGambarSampah = findViewById(R.id.tv_sampah_gambar_sampah);
+        tvSampahGambarSampahPetugas = findViewById(R.id.tv_sampah_gambar_sampah_petugas);
     }
 
     private void initShared() {
@@ -398,5 +472,29 @@ public class GarbageActivity extends AppCompatActivity {
         tgl_donor = sharedPreferences.getString(Config.SHARED_TANGGAL_DONOR_DARAH, "");
         tgl_jatuh_tempo = sharedPreferences.getString(Config.SHARED_JATUH_TEMPO_TANGGAL_DONOR, "");
         uuid = UUID.randomUUID().toString();
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("LOH? ")
+                .setMessage(nama_lengkap + " tidak jadi sumbangin sampahnya? kenapa? :(")
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        Intent startMain = new Intent(Intent.ACTION_MAIN);
+//                        startMain.addCategory(Intent.CATEGORY_HOME);
+//                        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(startMain);
+
+                        finishAffinity();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
+
+                })
+                .setNegativeButton("Tidak", null)
+                .show();
     }
 }

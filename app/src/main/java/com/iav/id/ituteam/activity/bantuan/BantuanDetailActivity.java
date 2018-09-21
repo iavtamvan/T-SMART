@@ -1,4 +1,4 @@
-package com.iav.id.ituteam.activity;
+package com.iav.id.ituteam.activity.bantuan;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;

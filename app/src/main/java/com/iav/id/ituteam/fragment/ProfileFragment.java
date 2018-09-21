@@ -13,7 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.activity.RiwayatActivity;
+import com.iav.id.ituteam.activity.RiwayatShareActivity;
+import com.iav.id.ituteam.activity.bantuan.BantuanProfilActivity;
 import com.iav.id.ituteam.activity.tukarBarang.TukarRiwayatActivity;
 import com.iav.id.ituteam.helper.Config;
 
@@ -97,7 +98,7 @@ public class ProfileFragment extends Fragment {
         divContainerRiwayatDonor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), RiwayatActivity.class));
+                startActivity(new Intent(getActivity(), RiwayatShareActivity.class));
             }
         });
         divContainerRiwayatTukarHadiah.setOnClickListener(new View.OnClickListener() {
@@ -110,8 +111,7 @@ public class ProfileFragment extends Fragment {
         divContainerBantuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.div_container, new BantuanFragment()).commit();
+                startActivity(new Intent(getActivity(), BantuanProfilActivity.class));
             }
         });
 
