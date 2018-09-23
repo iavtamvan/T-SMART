@@ -22,7 +22,10 @@ import com.iav.id.ituteam.model.newsModel.ArticlesItem;
 
 import java.util.ArrayList;
 
-public class NewsVerticalAdapter extends RecyclerView.Adapter<NewsVerticalAdapter.ViewHolder> {
+import ru.alexbykov.nopaginate.callback.OnRepeatListener;
+import ru.alexbykov.nopaginate.item.ErrorItem;
+
+public class NewsVerticalAdapter extends RecyclerView.Adapter<NewsVerticalAdapter.ViewHolder> implements ErrorItem {
     private Context context;
     private ArrayList<ArticlesItem> articlesItems;
     public NewsVerticalAdapter(Context context, ArrayList<ArticlesItem> articlesItems) {
@@ -35,6 +38,13 @@ public class NewsVerticalAdapter extends RecyclerView.Adapter<NewsVerticalAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_news_vertical, parent, false);
         return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position, OnRepeatListener onRepeatListener) {
+        if (onRepeatListener != null) {
+            onRepeatListener.onClickRepeat(); //call onLoadMore
+        }
     }
 
     @SuppressLint("ResourceAsColor")

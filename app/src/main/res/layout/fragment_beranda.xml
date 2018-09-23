@@ -248,7 +248,7 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/div_security"
+                            android:id="@+id/div_help"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="8dp"
@@ -270,7 +270,7 @@
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="@font/viga"
                                 android:gravity="center"
-                                android:text="T-SECURITY"
+                                android:text="T-HELP"
                                 android:textSize="12dp" />
                         </LinearLayout>
 

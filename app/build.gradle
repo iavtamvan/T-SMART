@@ -70,6 +70,7 @@ dependencies {
     implementation 'com.github.Joinersa:OoOAlertDialog:1.0.3'
     implementation 'com.github.Shashank02051997:FancyAlertDialog-Android:0.1'
 //    implementation 'com.google.android.gms:play-services-location:11.0.8'
+    implementation 'ru.alexbykov:nopaginate:0.9.9'
 
 
     testImplementation 'junit:junit:4.12'

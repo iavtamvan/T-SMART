@@ -7,6 +7,8 @@ import com.iav.id.ituteam.model.DonorDarahModel;
 import com.iav.id.ituteam.model.EventModel;
 import com.iav.id.ituteam.model.GoldPointModel;
 import com.iav.id.ituteam.model.GoogleModel.RootLodgingModel;
+import com.iav.id.ituteam.model.HelpListModel;
+import com.iav.id.ituteam.model.HelpModel;
 import com.iav.id.ituteam.model.ListHealthModel;
 import com.iav.id.ituteam.model.LoginModel;
 import com.iav.id.ituteam.model.SumbanganSampahModel;
@@ -134,6 +136,17 @@ public interface ApiService {
     Call<ArrayList<SumbanganSampahModel>> getSumbanganSampah(
                                    @Field("pindah") String pindah,
                                    @Field("id_user") String jenis_bantuan
+                                   );
+    @FormUrlEncoded
+    @POST("api_get.php")
+    Call<ArrayList<HelpModel>> getHelpSort(
+                                   @Field("pindah") String pindah,
+                                   @Field("jenis_help_list") String jenis_help_list
+                                   );
+    @FormUrlEncoded
+    @POST("api_get.php")
+    Call<ArrayList<HelpListModel>> getHelpList(
+                                   @Field("pindah") String pindah
                                    );
     @FormUrlEncoded
     @POST("api_tukar_point.php")

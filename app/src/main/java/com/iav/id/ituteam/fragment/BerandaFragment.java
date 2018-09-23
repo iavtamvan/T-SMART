@@ -23,6 +23,7 @@ import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.activity.DetailCuacaActivity;
 import com.iav.id.ituteam.activity.LodgingActivity;
 import com.iav.id.ituteam.activity.healthUI.HealthActivity;
+import com.iav.id.ituteam.activity.help.HelpListActivity;
 import com.iav.id.ituteam.adapter.EventBerandaAdapter;
 import com.iav.id.ituteam.adapter.NewsHorizontalAdapter;
 import com.iav.id.ituteam.helper.Config;
@@ -62,7 +63,7 @@ public class BerandaFragment extends Fragment {
 
     private LinearLayout divHealth;
     private LinearLayout divGarbage;
-    private LinearLayout divSecurity;
+    private LinearLayout divHelp;
     private LinearLayout divEconomy;
     private LinearLayout divLodging;
     private LinearLayout divTravel;
@@ -209,6 +210,14 @@ public class BerandaFragment extends Fragment {
                 startActivity(new Intent(getActivity(), LodgingActivity.class));
             }
         });
+
+        divHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), HelpListActivity.class));
+            }
+        });
+
         sharedPreferences = getActivity().getSharedPreferences(Config.SHARED_NAME, Context.MODE_PRIVATE);
         idUser = sharedPreferences.getString(Config.SHARED_ID_USER, "");
         kota = sharedPreferences.getString(Config.SHARED_KOTA_KAB, "");
@@ -354,7 +363,7 @@ public class BerandaFragment extends Fragment {
     private void initView(View view) {
         divHealth = view.findViewById(R.id.div_health);
         divGarbage = view.findViewById(R.id.div_garbage);
-        divSecurity = view.findViewById(R.id.div_security);
+        divHelp = view.findViewById(R.id.div_help);
         divEconomy = view.findViewById(R.id.div_economy);
         divLodging = view.findViewById(R.id.div_lodging);
         divTravel = view.findViewById(R.id.div_travel);

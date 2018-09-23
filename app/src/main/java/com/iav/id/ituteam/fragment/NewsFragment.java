@@ -22,10 +22,11 @@ import com.iav.id.ituteam.rest.Client;
 
 import java.util.ArrayList;
 
-import pl.bclogic.pulsator4droid.library.PulsatorLayout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import ru.alexbykov.nopaginate.callback.OnLoadMoreListener;
+import ru.alexbykov.nopaginate.paginate.NoPaginate;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,6 +38,8 @@ public class NewsFragment extends Fragment {
     private RecyclerView rvEventVertical;
     private ArrayList<ArticlesItem> articlesItems;
     private NewsVerticalAdapter newsVerticalAdapter;
+
+    private NoPaginate noPaginate;
 
     private NewsHorizontalAdapter newsHorizontalAdapter;
 //    private PulsatorLayout pulsator;
@@ -58,11 +61,23 @@ public class NewsFragment extends Fragment {
 //        pulsator.setColor(R.color.yellow);
 //        pulsator.setDuration(1500);
         lottieAnimationView.playAnimation();
-        getNewsVertical();
+
         getNewsHorizontal();
+        getNewsVertical();
+
+//        noPaginate = NoPaginate.with(rvEventHorizontal)
+//                .setOnLoadMoreListener(new OnLoadMoreListener() {
+//                    @Override
+//                    public void onLoadMore() {
+//                        getNewsHorizontal();
+//                    }
+//                })
+//                .setLoadingTriggerThreshold(5)
+//                .build();
 
         return view;
     }
+
 
     private void getNewsHorizontal() {
         ApiService apiService = Client.getInstanceRetrofitNews();
@@ -103,6 +118,15 @@ public class NewsFragment extends Fragment {
 //                    pulsator.stop();
 //                    pulsator.setVisibility(View.GONE);
                     lottieAnimationView.setVisibility(View.GONE);
+                    noPaginate = NoPaginate.with(rvEventVertical)
+                            .setOnLoadMoreListener(new OnLoadMoreListener() {
+                                @Override
+                                public void onLoadMore() {
+                                    getNewsVertical();
+                                }
+                            })
+                            .setLoadingTriggerThreshold(5)
+                            .build();
                 }
             }
 

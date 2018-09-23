@@ -95,6 +95,18 @@
         <activity
             android:name=".activity.tukarBarang.DetailTukarBarangActivity"
             android:label="@string/title_activity_detail_tukar_barang"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.help.HelpListActivity"
+            android:label="@string/title_activity_help_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.help.HelpDetailActivity"
+            android:label="@string/title_activity_help"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.help.HelpSortActivity"
+            android:label="@string/title_activity_help_sort"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

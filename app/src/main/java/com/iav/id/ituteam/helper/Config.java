@@ -126,6 +126,7 @@ public final class Config {
     public static String BUNDLE_STATUS_SAMPAH = "status sampah";
     public static String BUNDLE_GAMBAR_PETUGAS_SAMPAH = "gambar petugas sampah";
     public static String SHARE_FIREBASE_TOKEN = "firebase token" ;
+    public static String BUNDLE_JENIS_HELP = "jenis help";
 
 
     public static String formatDMY(int year, int month, int date) {
