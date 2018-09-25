@@ -59,7 +59,6 @@ public class HelpListActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ArrayList<HelpListModel>> call, Throwable t) {
-                        getDataHelpList();
                         Toast.makeText(HelpListActivity.this, "" + Config.ERROR_LOAD, Toast.LENGTH_SHORT).show();
                     }
                 });

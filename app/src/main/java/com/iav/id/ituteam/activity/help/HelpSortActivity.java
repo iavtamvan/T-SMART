@@ -62,7 +62,6 @@ public class HelpSortActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<ArrayList<HelpModel>> call, Throwable t) {
-                        getDataSortHelp();
                         Toast.makeText(HelpSortActivity.this, "" + Config.ERROR_LOAD, Toast.LENGTH_SHORT).show();
                     }
                 });

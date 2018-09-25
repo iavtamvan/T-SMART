@@ -176,12 +176,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimary"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp"
                     android:layout_marginTop="6dp"
@@ -235,7 +236,7 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_marginTop="4dp"
-                                android:src="@drawable/tgarbage" />
+                                android:src="@drawable/tgarbage_" />
 
                             <TextView
                                 android:layout_width="match_parent"
