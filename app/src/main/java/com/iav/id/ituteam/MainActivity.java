@@ -1,6 +1,5 @@
 package com.iav.id.ituteam;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -209,7 +208,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void OnClick() {
                         finishAffinity();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }
                 })
                 .OnNegativeClicked(new FancyAlertDialogListener() {

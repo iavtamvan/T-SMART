@@ -107,6 +107,9 @@ public class BerandaFragment extends Fragment {
     private MainActivity activity;
     private TextView tvBerandaPoin;
     private RelativeLayout divContainerCuaca;
+    private TextView tvTotalSampah;
+    private String jenisKelamin;
+    private LinearLayout divContainerAsi;
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -157,7 +160,7 @@ public class BerandaFragment extends Fragment {
                 kondisi = currentWeather.getWeatherArray().get(0).getDescription();
                 kekuatanAngin = String.valueOf(currentWeather.getWind().getSpeed());
                 DateFormat df = DateFormat.getDateTimeInstance();
-                String updatedOn = df.format(new Date(currentWeather.getDt()*1000));
+                String updatedOn = df.format(new Date(currentWeather.getDt() * 1000));
                 updateLast = updatedOn;
 
 
@@ -222,12 +225,19 @@ public class BerandaFragment extends Fragment {
         idUser = sharedPreferences.getString(Config.SHARED_ID_USER, "");
         kota = sharedPreferences.getString(Config.SHARED_KOTA_KAB, "");
         gold = sharedPreferences.getString(Config.SHARED_TOTAL_GOLD, "");
+        jenisKelamin = sharedPreferences.getString(Config.SHARED_JENIS_KELAMIN, "");
 
-        if (gold.isEmpty()){
+        if (gold.isEmpty()) {
             tv_beranda_poin.setText("Rp.0");
+        } else {
+            getGold();
+        }
+
+        if (jenisKelamin.equalsIgnoreCase("Laki - Laki")) {
+            divContainerAsi.setVisibility(View.GONE);
         }
         else {
-            getGold();
+            divContainerAsi.setVisibility(View.VISIBLE);
         }
         activity = new MainActivity();
         activity.getData();
@@ -310,10 +320,12 @@ public class BerandaFragment extends Fragment {
                                 String jumlah_donor_darah = jsonObject.optString("jumlah_donor_darah");
                                 String jumlah_donor_asi = jsonObject.optString("jumlah_donor_asi");
                                 String jumlah_event = jsonObject.optString("jumlah_event");
+                                String jumlah_sampah = jsonObject.optString("jumlah_sampah");
                                 Log.d("", "onResponse: " + jumlah_donor_asi);
                                 tvTotalDonorDarah.setText(jumlah_donor_darah + " kali");
-                                tvTotalDonorAsi.setText(jumlah_donor_asi);
-                                tvTotalEvent.setText(jumlah_event);
+                                tvTotalDonorAsi.setText(jumlah_donor_asi + " kali");
+                                tvTotalEvent.setText(jumlah_event + " event");
+                                tvTotalSampah.setText(jumlah_sampah + " kali");
                                 lottieAnimationView.setVisibility(View.GONE);
                                 getEventBeranda();
                             } catch (JSONException e) {
@@ -377,5 +389,7 @@ public class BerandaFragment extends Fragment {
         lottieAnimationView = view.findViewById(R.id.lottieAnimationView);
         tv_beranda_poin = view.findViewById(R.id.tv_beranda_poin);
         divContainerCuaca = view.findViewById(R.id.div_container_cuaca);
+        tvTotalSampah = view.findViewById(R.id.tv_total_sampah);
+        divContainerAsi = view.findViewById(R.id.div_container_asi);
     }
 }
