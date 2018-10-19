@@ -110,6 +110,8 @@ public class BerandaFragment extends Fragment {
     private TextView tvTotalSampah;
     private String jenisKelamin;
     private LinearLayout divContainerAsi;
+    private TextView tagelineDarah;
+
 
     public BerandaFragment() {
         // Required empty public constructor
@@ -136,6 +138,9 @@ public class BerandaFragment extends Fragment {
         } else {
             gpsTracker.showSettingsAlert();
         }
+//        tvAnim1.animateText("PMI");
+
+        tagelineDarah.setSelected(true);
         openWeatherMapHelper.setApiKey("6be6815084754becf520194051365a87");
         openWeatherMapHelper.setUnits(Units.METRIC);
         openWeatherMapHelper.setLang(Lang.ENGLISH);
@@ -235,9 +240,9 @@ public class BerandaFragment extends Fragment {
 
         if (jenisKelamin.equalsIgnoreCase("Laki - Laki")) {
             divContainerAsi.setVisibility(View.GONE);
-        }
-        else {
-            divContainerAsi.setVisibility(View.VISIBLE);
+        } else {
+//            divContainerAsi.setVisibility(View.VISIBLE);
+            divContainerAsi.setVisibility(View.GONE);
         }
         activity = new MainActivity();
         activity.getData();
@@ -322,10 +327,10 @@ public class BerandaFragment extends Fragment {
                                 String jumlah_event = jsonObject.optString("jumlah_event");
                                 String jumlah_sampah = jsonObject.optString("jumlah_sampah");
                                 Log.d("", "onResponse: " + jumlah_donor_asi);
-                                tvTotalDonorDarah.setText(jumlah_donor_darah + " kali");
-                                tvTotalDonorAsi.setText(jumlah_donor_asi + " kali");
-                                tvTotalEvent.setText(jumlah_event + " event");
-                                tvTotalSampah.setText(jumlah_sampah + " kali");
+                                tvTotalDonorDarah.setText(jumlah_donor_darah + " Kali");
+                                tvTotalDonorAsi.setText(jumlah_donor_asi + " Kali");
+                                tvTotalEvent.setText(jumlah_event + " Event");
+                                tvTotalSampah.setText(jumlah_sampah + " Kali");
                                 lottieAnimationView.setVisibility(View.GONE);
                                 getEventBeranda();
                             } catch (JSONException e) {
@@ -372,6 +377,7 @@ public class BerandaFragment extends Fragment {
                 });
     }
 
+
     private void initView(View view) {
         divHealth = view.findViewById(R.id.div_health);
         divGarbage = view.findViewById(R.id.div_garbage);
@@ -391,5 +397,6 @@ public class BerandaFragment extends Fragment {
         divContainerCuaca = view.findViewById(R.id.div_container_cuaca);
         tvTotalSampah = view.findViewById(R.id.tv_total_sampah);
         divContainerAsi = view.findViewById(R.id.div_container_asi);
+        tagelineDarah = view.findViewById(R.id.tagelineDarah);
     }
 }

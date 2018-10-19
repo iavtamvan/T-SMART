@@ -252,7 +252,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         new FancyAlertDialog.Builder(this)
-                .setTitle("T-SMART")
+                .setTitle("DORA")
                 .setBackgroundColor(Color.parseColor("#7f0000"))  //Don't pass R.color.colorvalue
                 .setMessage("Login dulu baru keluar ya :)")
                 .setNegativeBtnText("Tidak")

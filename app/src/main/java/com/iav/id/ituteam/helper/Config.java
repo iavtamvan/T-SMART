@@ -23,7 +23,7 @@ public final class Config {
     public static final String BUNDLE_PINDAH_TOKEN = "token";
     public static final String BUNDLE_SELECTION_DETAIL = "selection_detail";
 
-    public static final String BUNDLE_NAME = "bundle_T-SMART";
+    public static final String BUNDLE_NAME = "bundle_DORA";
     public static final String BUNDLE_ERROR = "bundle_error";
     public static final String BUNDLE_ERROR_MSG = "bundle_error_msg";
     public static final String BUNDLE_RULE = "bundle_rule";
@@ -66,7 +66,7 @@ public final class Config {
     public static final String BUNDLE_STATUS_EVENT = "status_event";
 
     // SHARED
-    public static final String SHARED_NAME = "T-SMART";
+    public static final String SHARED_NAME = "DORA";
     public static final String SHARED_ERROR = "error";
     public static final String SHARED_ERROR_MSG = "error_msg";
     public static final String SHARED_RULE = "rule";

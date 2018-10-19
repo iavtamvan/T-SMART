@@ -29,6 +29,8 @@
                 android:id="@+id/div_container_news_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:singleLine="true"
+                android:ellipsize="marquee"
                 android:layout_margin="4dp"
                 android:orientation="vertical">
 
@@ -38,6 +40,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/viga"
                     android:text="Judul"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
                     android:textColor="@android:color/black"
                     android:textSize="14dp" />
 

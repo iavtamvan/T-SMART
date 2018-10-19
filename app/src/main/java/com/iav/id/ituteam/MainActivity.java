@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         point = sharedPreferences.getString(Config.SHARED_TOTAL_POINT, "");
         idUser = sharedPreferences.getString(Config.SHARED_ID_USER, "");
         kota = sharedPreferences.getString(Config.SHARED_KOTA_KAB, "");
-        tvBerandaPoin.setText(point);
+        tvBerandaPoin.setText(point + " poin");
 
         getData();
 
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
 //                .show();
 
         new FancyAlertDialog.Builder(this)
-                .setTitle("T-SMART")
+                .setTitle("DORA")
                 .setBackgroundColor(Color.parseColor("#7f0000"))  //Don't pass R.color.colorvalue
                 .setMessage("Tutup aplikasi ini?")
                 .setNegativeBtnText("Tidak")

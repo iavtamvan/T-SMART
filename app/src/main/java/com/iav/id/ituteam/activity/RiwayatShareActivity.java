@@ -5,9 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.iav.id.ituteam.R;
-import com.iav.id.ituteam.fragment.riwayatFragment.DonorASIFragment;
 import com.iav.id.ituteam.fragment.riwayatFragment.DonorDarahFragment;
-import com.iav.id.ituteam.fragment.riwayatFragment.PenukaranSampahkFragment;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
@@ -26,8 +24,8 @@ public class RiwayatShareActivity extends AppCompatActivity {
         FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add("Donor Darah", DonorDarahFragment.class)
-                .add("Donor ASI", DonorASIFragment.class)
-                .add("Penukaran Samaph", PenukaranSampahkFragment.class)
+//                .add("Donor ASI", DonorASIFragment.class)
+//                .add("Penukaran Samaph", PenukaranSampahkFragment.class)
                 .create());
 
         viewpager.setAdapter(adapter);

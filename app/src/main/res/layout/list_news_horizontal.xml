@@ -49,6 +49,8 @@
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/viga"
                     android:text="Judul"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
                     android:textColor="@android:color/black"
                     android:textSize="14dp" />
 

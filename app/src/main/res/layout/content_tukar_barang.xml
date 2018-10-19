@@ -228,7 +228,7 @@
                                 android:fontFamily="@font/viga"
                                 android:gravity="center|left"
                                 android:paddingLeft="8dp"
-                                android:text="Garansi T-SMART"
+                                android:text="Garansi DORA"
                                 android:textColor="@color/blue"
                                 android:textSize="10dp" />
                         </LinearLayout>

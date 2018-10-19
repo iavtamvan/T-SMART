@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">T-SMART</string>
+    <string name="app_name">DORA</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
@@ -19,7 +19,7 @@
     <string name="SHARE_VIA">share melalui</string>
     <string name="mau_donor_apa">Kamu mau donor apa?</string>
     <string name="title_activity_detail_donor">DetailDonorActivity</string>
-    <string name="title_activity_home">T-SMART</string>
+    <string name="title_activity_home">DORA</string>
     <string name="title_activity_profil">Akun</string>
     <string name="title_activity_tukar">Tukar Hadiah</string>
     <string name="title_activity_detail_tukar_barang">Detail Hadiah</string>

@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import ru.alexbykov.nopaginate.callback.OnLoadMoreListener;
 import ru.alexbykov.nopaginate.paginate.NoPaginate;
 
 /**
@@ -118,15 +117,15 @@ public class NewsFragment extends Fragment {
 //                    pulsator.stop();
 //                    pulsator.setVisibility(View.GONE);
                     lottieAnimationView.setVisibility(View.GONE);
-                    noPaginate = NoPaginate.with(rvEventVertical)
-                            .setOnLoadMoreListener(new OnLoadMoreListener() {
-                                @Override
-                                public void onLoadMore() {
-                                    getNewsVertical();
-                                }
-                            })
-                            .setLoadingTriggerThreshold(5)
-                            .build();
+//                    noPaginate = NoPaginate.with(rvEventVertical)
+//                            .setOnLoadMoreListener(new OnLoadMoreListener() {
+//                                @Override
+//                                public void onLoadMore() {
+//                                    getNewsVertical();
+//                                }
+//                            })
+//                            .setLoadingTriggerThreshold(5)
+//                            .build();
                 }
             }
 

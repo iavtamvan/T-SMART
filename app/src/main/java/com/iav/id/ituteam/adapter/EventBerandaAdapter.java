@@ -70,6 +70,7 @@ public class EventBerandaAdapter extends RecyclerView.Adapter<EventBerandaAdapte
         initShared();
         Glide.with(context).load(eventModels.get(position).getGambarEvent()).into(holder.ivBerandaEvent);
         holder.tvJudulEvent.setText(eventModels.get(position).getJudulEvent());
+        holder.tvJudulEvent.setSelected(true);
 
         holder.cvKlick.setOnClickListener(new View.OnClickListener() {
             @Override

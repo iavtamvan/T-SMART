@@ -42,8 +42,9 @@
         </activity>
         <activity
             android:name=".activity.healthUI.HealthActivity"
-            android:label=""
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Donor darah"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".activity.healthUI.DonorDarahActivity" />
         <activity android:name=".activity.healthUI.DonorASIActivity" />
         <activity

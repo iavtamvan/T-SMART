@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+def htextview_version = "0.1.6"
 android {
     compileSdkVersion 27
     defaultConfig {

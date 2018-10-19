@@ -68,6 +68,7 @@ public class NewsVerticalAdapter extends RecyclerView.Adapter<NewsVerticalAdapte
 
 
         holder.tvNewsVerticalJudul.setText(articlesItems.get(position).getTitle());
+        holder.tvNewsVerticalJudul.setSelected(true);
         String date = articlesItems.get(position).getPublishedAt();
         String split = date.substring(0,10);
 
@@ -78,7 +79,7 @@ public class NewsVerticalAdapter extends RecyclerView.Adapter<NewsVerticalAdapte
             public void onClick(View v) {
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String shareBody = "Shared link from T-NEWS by T-SMART " + articlesItems.get(position).getTitle() + " " + articlesItems.get(position).getUrl();
+                String shareBody = "Shared link from DORA Apps " + articlesItems.get(position).getTitle() + " " + articlesItems.get(position).getUrl();
                 sharingIntent.putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.SUBJEK));
                 sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
                 context.startActivity(Intent.createChooser(sharingIntent, context.getString(R.string.SHARE_VIA)));
