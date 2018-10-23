@@ -277,7 +277,7 @@
                 android:fontFamily="@font/viga"
                 android:gravity="center"
                 android:textColor="@android:color/holo_red_light"
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
 

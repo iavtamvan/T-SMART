@@ -276,7 +276,7 @@ public class DonorASIActivity extends AppCompatActivity {
                 .OnNegativeClicked(new FancyAlertDialogListener() {
                     @Override
                     public void OnClick() {
-                        Toast.makeText(getApplicationContext(),"Yeah",Toast.LENGTH_SHORT).show();
+
                     }
                 })
                 .build();

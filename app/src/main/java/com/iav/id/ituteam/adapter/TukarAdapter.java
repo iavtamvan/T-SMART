@@ -133,7 +133,7 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
                 new OoOAlertDialog.Builder((Activity) context)
                         .setTitle("Alert penukaran")
                         .setMessage("Apakah kamu yakin menukarkan barang ini?")
-                        .setImage(R.drawable.logo)
+//                        .setImage(R.drawable.logo)
                         .setAnimation(Animation.POP)
                         .setPositiveButton("YA", new OnClickListener() {
                             @Override
@@ -172,14 +172,11 @@ public class TukarAdapter extends RecyclerView.Adapter<TukarAdapter.ViewHolder> 
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        Toast.makeText(context, "Tukarkan hadiah sukses", Toast.LENGTH_SHORT).show();
                         if (response.isSuccessful()){
                             try {
                                 JSONObject jsonObject = new JSONObject(response.body().string());
                                 String hasil_akhir_point = jsonObject.optString("hasil_akhir_point");
-                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
-                                Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
                                 Toast.makeText(context, "Sukses menukarkan. Poin anda : " + hasil_akhir_point, Toast.LENGTH_SHORT).show();
                                 SharedPreferences sharedPreferences = context.getSharedPreferences(Config.SHARED_NAME, MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();

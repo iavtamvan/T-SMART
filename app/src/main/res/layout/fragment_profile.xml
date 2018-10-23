@@ -197,9 +197,9 @@
 
                         <ImageView
                             android:layout_width="35dp"
-                            android:layout_height="30dp"
+                            android:layout_height="35dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/ts" />
+                            android:src="@drawable/terhubung_ke" />
 
                     </LinearLayout>
 
@@ -233,9 +233,10 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="35dp"
+                                android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/discountvoucher" />
+                                android:src="@drawable/discountvoucher"
+                                android:tint="@android:color/black"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -271,9 +272,10 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="35dp"
+                                android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/help" />
+                                android:src="@drawable/help"
+                                android:tint="@android:color/black" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -309,9 +311,10 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="35dp"
+                                android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/tukar" />
+                                android:src="@drawable/tukar"
+                                android:tint="@android:color/black" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -347,9 +350,10 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="35dp"
+                                android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/gift" />
+                                android:src="@drawable/gift"
+                                android:tint="@android:color/black" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -385,9 +389,10 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="35dp"
+                                android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/medical" />
+                                android:src="@drawable/medical"
+                                android:tint="@android:color/black"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -423,9 +428,10 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="35dp"
+                                android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/info" />
+                                android:src="@drawable/info"
+                                android:tint="@android:color/black"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -461,9 +467,10 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="35dp"
+                                android:layout_width="30dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/file" />
+                                android:src="@drawable/file"
+                                android:tint="@android:color/black"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -499,8 +506,9 @@
                             android:orientation="vertical">
 
                             <ImageView
-                                android:layout_width="35dp"
+                                android:layout_width="30dp"
                                 android:layout_height="match_parent"
+                                android:tint="@android:color/black"
                                 android:src="@drawable/star" />
                         </LinearLayout>
 
@@ -515,7 +523,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center|left"
-                                android:text="Rate DORA App" />
+                                android:text="Rate DORA Apps" />
 
                             <View
                                 android:layout_width="match_parent"

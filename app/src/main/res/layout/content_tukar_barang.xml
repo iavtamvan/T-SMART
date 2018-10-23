@@ -151,7 +151,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|left"
                         android:paddingLeft="4dp"
-                        android:text="Gratis ongkir dengan menggunakan T-POINT"
+                        android:text="Gratis ongkir dengan menggunakan D-POINT"
                         android:textSize="10dp" />
                 </LinearLayout>
             </LinearLayout>

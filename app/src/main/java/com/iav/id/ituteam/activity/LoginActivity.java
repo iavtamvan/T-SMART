@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
         Permissions.check(this/*context*/, permissions, null/*rationale*/, null/*options*/, new PermissionHandler() {
             @Override
             public void onGranted() {
-                Toast.makeText(LoginActivity.this, "" + Config.ERROR_PERMISSION_SUCCES, Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onGranted: succes");
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +108,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     String message = intent.getStringExtra("message");
 
-                    Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
                     Log.e(TAG, "onReceive: Push Message" + message);
 
                 }
@@ -120,7 +119,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateTokenFirebase() {
-        Toast.makeText(this, "ID user" + id_user, Toast.LENGTH_SHORT).show();
         ApiService apiService = Client.getInstanceRetrofit();
         apiService.updateTokenFirebase("updateTokenFirebase", id_user, regId)
                 .enqueue(new Callback<ResponseBody>() {
@@ -151,7 +149,6 @@ public class LoginActivity extends AppCompatActivity {
     private void displayFirebaseRegId() {
         SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
         regId = pref.getString(Config.SHARE_FIREBASE_TOKEN, "");
-        Toast.makeText(this, "" + regId + id_user, Toast.LENGTH_SHORT).show();
         Log.e(TAG, "Firebase reg id: " + regId);
         if (!TextUtils.isEmpty(regId))
             Log.e(TAG, "Firebase Reg Id: " + regId);
@@ -252,7 +249,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         new FancyAlertDialog.Builder(this)
-                .setTitle("DORA")
+                .setTitle("DORA APPS")
                 .setBackgroundColor(Color.parseColor("#7f0000"))  //Don't pass R.color.colorvalue
                 .setMessage("Login dulu baru keluar ya :)")
                 .setNegativeBtnText("Tidak")

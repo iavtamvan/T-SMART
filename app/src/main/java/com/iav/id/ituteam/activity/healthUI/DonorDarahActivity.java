@@ -12,10 +12,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.iav.id.ituteam.MainActivity;
 import com.iav.id.ituteam.R;
 import com.iav.id.ituteam.helper.Config;
+import com.iav.id.ituteam.model.UserPetugasModel;
 import com.iav.id.ituteam.rest.ApiService;
 import com.iav.id.ituteam.rest.Client;
 import com.shashank.sony.fancydialoglib.Animation;
@@ -31,7 +34,9 @@ import com.shashank.sony.fancydialoglib.FancyAlertDialog;
 import com.shashank.sony.fancydialoglib.FancyAlertDialogListener;
 import com.shashank.sony.fancydialoglib.Icon;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -95,6 +100,12 @@ public class DonorDarahActivity extends AppCompatActivity {
     private TextView tvDonorDarahGolonganRhesus;
     private TextView tvDonorDarahPoint;
 
+    private List<String> dataUserPetugas;
+    private ArrayList<UserPetugasModel> userPetugasModels;
+    private LinearLayout divContainerGolDarahNamaPetugas;
+    private TextView tvDonorDarahNamaPetugas;
+    private Spinner spnUserPetugas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +114,9 @@ public class DonorDarahActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         initView();
         initShared();
+        getDataUserPetugas();
+        dataUserPetugas = new ArrayList<>();
+        userPetugasModels = new ArrayList<>();
 
 
         divContainerGolDarah.setOnClickListener(new View.OnClickListener() {
@@ -154,7 +168,28 @@ public class DonorDarahActivity extends AppCompatActivity {
         });
 
 
+    }
 
+    private void getDataUserPetugas() {
+        ApiService apiService = Client.getInstanceRetrofit();
+        apiService.getUserPetugas("userPetugasSaja")
+                .enqueue(new Callback<ArrayList<UserPetugasModel>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<UserPetugasModel>> call, Response<ArrayList<UserPetugasModel>> response) {
+                        userPetugasModels = response.body();
+                        for (int i = 0; i < userPetugasModels.size(); i++) {
+                            dataUserPetugas.add(userPetugasModels.get(i).getNamaLengkap() + " | " + userPetugasModels.get(i).getKotaKab());
+
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(DonorDarahActivity.this, android.R.layout.simple_spinner_dropdown_item, dataUserPetugas);
+                            spnUserPetugas.setAdapter(adapter);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<UserPetugasModel>> call, Throwable t) {
+                        Toast.makeText(DonorDarahActivity.this, "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void initShared() {
@@ -190,29 +225,25 @@ public class DonorDarahActivity extends AppCompatActivity {
             tvDonorDarahGolongan.setText(gol_darah);
         }
 
-        if (rhesus.isEmpty()){
+        if (rhesus.isEmpty()) {
             Log.d("", "initShared: ksoogn rhesusnya");
-        }
-        else {
+        } else {
             tvDonorDarahGolonganRhesus.setText(rhesus);
         }
 
-        if (no_reg_pmi.isEmpty()){
+        if (no_reg_pmi.isEmpty()) {
             Log.d("", "initShared: reg pmi kosong");
-        }
-        else {
+        } else {
             edtDonorDarahNoregPmi.setText(no_reg_pmi);
         }
-        if (tgl_donor.isEmpty()){
+        if (tgl_donor.isEmpty()) {
             Log.d("", "initShared: tgl donor kosong");
-        }
-        else {
+        } else {
             tvDonorDarahTanggal.setText(tgl_donor);
         }
-        if (tgl_jatuh_tempo.isEmpty()){
+        if (tgl_jatuh_tempo.isEmpty()) {
             Log.d("", "initShared: jatuh tempo kosong");
-        }
-        else {
+        } else {
             tvDonorDarahTanggalJatuhTempo.setText(tgl_jatuh_tempo);
         }
         tvDonorDarahNama.setText(nama_lengkap);
@@ -239,16 +270,17 @@ public class DonorDarahActivity extends AppCompatActivity {
 
 
     }
+
     private void postDonorPasien() {
         ApiService apiService = Client.getInstanceRetrofit();
         apiService.postDonorDarahPasien(id_user, tvDonorDarahGolongan.getText().toString().trim(),
                 tvDonorDarahTanggal.getText().toString().trim(), "90 Hari lagi", tvDonorDarahGolonganRhesus.getText().toString().trim(),
-                edtDonorDarahNoregPmi.getText().toString().trim(), "Tidak Terdaftar", uuid, "Darah", kota_kab, "Menunggu")
+                edtDonorDarahNoregPmi.getText().toString().trim(), "Tidak Terdaftar", uuid, spnUserPetugas.getSelectedItem().toString().trim(), "Darah", kota_kab, "Belum melakukan donor")
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (response.isSuccessful()){
-                            Toast.makeText(DonorDarahActivity.this, "Daftar Donor Darah Sukses" , Toast.LENGTH_SHORT).show();
+                        if (response.isSuccessful()) {
+                            Toast.makeText(DonorDarahActivity.this, "Daftar Donor Darah Sukses", Toast.LENGTH_SHORT).show();
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
 //                            try {
@@ -279,6 +311,7 @@ public class DonorDarahActivity extends AppCompatActivity {
                     }
                 });
     }
+
     private void dateDialog() {
         final Calendar c = Calendar.getInstance();
         mSelectedYear = c.get(Calendar.YEAR);
@@ -302,6 +335,7 @@ public class DonorDarahActivity extends AppCompatActivity {
                 }, mSelectedYear, mSelectedMonth, mSelectedDay);
         datePickerDialog.show();
     }
+
     private void dialogBoxGolonganDarah() {
         AlertDialog.Builder builder = new AlertDialog.Builder(DonorDarahActivity.this);
         builder.setTitle("Urut berdasarkan");
@@ -315,6 +349,7 @@ public class DonorDarahActivity extends AppCompatActivity {
             }
         }).show();
     }
+
     private void dialogBoxRhesus() {
         AlertDialog.Builder builder = new AlertDialog.Builder(DonorDarahActivity.this);
         builder.setTitle("Urut berdasarkan");
@@ -328,6 +363,7 @@ public class DonorDarahActivity extends AppCompatActivity {
             }
         }).show();
     }
+
     private void initView() {
         ivCircleGolDarah = findViewById(R.id.iv_circle_gol_darah);
         tvDonorDarahNama = findViewById(R.id.tv_donor_darah_nama);
@@ -346,6 +382,9 @@ public class DonorDarahActivity extends AppCompatActivity {
         divContainerGolDarahRhesus = findViewById(R.id.div_container_gol_darah_rhesus);
         tvDonorDarahGolonganRhesus = findViewById(R.id.tv_donor_darah_golongan_rhesus);
         tvDonorDarahPoint = findViewById(R.id.tv_donor_darah_point);
+        divContainerGolDarahNamaPetugas = findViewById(R.id.div_container_gol_darah_nama_petugas);
+        tvDonorDarahNamaPetugas = findViewById(R.id.tv_donor_darah_nama_petugas);
+        spnUserPetugas = findViewById(R.id.spn_user_petugas);
     }
 
     @Override
@@ -392,7 +431,7 @@ public class DonorDarahActivity extends AppCompatActivity {
                 .OnNegativeClicked(new FancyAlertDialogListener() {
                     @Override
                     public void OnClick() {
-                        Toast.makeText(getApplicationContext(),"Yeah",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Yeah", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .build();
